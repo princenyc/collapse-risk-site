@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When The Crowd Turns — Chartreuse Explosives</title>
+<meta name="description" content="A five-variable collapse risk instrument for artists. Built on the Chartreuse Explosives framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --near-black: #111111;
+  --surface: #161616;
+  --surface2: #1e1e1e;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --chartreuse: #c8e600;
+  --chartreuse-dim: #8fa300;
+  --white: #f0ede6;
+  --muted: #888880;
+  --danger: #e24b4a;
+  --warning: #ef9f27;
+  --success: #5dcaa5;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--chartreuse); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  background: var(--black);
+  z-index: 100;
+}
+.nav-mark {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.nav-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.nav-link:hover { color: var(--white); text-decoration: none; }
+
+/* HERO */
+.hero {
+  border-bottom: 1px solid var(--border);
+  padding: 5rem 2rem 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(56px, 8vw, 96px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero-title span { color: var(--chartreuse); }
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* VARIABLES STRIP */
+.vars-strip {
+  border-bottom: 1px solid var(--border);
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.vars-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.vars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.var-item {
+  background: var(--near-black);
+  padding: 1rem 1.25rem;
+}
+.var-item-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.var-item-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* INPUT SECTION */
+.input-section {
+  padding: 3rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+.input-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+.input-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border-bright);
+  max-width: 600px;
+}
+.input-row:focus-within {
+  border-color: var(--chartreuse);
+}
+#artist-input {
+  flex: 1;
+  background: var(--surface);
+  border: none;
+  outline: none;
+  padding: 0 1.25rem;
+  height: 52px;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+#artist-input::placeholder { color: var(--muted); }
+#generate-btn {
+  background: var(--chartreuse);
+  border: none;
+  padding: 0 2rem;
+  height: 52px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+#generate-btn:hover { background: #d4f500; }
+#generate-btn:active { background: #b0ca00; }
+#generate-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
+
+.examples {
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.examples span { margin-right: 0.5rem; }
+.example-link {
+  color: var(--muted);
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: color 0.1s;
+  border-bottom: 1px solid var(--border-bright);
+  padding-bottom: 1px;
+}
+.example-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); }
+
+/* LOADING */
+#loading {
+  display: none;
+  padding: 3rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+#loading.visible { display: block; }
+.loading-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.loading-bar {
+  width: 200px;
+  height: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 2px;
+  background: var(--chartreuse);
+  animation: loadbar 1.8s ease-in-out infinite;
+}
+@keyframes loadbar {
+  0% { width: 0%; margin-left: 0%; }
+  50% { width: 60%; margin-left: 20%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+.loading-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ERROR */
+#error-box {
+  display: none;
+  padding: 1rem 1.25rem;
+  background: #1a0a0a;
+  border: 1px solid var(--danger);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--danger);
+  max-width: 600px;
+  margin-top: 1rem;
+}
+#error-box.visible { display: block; }
+
+/* REPORT */
+#report {
+  display: none;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+  animation: fadein 0.4s ease;
+}
+#report.visible { display: block; }
+@keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.report-header {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.report-artist {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: var(--white);
+}
+.report-meta-col {
+  text-align: right;
+}
+.report-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.report-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* RISK BANNER */
+.risk-banner {
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid;
+  margin-bottom: 2rem;
+}
+.risk-banner.low { border-color: var(--success); background: #041a12; }
+.risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
+.risk-banner.high { border-color: #e07b00; background: #1a0f00; }
+.risk-banner.critical { border-color: var(--danger); background: #1a0808; }
+.risk-level {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.risk-banner.low .risk-level { color: var(--success); }
+.risk-banner.moderate .risk-level { color: var(--warning); }
+.risk-banner.high .risk-level { color: #e07b00; }
+.risk-banner.critical .risk-level { color: var(--danger); }
+.risk-summary-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.6;
+}
+
+/* SCORE GRID */
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+@media (max-width: 640px) {
+  .score-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.score-cell {
+  background: var(--surface);
+  padding: 1.25rem 1rem;
+}
+.score-cell-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.score-cell-value {
+  font-family: var(--display);
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.score-cell-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.val-low { color: var(--success); }
+.val-mod { color: var(--warning); }
+.val-high { color: #e07b00; }
+.val-crit { color: var(--danger); }
+.val-neutral { color: var(--white); }
+
+/* BREAKDOWN */
+.section-header {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.var-blocks { margin-bottom: 2rem; }
+.vblock {
+  border: 1px solid var(--border);
+  margin-bottom: 1px;
+}
+.vblock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.vblock-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.vblock-score {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+}
+.vblock-body {
+  padding: 1rem 1.25rem;
+  background: var(--near-black);
+}
+.vblock-body p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.7;
+}
+.bar {
+  height: 2px;
+  background: var(--border);
+  margin-top: 1rem;
+}
+.bar-fill {
+  height: 2px;
+  transition: width 0.6s ease;
+}
+.bar-green { background: var(--success); }
+.bar-amber { background: var(--warning); }
+.bar-orange { background: #e07b00; }
+.bar-red { background: var(--danger); }
+
+/* STAGE PIPS */
+.stage-pips {
+  display: flex;
+  gap: 3px;
+  margin-top: 10px;
+}
+.pip {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+}
+.pip.past { background: var(--chartreuse-dim); }
+.pip.active { background: var(--chartreuse); }
+
+/* PRESCRIPTION */
+.prescription {
+  border: 1px solid var(--chartreuse-dim);
+  background: #0d1200;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.prescription-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.prescription-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.7;
+}
+
+/* CONCLUSION */
+.conclusion {
+  border-left: 2px solid var(--border-bright);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.conclusion p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* COPY BTN */
+.copy-row {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+#copy-btn {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+#copy-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-mark {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.footer-mark a { color: var(--chartreuse-dim); }
+.footer-right {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--border-bright);
+  letter-spacing: 0.06em;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-mark">Chartreuse Explosives</span>
+  <a href="https://chartreuseexplosives.com" class="nav-link">chartreuseexplosives.com</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Collapse Risk Instrument</div>
+  <h1 class="hero-title">When The<br><span>Crowd Turns</span></h1>
+  <p class="hero-sub">A five-variable diagnostic for artist legitimacy collapse. Not a prediction. A probability map. Built on the Chartreuse Explosives framework.</p>
+</div>
+
+<div class="vars-strip">
+  <div class="vars-label">The five variables</div>
+  <div class="vars-grid">
+    <div class="var-item">
+      <div class="var-item-name">Contract drift</div>
+      <div class="var-item-desc">Gap between what the artist claims and what the audience actually receives. Scored 1-10.</div>
+    </div>
+    <div class="var-item">
+      <div class="var-item-name">Root cause</div>
+      <div class="var-item-desc">Authenticity failure (audience feels foolish) or allegiance failure (audience feels betrayed).</div>
+    </div>
+    <div class="var-item">
+      <div class="var-item-name">Contract depth</div>
+      <div class="var-item-desc">How much of the audience's identity is invested in the artist. Determines collapse severity.</div>
+    </div>
+    <div class="var-item">
+      <div class="var-item-name">Collapse stage</div>
+      <div class="var-item-desc">Five stages: drift, ironic consumption, threshold crossing, archive rewrite, inversion.</div>
+    </div>
+    <div class="var-item">
+      <div class="var-item-name">Immunity load</div>
+      <div class="var-item-desc">Remaining capacity to absorb violations. Archive depth, demographics, cultural moment.</div>
+    </div>
+  </div>
+</div>
+
+<div class="input-section">
+  <label class="input-label" for="artist-input">Enter artist name</label>
+  <div class="input-row">
+    <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
+    <button id="generate-btn" onclick="generateReport()">Run analysis</button>
+  </div>
+  <div class="examples">
+    <span>Try:</span>
+    <span class="example-link" onclick="runExample('Kanye West')">Kanye West</span>
+    <span class="example-link" onclick="runExample('Taylor Swift')">Taylor Swift</span>
+    <span class="example-link" onclick="runExample('Jay-Z')">Jay-Z</span>
+    <span class="example-link" onclick="runExample('Eminem')">Eminem</span>
+  </div>
+  <div id="error-box"></div>
+</div>
+
+<div id="loading">
+  <div class="loading-inner">
+    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+    <span class="loading-text">Running analysis</span>
+  </div>
+</div>
+
+<div id="report"></div>
+
+<footer>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a></span>
+  <span class="footer-right">Collapse Risk Instrument v1.0</span>
+</footer>
+
+<script>
+const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
+
+const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
+
+function runExample(name) {
+  document.getElementById('artist-input').value = name;
+  generateReport();
+}
+
+async function generateReport() {
+  const name = document.getElementById('artist-input').value.trim();
+  if (!name) return;
+
+  const btn = document.getElementById('generate-btn');
+  const loading = document.getElementById('loading');
+  const report = document.getElementById('report');
+  const errorBox = document.getElementById('error-box');
+
+  btn.disabled = true;
+  errorBox.classList.remove('visible');
+  report.classList.remove('visible');
+  report.innerHTML = '';
+  loading.classList.add('visible');
+
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ artist: name })
+    });
+    if (!res.ok) throw new Error('Worker error: ' + res.status);
+    const data = await res.json();
+    loading.classList.remove('visible');
+    renderReport(data);
+  } catch (e) {
+    loading.classList.remove('visible');
+    errorBox.textContent = 'Analysis failed. Check your connection or try again.';
+    errorBox.classList.add('visible');
+    console.error(e);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function scoreClass(n) {
+  if (n <= 3) return 'val-low';
+  if (n <= 5) return 'val-mod';
+  if (n <= 7) return 'val-high';
+  return 'val-crit';
+}
+function barClass(n) {
+  if (n <= 3) return 'bar-green';
+  if (n <= 5) return 'bar-amber';
+  if (n <= 7) return 'bar-orange';
+  return 'bar-red';
+}
+function immunityColor(n) {
+  if (n >= 7) return 'val-low';
+  if (n >= 5) return 'val-mod';
+  if (n >= 3) return 'val-high';
+  return 'val-crit';
+}
+function immunityBar(n) {
+  if (n >= 7) return 'bar-green';
+  if (n >= 5) return 'bar-amber';
+  if (n >= 3) return 'bar-orange';
+  return 'bar-red';
+}
+
+function renderReport(d) {
+  const riskClass = d.overall_risk || 'moderate';
+  const riskLabel = { low: 'Low risk', moderate: 'Moderate risk', high: 'High risk', critical: 'Critical risk' };
+  const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
+  const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
+
+  let pips = '';
+  for (let i = 1; i <= 5; i++) {
+    const cls = i < d.collapse_stage ? 'past' : i === d.collapse_stage ? 'active' : '';
+    pips += `<div class="pip ${cls}"></div>`;
+  }
+
+  const reportText = buildReportText(d, stageName);
+
+  const html = `
+    <div class="report-header">
+      <div>
+        <div class="report-tag">Collapse risk report</div>
+        <div class="report-artist">${d.artist}</div>
+      </div>
+      <div class="report-meta-col">
+        <div class="report-date">${d.generated || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+      </div>
+    </div>
+
+    <div class="risk-banner ${riskClass}">
+      <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
+      <div class="risk-summary-text">${d.risk_summary}</div>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-cell">
+        <div class="score-cell-label">Drift score</div>
+        <div class="score-cell-value ${scoreClass(d.drift_score)}">${d.drift_score}</div>
+        <div class="score-cell-sub">out of 10</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Root cause</div>
+        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${capitalize(d.root_cause)}</div>
+        <div class="score-cell-sub">${capitalize(d.audience_emotion)}</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Depth</div>
+        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
+        <div class="score-cell-sub">${d.career_years} yr career</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Stage</div>
+        <div class="score-cell-value ${scoreClass(d.collapse_stage)}">${d.collapse_stage}</div>
+        <div class="score-cell-sub">${stageName}</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-cell-label">Immunity</div>
+        <div class="score-cell-value ${immunityColor(d.immunity_load)}">${d.immunity_load}</div>
+        <div class="score-cell-sub">${capitalize(d.depletion_rate)} depletion</div>
+      </div>
+    </div>
+
+    <div class="section-header">Variable breakdown</div>
+    <div class="var-blocks">
+      <div class="vblock">
+        <div class="vblock-header">
+          <span class="vblock-name">Contract drift</span>
+          <span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span>
+        </div>
+        <div class="vblock-body">
+          <p>${d.drift_finding}</p>
+          <div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div>
+        </div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-header">
+          <span class="vblock-name">Root cause</span>
+          <span class="vblock-score">${capitalize(d.root_cause)}</span>
+        </div>
+        <div class="vblock-body"><p>${d.root_finding}</p></div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-header">
+          <span class="vblock-name">Contract depth</span>
+          <span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span>
+        </div>
+        <div class="vblock-body"><p>${d.depth_finding}</p></div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-header">
+          <span class="vblock-name">Collapse stage</span>
+          <span class="vblock-score ${scoreClass(d.collapse_stage)}">${stageName}</span>
+        </div>
+        <div class="vblock-body">
+          <p>${d.stage_finding}</p>
+          <div class="stage-pips">${pips}</div>
+        </div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-header">
+          <span class="vblock-name">Immunity load</span>
+          <span class="vblock-score">${d.immunity_load}/10 &middot; ${d.depletion_rate} depletion</span>
+        </div>
+        <div class="vblock-body">
+          <p>${d.immunity_finding}</p>
+          <div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prescription">
+      <div class="prescription-label">What the artist should do next</div>
+      <div class="prescription-text">${d.prescription}</div>
+    </div>
+
+    <div class="conclusion"><p>${d.conclusion}</p></div>
+
+    <div class="copy-row">
+      <button id="copy-btn" onclick="copyReport(\`${escapeTemplate(reportText)}\`)">Copy report</button>
+    </div>
+  `;
+
+  const reportEl = document.getElementById('report');
+  reportEl.innerHTML = html;
+  reportEl.classList.add('visible');
+  reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function capitalize(s) {
+  if (!s) return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function escapeTemplate(s) {
+  return s.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+}
+
+function buildReportText(d, stageName) {
+  return `COLLAPSE RISK REPORT: ${d.artist}
+${d.generated || new Date().toLocaleDateString()}
+
+OVERALL RISK: ${(d.overall_risk || '').toUpperCase()}
+${d.risk_summary}
+
+SCORES
+Drift: ${d.drift_score}/10 | Root cause: ${d.root_cause} | Depth: ${d.contract_depth} | Stage: ${d.collapse_stage}/5 (${stageName}) | Immunity: ${d.immunity_load}/10 (${d.depletion_rate} depletion)
+
+CONTRACT DRIFT
+${d.drift_finding}
+
+ROOT CAUSE
+${d.root_finding}
+
+CONTRACT DEPTH
+${d.depth_finding}
+
+COLLAPSE STAGE
+${d.stage_finding}
+
+IMMUNITY LOAD
+${d.immunity_finding}
+
+WHAT THE ARTIST SHOULD DO NEXT
+${d.prescription}
+
+CONCLUSION
+${d.conclusion}
+
+—
+Chartreuse Explosives Collapse Risk Instrument
+chartreuseexplosives.com`;
+}
+
+async function copyReport(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = 'Copy report'; }, 2000);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+document.getElementById('artist-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') generateReport();
+});
+</script>
+</body>
+</html>
