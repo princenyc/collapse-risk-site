@@ -562,29 +562,30 @@ footer {
   <div class="vars-grid">
     <div class="var-item">
       <div class="var-item-name">Contract drift</div>
-      <div class="var-item-desc">Gap between what the artist claims and what the audience actually receives. Scored 1-10.</div>
+      <div class="var-item-desc">How far they've fallen from who they claimed to be. Scored 1 to 10.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Root cause</div>
-      <div class="var-item-desc">Authenticity failure (audience feels foolish) or allegiance failure (audience feels betrayed).</div>
+      <div class="var-item-desc">Did the audience feel foolish or betrayed. Two different breaks. Two different endings.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Contract depth</div>
-      <div class="var-item-desc">How much of the audience's identity is invested in the artist. Determines collapse severity.</div>
+      <div class="var-item-desc">How much of the audience's identity is wrapped up in this person. Determines how loud the exit gets.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Collapse stage</div>
-      <div class="var-item-desc">Five stages: drift, ironic consumption, threshold crossing, archive rewrite, inversion.</div>
+      <div class="var-item-desc">Five stages from drift to inversion. The difference between them is fixable versus permanent.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Immunity load</div>
-      <div class="var-item-desc">Remaining capacity to absorb violations. Archive depth, demographics, cultural moment.</div>
+      <div class="var-item-desc">How many mistakes they have left before the math changes permanently.</div>
     </div>
   </div>
 </div>
 
 <div class="input-section">
   <label class="input-label" for="artist-input">Enter artist name</label>
+<p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:1rem;">Type any artist, politician, athlete, or public figure. The instrument runs the full five-variable analysis and tells you exactly where they stand.</p>
   <div class="input-row">
     <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
