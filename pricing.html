@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — When The Crowd Turns</title>
+<meta name="description" content="Three tiers. No subscriptions. Reports that never expire. Built on the Chartreuse Explosives Collapse Risk Framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --near-black: #111111;
+  --surface: #161616;
+  --surface2: #1e1e1e;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --chartreuse: #c8e600;
+  --chartreuse-dim: #8fa300;
+  --white: #f0ede6;
+  --muted: #888880;
+  --danger: #e24b4a;
+  --warning: #ef9f27;
+  --success: #5dcaa5;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--chartreuse); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  position: sticky;
+  top: 0;
+  background: var(--black);
+  z-index: 100;
+}
+.nav-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nav-link:hover { color: var(--white); text-decoration: none; }
+.nav-link.active { color: var(--white); }
+
+/* HERO */
+.hero {
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.25rem 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(42px, 7vw, 80px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+}
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+/* PRICING GRID */
+.pricing-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+@media (max-width: 720px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* TIER CARD */
+.tier {
+  background: var(--near-black);
+  display: flex;
+  flex-direction: column;
+}
+.tier.featured {
+  background: var(--surface);
+  border-left: 1px solid var(--chartreuse-dim);
+  border-right: 1px solid var(--chartreuse-dim);
+  margin: -1px 0;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 720px) {
+  .tier.featured {
+    border-left: none;
+    border-right: none;
+    border-top: 2px solid var(--chartreuse-dim);
+    border-bottom: 2px solid var(--chartreuse-dim);
+    margin: 0;
+  }
+}
+
+.tier-header {
+  padding: 1.75rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.tier-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.tier.featured .tier-name {
+  color: var(--chartreuse);
+}
+.tier-price {
+  font-family: var(--display);
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+.tier.featured .tier-price {
+  color: var(--chartreuse);
+}
+.tier-price-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 1.25rem;
+}
+.tier-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.tier.featured .tier-desc {
+  color: var(--white);
+}
+
+/* FEATURES */
+.tier-features {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.feature-check {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--border-bright);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.feature-check.on {
+  color: var(--chartreuse-dim);
+}
+.tier.featured .feature-check.on {
+  color: var(--chartreuse);
+}
+.feature-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.tier.featured .feature-text {
+  color: var(--white);
+}
+.feature-text.off {
+  opacity: 0.35;
+}
+
+/* TIER CTA */
+.tier-cta {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.tier-btn {
+  width: 100%;
+  height: 48px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.tier-btn.free {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--muted);
+}
+.tier-btn.free:hover {
+  border-color: var(--white);
+  color: var(--white);
+  text-decoration: none;
+}
+.tier-btn.paid {
+  background: var(--surface2);
+  border: 1px solid var(--border-bright);
+  color: var(--white);
+}
+.tier-btn.paid:hover {
+  border-color: var(--chartreuse);
+  color: var(--chartreuse);
+  text-decoration: none;
+}
+.tier-btn.primary {
+  background: var(--chartreuse);
+  color: var(--black);
+}
+.tier-btn.primary:hover {
+  background: #d4f500;
+  text-decoration: none;
+}
+.tier-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+/* COMPARISON TABLE */
+.compare-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+  border-top: 1px solid var(--border);
+}
+.compare-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 2rem 0 1.5rem;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+.compare-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.875rem 1.25rem;
+  text-align: left;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+.compare-table th.featured-col {
+  color: var(--chartreuse);
+  background: var(--surface2);
+}
+.compare-table td {
+  font-size: 13px;
+  font-weight: 300;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--white);
+  vertical-align: middle;
+}
+.compare-table td.featured-col {
+  background: #131300;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table .row-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+.check-yes {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--chartreuse);
+}
+.check-no {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--border-bright);
+}
+@media (max-width: 600px) {
+  .compare-section { display: none; }
+}
+
+/* EXPIRE NOTICE */
+.expire-notice {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem 2rem;
+}
+.expire-inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.expire-icon {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--chartreuse);
+  flex-shrink: 0;
+}
+.expire-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.expire-text strong {
+  color: var(--white);
+  font-weight: 400;
+}
+
+/* FAQ */
+.faq-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+.faq-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+}
+.faq-q {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.faq-a {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.footer-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.footer-mark a { color: var(--chartreuse-dim); }
+.footer-right {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--border-bright);
+  letter-spacing: 0.06em;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-mark">Chartreuse Explosives</span>
+  <div class="nav-right">
+    <a href="/" class="nav-link">The instrument</a>
+    <a href="/about" class="nav-link">The framework</a>
+    <a href="/pricing" class="nav-link active">Pricing</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Pricing</div>
+  <h1 class="hero-title">No Subscriptions.<br>Reports Don't Expire.</h1>
+  <p class="hero-sub">Buy what you need. Use it when you need it. Every paid report runs live web search and returns sourced, current analysis.</p>
+</div>
+
+<div class="pricing-section">
+  <div class="pricing-grid">
+
+    <!-- SIGNAL — FREE -->
+    <div class="tier">
+      <div class="tier-header">
+        <div class="tier-name">Signal</div>
+        <div class="tier-price">Free</div>
+        <div class="tier-price-sub">3 reports per day</div>
+        <div class="tier-desc">The instrument. No payment. Data through mid-2025. Good for a first look.</div>
+      </div>
+      <div class="tier-features">
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">3 reports per day</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Full five-variable analysis</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Prescription included</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check">&#215;</span>
+          <span class="feature-text off">Live web search</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check">&#215;</span>
+          <span class="feature-text off">Sourced findings</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check">&#215;</span>
+          <span class="feature-text off">Image export</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check">&#215;</span>
+          <span class="feature-text off">Shareable permanent link</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check">&#215;</span>
+          <span class="feature-text off">Data current as of today</span>
+        </div>
+      </div>
+      <div class="tier-cta">
+        <a href="/" class="tier-btn free">Run a free report</a>
+      </div>
+    </div>
+
+    <!-- INTEL — $5 FEATURED -->
+    <div class="tier featured">
+      <div class="tier-header">
+        <div class="tier-name">Intel</div>
+        <div class="tier-price">$5</div>
+        <div class="tier-price-sub">per report · no account needed</div>
+        <div class="tier-desc">One report. Full live search. Current receipts. Sourced findings. Export and share.</div>
+      </div>
+      <div class="tier-features">
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">1 report</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Full five-variable analysis</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Prescription included</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Live web search</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Sourced findings with citations</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Image export</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Shareable permanent link</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Data current as of today</span>
+        </div>
+      </div>
+      <div class="tier-cta">
+        <a href="#" class="tier-btn primary">Buy one report — $5</a>
+        <div class="tier-note">No account required</div>
+      </div>
+    </div>
+
+    <!-- ARCHIVE — $29 -->
+    <div class="tier">
+      <div class="tier-header">
+        <div class="tier-name">Archive</div>
+        <div class="tier-price">$29</div>
+        <div class="tier-price-sub">50 reports · never expire</div>
+        <div class="tier-desc">Fifty reports. Use them over days, weeks, or months. Every one runs live. Nothing expires.</div>
+      </div>
+      <div class="tier-features">
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">50 reports — never expire</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Full five-variable analysis</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Prescription included</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Live web search</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Sourced findings with citations</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Image export</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Shareable permanent links</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check on">&#10003;</span>
+          <span class="feature-text">Report history</span>
+        </div>
+      </div>
+      <div class="tier-cta">
+        <a href="#" class="tier-btn paid">Buy 50 reports — $29</a>
+        <div class="tier-note">$0.58 per report · Account required</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NEVER EXPIRE NOTICE -->
+<div class="expire-notice">
+  <div class="expire-inner">
+    <span class="expire-icon">&#8734;</span>
+    <span class="expire-text"><strong>Reports never expire.</strong> Buy Archive when you need it. Use them at your own pace. No monthly pressure. No wasted credits.</span>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE — desktop only -->
+<div class="compare-section">
+  <div class="compare-label">Full comparison</div>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="width:40%">Feature</th>
+        <th>Signal</th>
+        <th class="featured-col">Intel</th>
+        <th>Archive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Reports</td>
+        <td>3 / day</td>
+        <td class="featured-col">1</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td class="row-label">Expiry</td>
+        <td>Resets daily</td>
+        <td class="featured-col">Never</td>
+        <td>Never</td>
+      </tr>
+      <tr>
+        <td class="row-label">Live web search</td>
+        <td><span class="check-no">&#215;</span></td>
+        <td class="featured-col"><span class="check-yes">&#10003;</span></td>
+        <td><span class="check-yes">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td class="row-label">Sourced findings</td>
+        <td><span class="check-no">&#215;</span></td>
+        <td class="featured-col"><span class="check-yes">&#10003;</span></td>
+        <td><span class="check-yes">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td class="row-label">Data currency</td>
+        <td>Through mid-2025</td>
+        <td class="featured-col">Current</td>
+        <td>Current</td>
+      </tr>
+      <tr>
+        <td class="row-label">Image export</td>
+        <td><span class="check-no">&#215;</span></td>
+        <td class="featured-col"><span class="check-yes">&#10003;</span></td>
+        <td><span class="check-yes">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td class="row-label">Shareable link</td>
+        <td><span class="check-no">&#215;</span></td>
+        <td class="featured-col"><span class="check-yes">&#10003;</span></td>
+        <td><span class="check-yes">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td class="row-label">Report history</td>
+        <td><span class="check-no">&#215;</span></td>
+        <td class="featured-col"><span class="check-no">&#215;</span></td>
+        <td><span class="check-yes">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td class="row-label">Account required</td>
+        <td>No</td>
+        <td class="featured-col">No</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td class="row-label">Price per report</td>
+        <td>Free</td>
+        <td class="featured-col">$5.00</td>
+        <td>$0.58</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-label">Questions</div>
+
+  <div class="faq-item">
+    <div class="faq-q">What's the difference between Signal and paid reports?</div>
+    <div class="faq-a">Signal runs on training data through mid-2025. No web search. It knows the shape of someone's career but not what happened last month. Intel and Archive run live web search on every report. Current events. Named sources. Specific receipts. The analysis is different in kind, not just in depth.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do Archive reports really never expire?</div>
+    <div class="faq-a">Never. Buy 50 reports today, use the last one two years from now. No monthly pressure. No wasted credits. The balance stays until you use it.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need an account for Intel?</div>
+    <div class="faq-a">No. $5, one report, no account. Pay and run. The report is yours to export and share immediately.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What does the prescription actually tell me?</div>
+    <div class="faq-a">Every report ends with a specific prescription — what the subject should do next based on their exact collapse stage and root cause. Not generic advice. Named moves. You'll know what the right play is before they do.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Does this work for politicians, athletes, and brands — not just musicians?</div>
+    <div class="faq-a">Yes. The framework was built for musicians but the mechanism is identical across any public figure whose position depends on an audience choosing to believe in them. Politicians, athletes, executives, brands — the five variables scale to all of them.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What if I need more than 50 reports?</div>
+    <div class="faq-a">Buy another Archive bundle. They stack. Each purchase adds 50 reports to your balance.</div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;·&nbsp; <a href="/about">The framework</a></span>
+  <span class="footer-right">When The Crowd Turns</span>
+</footer>
+
+</body>
+</html>
