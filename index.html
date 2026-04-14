@@ -103,6 +103,73 @@ nav {
   line-height: 1.7;
 }
 
+/* HERO LINES */
+.hero-lines {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.hero-lines p {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.hero-why {
+  font-size: clamp(18px, 2.5vw, 24px) !important;
+  font-weight: 400 !important;
+  color: var(--chartreuse) !important;
+  margin-top: 0.75rem !important;
+}
+
+/* PROOF STRIP */
+.proof-strip {
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  padding: 0.875rem 2rem;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: var(--near-black);
+  overflow-x: auto;
+}
+.proof-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+.proof-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+.proof-risk {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+}
+.proof-risk.critical { color: var(--danger); border: 1px solid var(--danger); }
+.proof-risk.high { color: #e07b00; border: 1px solid #e07b00; }
+.proof-risk.moderate { color: var(--warning); border: 1px solid var(--warning); }
+.proof-risk.low { color: var(--success); border: 1px solid var(--success); }
+.proof-divider {
+  color: var(--border-bright);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
 /* BRIDGE */
 .bridge {
   border-bottom: 1px solid var(--border);
@@ -741,14 +808,18 @@ footer {
 
 <div class="hero">
   <div class="hero-eyebrow">Collapse Risk Instrument</div>
-  <h1 class="hero-title">Fame Doesn't End.<br><span>The Belief Does.</span></h1>
-  <p class="hero-sub">Everyone still knows their name. The shows still sell. The numbers still look fine. And somewhere in the audience, something already broke. This instrument finds the break.</p>
+  <h1 class="hero-title">The Crowd<br><span>Hasn't Left Yet.</span></h1>
+  <div class="hero-lines">
+    <p>But they stopped believing six months ago.</p>
+    <p>There's a difference.</p>
+    <p>By the time it's obvious, it's already over.</p>
+    <p class="hero-why">Here's why.</p>
+  </div>
 </div>
 
 <div class="bridge">
-  <p>Public figures don't lose audiences in a day. They lose them across a sequence of small decisions, misread rooms, and moments where the person they claimed to be stopped matching the person the audience was watching.</p>
   <p>By the time it's visible, it's already late. The crowd doesn't announce the exit. It just stops believing. Then it leaves. Then it rewrites what it believed in the first place.</p>
-  <p>Five variables determine how far into that sequence someone is. And whether there's still time to change the math.</p>
+  <p>The break happens in five moves. Every time. Same sequence. Same shape.</p>
   <p class="bridge-cta">This is the instrument that runs that analysis. Type a name. Get the read.</p>
 </div>
 
@@ -776,6 +847,17 @@ footer {
       <div class="var-item-desc">How much runway is left. Catalog depth, audience age, cultural moment. When it runs out, the next mistake isn't a mistake. It's the verdict.</div>
     </div>
   </div>
+</div>
+
+<div class="proof-strip">
+  <span class="proof-label">Recently run</span>
+  <span class="proof-item">Kanye West <span class="proof-risk critical">Critical</span></span>
+  <span class="proof-divider">·</span>
+  <span class="proof-item">Elon Musk <span class="proof-risk high">High</span></span>
+  <span class="proof-divider">·</span>
+  <span class="proof-item">Balenciaga <span class="proof-risk moderate">Moderate recovery</span></span>
+  <span class="proof-divider">·</span>
+  <span class="proof-item">Nicki Minaj <span class="proof-risk high">High</span></span>
 </div>
 
 <div class="input-section">
