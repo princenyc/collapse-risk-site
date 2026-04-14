@@ -69,6 +69,11 @@ nav {
   color: var(--muted);
   letter-spacing: 0.06em;
 }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
 .nav-link:hover { color: var(--white); text-decoration: none; }
 
 /* HERO */
@@ -790,7 +795,11 @@ footer {
 
 <nav>
   <span class="nav-mark">Chartreuse Explosives</span>
-  <a href="https://chartreuseexplosives.com" class="nav-link">chartreuseexplosives.com</a>
+  <div class="nav-right">
+    <a href="/pricing" class="nav-link">Pricing</a>
+    <a href="/about" class="nav-link">The framework</a>
+    <a href="https://chartreuseexplosives.com" class="nav-link">CE</a>
+  </div>
 </nav>
 
 <div class="hero">
@@ -848,7 +857,7 @@ footer {
   <div class="tier-notice">
     <span class="tier-notice-limits">Free tier &mdash; 3 reports per day &nbsp;&middot;&nbsp; No export &nbsp;&middot;&nbsp; No sources &nbsp;&middot;&nbsp; Data through mid-2025</span>
     <span class="tier-notice-paid">Paid reports use live web search for current, sourced analysis.</span>
-    <a href="#" class="tier-notice-link">See paid plans &rarr;</a>
+    <a href="/pricing" class="tier-notice-link">See paid plans &rarr;</a>
   </div>
 
   <div class="examples">
@@ -864,7 +873,7 @@ footer {
       <div class="rate-limit-label">Daily limit reached</div>
       <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Unlock unlimited reports, image export, shareable links, and sourced analysis with a paid plan.</div>
       <div class="rate-limit-actions">
-        <a href="#" class="rate-limit-cta">Unlock unlimited</a>
+        <a href="/pricing" class="rate-limit-cta">Unlock unlimited</a>
         <span class="rate-limit-reset">Resets at midnight</span>
       </div>
     </div>
