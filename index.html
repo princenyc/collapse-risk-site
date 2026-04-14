@@ -650,6 +650,40 @@ nav {
 }
 .upgrade-btn:hover { background: #d4f500; }
 
+/* TIER NOTICE */
+.tier-notice {
+  max-width: 600px;
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+.tier-notice-limits {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  flex-basis: 100%;
+}
+.tier-notice-paid {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--white);
+}
+.tier-notice-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--chartreuse);
+  white-space: nowrap;
+}
+.tier-notice-link:hover { text-decoration: underline; }
+
 /* FOOTER */
 footer {
   border-top: 1px solid var(--border);
@@ -721,6 +755,12 @@ footer {
     <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
+  <div class="tier-notice">
+    <span class="tier-notice-limits">Free tier &mdash; 3 reports per day &nbsp;&middot;&nbsp; No export &nbsp;&middot;&nbsp; No sources &nbsp;&middot;&nbsp; Data through mid-2025</span>
+    <span class="tier-notice-paid">Paid reports use live web search for current, sourced analysis.</span>
+    <a href="#" class="tier-notice-link">See paid plans &rarr;</a>
+  </div>
+
   <div class="examples">
     <span>Try:</span>
     <span class="example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
