@@ -29,9 +29,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--black);
   color: var(--white);
@@ -41,7 +39,6 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
-
 a { color: var(--chartreuse); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
@@ -169,9 +166,7 @@ nav {
   border: 1px solid var(--border-bright);
   max-width: 600px;
 }
-.input-row:focus-within {
-  border-color: var(--chartreuse);
-}
+.input-row:focus-within { border-color: var(--chartreuse); }
 #artist-input {
   flex: 1;
   background: var(--surface);
@@ -273,6 +268,65 @@ nav {
 }
 #error-box.visible { display: block; }
 
+/* RATE LIMIT BOX */
+#rate-limit-box {
+  display: none;
+  max-width: 600px;
+  margin-top: 1rem;
+  border: 1px solid var(--chartreuse-dim);
+  background: #0d1200;
+}
+#rate-limit-box.visible { display: block; }
+.rate-limit-inner {
+  padding: 1.25rem 1.5rem;
+}
+.rate-limit-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.rate-limit-message {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.rate-limit-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.rate-limit-cta {
+  background: var(--chartreuse);
+  border: none;
+  padding: 0 1.5rem;
+  height: 40px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+.rate-limit-cta:hover { background: #d4f500; text-decoration: none; }
+.rate-limit-reset {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
 /* REPORT */
 #report {
   display: none;
@@ -301,9 +355,7 @@ nav {
   letter-spacing: 0.03em;
   color: var(--white);
 }
-.report-meta-col {
-  text-align: right;
-}
+.report-meta-col { text-align: right; }
 .report-date {
   font-family: var(--mono);
   font-size: 11px;
@@ -498,26 +550,105 @@ nav {
   line-height: 1.8;
 }
 
-/* COPY BTN */
-.copy-row {
+/* UPGRADE GATE */
+.upgrade-gate {
+  border: 1px solid var(--border-bright);
+  background: var(--surface);
+  margin-bottom: 2rem;
+}
+.upgrade-gate-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
   display: flex;
-  justify-content: flex-end;
-  padding-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.upgrade-gate-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.upgrade-gate-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  border: 1px solid var(--chartreuse-dim);
+  padding: 2px 8px;
+}
+.upgrade-gate-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--border);
+}
+.upgrade-feature {
+  background: var(--near-black);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  opacity: 0.5;
+  cursor: default;
+}
+.upgrade-feature-icon {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.upgrade-feature-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.5;
+}
+.upgrade-feature-text strong {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+.upgrade-gate-cta {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   border-top: 1px solid var(--border);
 }
-#copy-btn {
-  background: transparent;
-  border: 1px solid var(--border-bright);
-  padding: 8px 16px;
+.upgrade-gate-cta p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+}
+.upgrade-btn {
+  background: var(--chartreuse);
+  border: none;
+  padding: 0 1.5rem;
+  height: 40px;
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--black);
   cursor: pointer;
-  transition: all 0.15s;
+  white-space: nowrap;
+  transition: background 0.15s;
 }
-#copy-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
+.upgrade-btn:hover { background: #d4f500; }
 
 /* FOOTER */
 footer {
@@ -585,19 +716,29 @@ footer {
 
 <div class="input-section">
   <label class="input-label" for="artist-input">Enter</label>
-<p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:1rem;">Type any artist, politician, athlete, or public figure. The instrument runs the full five-variable analysis and tells you exactly where they stand.</p>
+  <p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:1rem;">Type any artist, politician, athlete, or public figure. The instrument runs the full five-variable analysis and tells you exactly where they stand.</p>
   <div class="input-row">
     <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
   <div class="examples">
     <span>Try:</span>
-   <span class="example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
-<span class="example-link" onclick="runExample('Nicki Minaj')">Nicki Minaj</span>
-<span class="example-link" onclick="runExample('Elon Musk')">Elon Musk</span>
-<span class="example-link" onclick="runExample('Balenciaga')">Balenciaga</span>
+    <span class="example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
+    <span class="example-link" onclick="runExample('Nicki Minaj')">Nicki Minaj</span>
+    <span class="example-link" onclick="runExample('Elon Musk')">Elon Musk</span>
+    <span class="example-link" onclick="runExample('Balenciaga')">Balenciaga</span>
   </div>
   <div id="error-box"></div>
+  <div id="rate-limit-box">
+    <div class="rate-limit-inner">
+      <div class="rate-limit-label">Daily limit reached</div>
+      <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Unlock unlimited reports, image export, shareable links, and sourced analysis with a paid plan.</div>
+      <div class="rate-limit-actions">
+        <a href="#" class="rate-limit-cta">Unlock unlimited</a>
+        <span class="rate-limit-reset">Resets at midnight</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="loading">
@@ -610,13 +751,12 @@ footer {
 <div id="report"></div>
 
 <footer>
- <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;·&nbsp; <a href="/about">The Collapse Framework</a></span>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;·&nbsp; <a href="/about">The Collapse Framework</a></span>
   <span class="footer-right">Collapse Risk Instrument v1.0</span>
 </footer>
 
 <script>
 const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
-
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
 
 function runExample(name) {
@@ -632,9 +772,11 @@ async function generateReport() {
   const loading = document.getElementById('loading');
   const report = document.getElementById('report');
   const errorBox = document.getElementById('error-box');
+  const rateLimitBox = document.getElementById('rate-limit-box');
 
   btn.disabled = true;
   errorBox.classList.remove('visible');
+  rateLimitBox.classList.remove('visible');
   report.classList.remove('visible');
   report.innerHTML = '';
   loading.classList.add('visible');
@@ -645,9 +787,18 @@ async function generateReport() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ artist: name })
     });
-    if (!res.ok) throw new Error('Worker error: ' + res.status);
-    const data = await res.json();
+
     loading.classList.remove('visible');
+
+    if (res.status === 429) {
+      rateLimitBox.classList.add('visible');
+      rateLimitBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+
+    if (!res.ok) throw new Error('Worker error: ' + res.status);
+
+    const data = await res.json();
     renderReport(data);
   } catch (e) {
     loading.classList.remove('visible');
@@ -695,8 +846,6 @@ function renderReport(d) {
     const cls = i < d.collapse_stage ? 'past' : i === d.collapse_stage ? 'active' : '';
     pips += `<div class="pip ${cls}"></div>`;
   }
-
-  
 
   const html = `
     <div class="report-header">
@@ -797,7 +946,46 @@ function renderReport(d) {
 
     <div class="conclusion"><p>${d.conclusion}</p></div>
 
-    
+    <div class="upgrade-gate">
+      <div class="upgrade-gate-header">
+        <span class="upgrade-gate-label">Paid features</span>
+        <span class="upgrade-gate-tag">Locked</span>
+      </div>
+      <div class="upgrade-gate-features">
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Sources</strong>
+            Web-sourced findings with citations
+          </div>
+        </div>
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Image export</strong>
+            Download report as a shareable image
+          </div>
+        </div>
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Permanent link</strong>
+            Share this report with a permanent URL
+          </div>
+        </div>
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Unlimited reports</strong>
+            No daily limits. Run as many as you need.
+          </div>
+        </div>
+      </div>
+      <div class="upgrade-gate-cta">
+        <p>$5 per report &nbsp;·&nbsp; $29/month unlimited &nbsp;·&nbsp; No account required for single reports</p>
+        <button class="upgrade-btn">Unlock report</button>
+      </div>
+    </div>
   `;
 
   const reportEl = document.getElementById('report');
@@ -809,57 +997,6 @@ function renderReport(d) {
 function capitalize(s) {
   if (!s) return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-function escapeTemplate(s) {
-  return s.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
-}
-
-function buildReportText(d, stageName) {
-  return `COLLAPSE RISK REPORT: ${d.artist}
-${d.generated || new Date().toLocaleDateString()}
-
-OVERALL RISK: ${(d.overall_risk || '').toUpperCase()}
-${d.risk_summary}
-
-SCORES
-Drift: ${d.drift_score}/10 | Root cause: ${d.root_cause} | Depth: ${d.contract_depth} | Stage: ${d.collapse_stage}/5 (${stageName}) | Immunity: ${d.immunity_load}/10 (${d.depletion_rate} depletion)
-
-CONTRACT DRIFT
-${d.drift_finding}
-
-ROOT CAUSE
-${d.root_finding}
-
-CONTRACT DEPTH
-${d.depth_finding}
-
-COLLAPSE STAGE
-${d.stage_finding}
-
-IMMUNITY LOAD
-${d.immunity_finding}
-
-WHAT THE ARTIST SHOULD DO NEXT
-${d.prescription}
-
-CONCLUSION
-${d.conclusion}
-
-—
-Chartreuse Explosives Collapse Risk Instrument
-chartreuseexplosives.com`;
-}
-
-async function copyReport(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    const btn = document.getElementById('copy-btn');
-    btn.textContent = 'Copied';
-    setTimeout(() => { btn.textContent = 'Copy report'; }, 2000);
-  } catch (e) {
-    console.error(e);
-  }
 }
 
 document.getElementById('artist-input').addEventListener('keydown', function(e) {
