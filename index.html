@@ -116,55 +116,6 @@ nav {
   margin-top: 0.75rem !important;
 }
 
-/* PROOF STRIP */
-.proof-strip {
-  border-bottom: 1px solid var(--border);
-  padding: 0.75rem 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: var(--near-black);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  white-space: nowrap;
-}
-.proof-strip::-webkit-scrollbar { display: none; }
-.proof-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-right: 0.25rem;
-  flex-shrink: 0;
-}
-.proof-item {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--white);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  flex-shrink: 0;
-}
-.proof-risk {
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 1px 5px;
-}
-.proof-risk.critical { color: var(--danger); border: 1px solid var(--danger); }
-.proof-risk.high { color: #e07b00; border: 1px solid #e07b00; }
-.proof-risk.moderate { color: var(--warning); border: 1px solid var(--warning); }
-.proof-risk.low { color: var(--success); border: 1px solid var(--success); }
-.proof-divider {
-  color: var(--border-bright);
-  font-family: var(--mono);
-  font-size: 11px;
-  flex-shrink: 0;
-}
-
 /* BRIDGE — hidden on mobile */
 .bridge {
   border-bottom: 1px solid var(--border);
@@ -885,16 +836,6 @@ footer {
   </div>
 </div>
 
-<div class="proof-strip">
-  <span class="proof-label">Recently run</span>
-  <span class="proof-item">Kanye West <span class="proof-risk critical">Critical</span></span>
-  <span class="proof-divider">·</span>
-  <span class="proof-item">Elon Musk <span class="proof-risk high">High</span></span>
-  <span class="proof-divider">·</span>
-  <span class="proof-item">Balenciaga <span class="proof-risk moderate">Moderate recovery</span></span>
-  <span class="proof-divider">·</span>
-  <span class="proof-item">Nicki Minaj <span class="proof-risk high">High</span></span>
-</div>
 
 <div class="input-section">
   <label class="input-label" for="artist-input">Run it</label>
