@@ -252,6 +252,15 @@ nav {
   margin-bottom: 1rem;
   line-height: 1.6;
 }
+.input-prescription {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
 .input-row {
   display: flex;
   gap: 0;
@@ -890,6 +899,7 @@ footer {
 <div class="input-section">
   <label class="input-label" for="artist-input">Run it</label>
   <p class="input-desc">Type any artist, politician, athlete, or public figure. The instrument scores all five variables and returns a full diagnostic in under a minute.</p>
+  <p class="input-prescription">The report also tells you exactly what they should do next. You'll know before they do.</p>
   <div class="input-row">
     <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
