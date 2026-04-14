@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>When The Crowd Turns — Chartreuse Explosives</title>
+<title>When The Crowd Turns — Collapse Risk Instrument</title>
 <meta name="description" content="A five-variable collapse risk instrument for artists. Built on the Chartreuse Explosives framework.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,6 +101,29 @@ nav {
   color: var(--muted);
   max-width: 520px;
   line-height: 1.7;
+}
+
+/* BRIDGE */
+.bridge {
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.bridge p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: 1.25rem;
+}
+.bridge p:last-child { margin-bottom: 0; }
+.bridge-cta {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--white) !important;
+  margin-top: 2rem !important;
 }
 
 /* VARIABLES STRIP */
@@ -718,8 +741,15 @@ footer {
 
 <div class="hero">
   <div class="hero-eyebrow">Collapse Risk Instrument</div>
-  <h1 class="hero-title">When The<br><span>Crowd Turns</span></h1>
-  <p class="hero-sub">A five-variable diagnostic for artist legitimacy collapse. Not a prediction. A probability map. Built on the <a href="/about">Chartreuse Explosives framework</a>.</p>
+  <h1 class="hero-title">Fame Doesn't End.<br><span>The Belief Does.</span></h1>
+  <p class="hero-sub">Everyone still knows their name. The shows still sell. The numbers still look fine. And somewhere in the audience, something already broke. This instrument finds the break.</p>
+</div>
+
+<div class="bridge">
+  <p>Public figures don't lose audiences in a day. They lose them across a sequence of small decisions, misread rooms, and moments where the person they claimed to be stopped matching the person the audience was watching.</p>
+  <p>By the time it's visible, it's already late. The crowd doesn't announce the exit. It just stops believing. Then it leaves. Then it rewrites what it believed in the first place.</p>
+  <p>Five variables determine how far into that sequence someone is. And whether there's still time to change the math.</p>
+  <p class="bridge-cta">This is the instrument that runs that analysis. Type a name. Get the read.</p>
 </div>
 
 <div class="vars-strip">
@@ -727,30 +757,30 @@ footer {
   <div class="vars-grid">
     <div class="var-item">
       <div class="var-item-name">Contract drift</div>
-      <div class="var-item-desc">How far they've fallen from who they claimed to be. Scored 1 to 10.</div>
+      <div class="var-item-desc">The gap between the story they're selling and what the audience actually sees. Scored 1 to 10.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Root cause</div>
-      <div class="var-item-desc">Did the audience feel foolish or betrayed. Two different breaks. Two different endings.</div>
+      <div class="var-item-desc">Shame or betrayal. The audience felt foolish or they felt sold out. Different breaks. Different endings. Different timelines.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Contract depth</div>
-      <div class="var-item-desc">How much of the audience's identity is wrapped up in this person. Determines how loud the exit gets.</div>
+      <div class="var-item-desc">How deep the audience went in. Surface fans leave quietly. True believers become the loudest critics on the way out.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Collapse stage</div>
-      <div class="var-item-desc">Five stages from drift to inversion. The difference between them is fixable versus permanent.</div>
+      <div class="var-item-desc">Zero to five. Drift to inversion. The line between stage two and stage three is the last point where any of this is still fixable.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Immunity load</div>
-      <div class="var-item-desc">How many mistakes they have left before the math changes permanently.</div>
+      <div class="var-item-desc">How much runway is left. Catalog depth, audience age, cultural moment. When it runs out, the next mistake isn't a mistake. It's the verdict.</div>
     </div>
   </div>
 </div>
 
 <div class="input-section">
-  <label class="input-label" for="artist-input">Enter</label>
-  <p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:1rem;">Type any artist, politician, athlete, or public figure. The instrument runs the full five-variable analysis and tells you exactly where they stand.</p>
+  <label class="input-label" for="artist-input">Run it</label>
+  <p style="font-size:13px;font-weight:300;color:var(--muted);margin-bottom:1rem;">Type any artist, politician, athlete, or public figure. The instrument scores all five variables and returns a full diagnostic in under a minute.</p>
   <div class="input-row">
     <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
