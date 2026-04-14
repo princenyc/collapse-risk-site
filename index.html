@@ -745,6 +745,41 @@ nav {
 }
 .tier-notice-link:hover { text-decoration: underline; }
 
+/* EXPORT ROW */
+.export-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.export-btn {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  padding: 0 1.25rem;
+  height: 40px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s;
+}
+.export-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
+.export-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.export-btn-icon { font-size: 14px; }
+.export-btn-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--border-bright);
+  letter-spacing: 0.06em;
+}
+
 /* FOOTER */
 footer {
   border-top: 1px solid var(--border);
@@ -790,6 +825,7 @@ footer {
   .upgrade-btn { width: auto; }
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -851,7 +887,7 @@ footer {
   <p class="input-desc">Type any artist, politician, athlete, or public figure. The instrument scores all five variables and returns a full diagnostic in under a minute.</p>
   <p class="input-prescription">The report also tells you exactly what they should do next. You'll know before they do.</p>
   <div class="input-row">
-    <input type="text" id="artist-input" placeholder="Artist, Brand, or Public Figure" autocomplete="off" />
+    <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
   <div class="tier-notice">
@@ -975,6 +1011,7 @@ function immunityBar(n) {
 }
 
 function renderReport(d) {
+  currentReport = d;
   const riskClass = d.overall_risk || 'moderate';
   const riskLabel = { low: 'Low risk', moderate: 'Moderate risk', high: 'High risk', critical: 'Critical risk' };
   const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
@@ -1085,6 +1122,13 @@ function renderReport(d) {
 
     <div class="conclusion"><p>${d.conclusion}</p></div>
 
+    <div class="export-row">
+      <button class="export-btn" onclick="exportCard()">
+        <span class="export-btn-icon">&#8615;</span> Download summary card
+      </button>
+      <span class="export-btn-note">Free · Signal tier · 1200×630px</span>
+    </div>
+
     <div class="upgrade-gate">
       <div class="upgrade-gate-header">
         <span class="upgrade-gate-label">Paid features</span>
@@ -1143,6 +1187,131 @@ function renderReport(d) {
 function capitalize(s) {
   if (!s) return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+
+// Store report data globally for export
+let currentReport = null;
+
+function exportCard() {
+  if (!currentReport) return;
+  const btn = document.querySelector('.export-btn');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...';
+  }
+
+  const d = currentReport;
+  const riskColors = { low: '#5dcaa5', moderate: '#ef9f27', high: '#e07b00', critical: '#e24b4a' };
+  const riskColor = riskColors[d.overall_risk] || '#ef9f27';
+  const stageName = d.stage_name || ['No signal','Drift','Ironic consumption','Threshold crossing','Archive rewrite','Inversion'][d.collapse_stage] || 'Unknown';
+  const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
+
+  // Build card HTML
+  const card = document.createElement('div');
+  card.id = 'export-card';
+  card.style.cssText = `
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    width: 1200px;
+    height: 630px;
+    background: #0a0a0a;
+    font-family: 'IBM Plex Sans', sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 56px;
+    box-sizing: border-box;
+  `;
+
+  // Risk color left border
+  const border = document.createElement('div');
+  border.style.cssText = `
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: ${riskColor};
+  `;
+  card.appendChild(border);
+
+  card.innerHTML += `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk Instrument</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;">${(d.overall_risk || 'moderate').toUpperCase()} RISK</div>
+    </div>
+
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:12px;">Collapse Risk Report</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:0.9;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;margin:8px 0;">
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Drift</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.drift_score <= 3 ? '#5dcaa5' : d.drift_score <= 5 ? '#ef9f27' : d.drift_score <= 7 ? '#e07b00' : '#e24b4a'};">${d.drift_score}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">/ 10</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Root cause</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${capitalize(d.root_cause)}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.audience_emotion)}</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Depth</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${d.career_years}yr career</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Stage</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.collapse_stage <= 1 ? '#5dcaa5' : d.collapse_stage <= 2 ? '#ef9f27' : d.collapse_stage <= 3 ? '#e07b00' : '#e24b4a'};">${d.collapse_stage}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${stageName}</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Immunity</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.immunity_load >= 7 ? '#5dcaa5' : d.immunity_load >= 5 ? '#ef9f27' : d.immunity_load >= 3 ? '#e07b00' : '#e24b4a'};">${d.immunity_load}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.depletion_rate)} depletion</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:300;color:#888880;max-width:800px;line-height:1.5;">${d.risk_summary}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3a3a3a;letter-spacing:0.08em;white-space:nowrap;margin-left:24px;">collapse.chartreuseexplosives.com</div>
+    </div>
+  `;
+
+  card.appendChild(border);
+  document.body.appendChild(card);
+
+  html2canvas(card, {
+    width: 1200,
+    height: 630,
+    scale: 1,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#0a0a0a',
+    logging: false,
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = `collapse-risk-${(d.artist || 'report').toLowerCase().replace(/\s+/g, '-')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    document.body.removeChild(card);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download summary card';
+    }
+  }).catch(err => {
+    console.error('Export failed:', err);
+    document.body.removeChild(card);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download summary card';
+    }
+  });
 }
 
 document.getElementById('artist-input').addEventListener('keydown', function(e) {
