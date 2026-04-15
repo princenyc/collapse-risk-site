@@ -42,7 +42,6 @@ body {
 a { color: var(--chartreuse); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* NAV */
 nav {
   border-bottom: 1px solid var(--border);
   padding: 0 1.25rem;
@@ -76,7 +75,6 @@ nav {
 }
 .nav-link:hover { color: var(--white); text-decoration: none; }
 
-/* HERO */
 .hero {
   border-bottom: 1px solid var(--border);
   padding: 3rem 1.25rem 2.5rem;
@@ -100,8 +98,6 @@ nav {
   margin-bottom: 1.25rem;
 }
 .hero-title span { color: var(--chartreuse); }
-
-/* HERO LINES */
 .hero-lines {
   margin-top: 1.25rem;
   display: flex;
@@ -121,7 +117,6 @@ nav {
   margin-top: 0.75rem !important;
 }
 
-/* BRIDGE — hidden on mobile */
 .bridge {
   border-bottom: 1px solid var(--border);
   padding: 3rem 2rem;
@@ -144,7 +139,6 @@ nav {
   margin-top: 2rem !important;
 }
 
-/* VARIABLES STRIP — hidden on mobile */
 .vars-strip {
   border-bottom: 1px solid var(--border);
   padding: 2rem 1.25rem;
@@ -185,7 +179,6 @@ nav {
   line-height: 1.5;
 }
 
-/* INPUT SECTION */
 .input-section {
   padding: 2rem 1.25rem;
   max-width: 960px;
@@ -281,7 +274,68 @@ nav {
 }
 .example-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); }
 
-/* LOADING */
+/* LICENSE KEY INPUT */
+.license-section {
+  max-width: 600px;
+  margin-top: 1.25rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.license-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.license-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.license-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.license-status.valid { color: var(--success); }
+.license-status.invalid { color: var(--danger); }
+.license-row {
+  display: flex;
+  gap: 0;
+}
+#license-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  min-width: 0;
+}
+#license-input::placeholder { color: var(--border-bright); }
+#license-btn {
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  padding: 0 1rem;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+#license-btn:hover { color: var(--chartreuse); }
+
 #loading {
   display: none;
   padding: 2rem 1.25rem;
@@ -318,7 +372,6 @@ nav {
   text-transform: uppercase;
 }
 
-/* ERROR */
 #error-box {
   display: none;
   padding: 1rem 1.25rem;
@@ -332,7 +385,6 @@ nav {
 }
 #error-box.visible { display: block; }
 
-/* RATE LIMIT BOX */
 #rate-limit-box {
   display: none;
   max-width: 600px;
@@ -389,7 +441,6 @@ nav {
   letter-spacing: 0.06em;
 }
 
-/* REPORT */
 #report {
   display: none;
   max-width: 960px;
@@ -433,7 +484,6 @@ nav {
   margin-bottom: 4px;
 }
 
-/* RISK BANNER */
 .risk-banner {
   padding: 1rem 1.25rem;
   border-left: 3px solid;
@@ -461,7 +511,6 @@ nav {
   line-height: 1.6;
 }
 
-/* SCORE GRID */
 .score-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -500,7 +549,6 @@ nav {
 .val-crit { color: var(--danger); }
 .val-neutral { color: var(--white); }
 
-/* BREAKDOWN */
 .section-header {
   font-family: var(--mono);
   font-size: 10px;
@@ -563,7 +611,6 @@ nav {
 .bar-orange { background: #e07b00; }
 .bar-red { background: var(--danger); }
 
-/* STAGE PIPS */
 .stage-pips {
   display: flex;
   gap: 3px;
@@ -577,7 +624,6 @@ nav {
 .pip.past { background: var(--chartreuse-dim); }
 .pip.active { background: var(--chartreuse); }
 
-/* PRESCRIPTION */
 .prescription {
   border: 1px solid var(--chartreuse-dim);
   background: #0d1200;
@@ -599,7 +645,6 @@ nav {
   line-height: 1.7;
 }
 
-/* CONCLUSION */
 .conclusion {
   border-left: 2px solid var(--border-bright);
   padding: 1rem 1.25rem;
@@ -612,7 +657,49 @@ nav {
   line-height: 1.8;
 }
 
-/* UPGRADE GATE */
+/* SOURCES */
+.sources-block {
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.sources-header {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.source-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.source-item:last-child { border-bottom: none; }
+.source-title {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--white);
+}
+.source-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.source-url {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--chartreuse-dim);
+  word-break: break-all;
+}
+
 .upgrade-gate {
   border: 1px solid var(--border-bright);
   background: var(--surface);
@@ -712,8 +799,8 @@ nav {
   width: 100%;
 }
 .upgrade-btn:hover { background: #d4f500; }
+.upgrade-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
 
-/* TIER NOTICE */
 .tier-notice {
   max-width: 600px;
   margin-top: 1.25rem;
@@ -742,10 +829,10 @@ nav {
   font-size: 10px;
   letter-spacing: 0.07em;
   color: var(--chartreuse);
+  cursor: pointer;
 }
 .tier-notice-link:hover { text-decoration: underline; }
 
-/* EXPORT ROW */
 .export-row {
   display: flex;
   align-items: center;
@@ -780,7 +867,6 @@ nav {
   letter-spacing: 0.06em;
 }
 
-/* FOOTER */
 footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 1.25rem;
@@ -804,21 +890,16 @@ footer {
   letter-spacing: 0.06em;
 }
 
-/* MOBILE — hide bridge and vars, tighten score grid */
 @media (max-width: 640px) {
   .bridge { display: none; }
   .vars-strip { display: none; }
   .score-grid { grid-template-columns: repeat(3, 1fr); }
-  .score-cell:nth-child(4),
-  .score-cell:nth-child(5) { grid-column: span 1; }
   .upgrade-gate-features { grid-template-columns: 1fr 1fr; }
   .upgrade-gate-cta { flex-direction: column; align-items: stretch; }
   .upgrade-gate-cta p { text-align: center; }
   .rate-limit-actions { flex-direction: column; align-items: stretch; }
   .rate-limit-cta { justify-content: center; }
 }
-
-/* TABLET — keep everything, tighten layout */
 @media (min-width: 641px) and (max-width: 960px) {
   .hero { padding: 4rem 2rem 3rem; }
   .score-grid { grid-template-columns: repeat(5, 1fr); }
@@ -881,7 +962,6 @@ footer {
   </div>
 </div>
 
-
 <div class="input-section">
   <label class="input-label" for="artist-input">Run it</label>
   <p class="input-desc">Type any artist, politician, athlete, or public figure. The instrument scores all five variables and returns a full diagnostic in under a minute.</p>
@@ -890,10 +970,23 @@ footer {
     <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
+
   <div class="tier-notice">
     <span class="tier-notice-limits">Free tier &mdash; 3 reports per day &nbsp;&middot;&nbsp; No export &nbsp;&middot;&nbsp; No sources &nbsp;&middot;&nbsp; Data through mid-2025</span>
     <span class="tier-notice-paid">Paid reports use live web search for current, sourced analysis.</span>
-    <a href="/pricing" class="tier-notice-link">See paid plans &rarr;</a>
+    <span class="tier-notice-link" onclick="startCheckout('intel')">Get a paid report &rarr;</span>
+  </div>
+
+  <!-- License key entry -->
+  <div class="license-section" style="margin-top:1.25rem;">
+    <div class="license-header">
+      <span class="license-label">License key</span>
+      <span class="license-status" id="license-status">Not activated</span>
+    </div>
+    <div class="license-row">
+      <input type="text" id="license-input" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" spellcheck="false" autocomplete="off" />
+      <button id="license-btn" onclick="activateLicense()">Activate</button>
+    </div>
   </div>
 
   <div class="examples">
@@ -909,8 +1002,8 @@ footer {
       <div class="rate-limit-label">Daily limit reached</div>
       <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Unlock unlimited reports, image export, shareable links, and sourced analysis with a paid plan.</div>
       <div class="rate-limit-actions">
-        <a href="https://cce.lemonsqueezy.com/checkout/buy/c1ce4246-daa5-4965-a33a-b871fb970755" target="_blank" class="rate-limit-cta">Run a paid report</a>
-        <span class="rate-limit-reset">Resets at midnight</span>
+        <button class="rate-limit-cta" onclick="startCheckout('intel')">Run a paid report — $5</button>
+        <span class="rate-limit-reset">Or: <span class="tier-notice-link" onclick="startCheckout('archive')" style="cursor:pointer;">10 reports for $29</span></span>
       </div>
     </div>
   </div>
@@ -919,7 +1012,7 @@ footer {
 <div id="loading">
   <div class="loading-inner">
     <div class="loading-bar"><div class="loading-bar-fill"></div></div>
-    <span class="loading-text">Running analysis</span>
+    <span class="loading-text" id="loading-text">Running analysis</span>
   </div>
 </div>
 
@@ -934,6 +1027,73 @@ footer {
 const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
 
+let activeLicenseKey = null;
+let licenseCredits = null;
+
+// ─── License key activation ───────────────────────────────────────────────────
+
+async function activateLicense() {
+  const key = document.getElementById('license-input').value.trim();
+  if (!key) return;
+
+  const btn = document.getElementById('license-btn');
+  const status = document.getElementById('license-status');
+  btn.textContent = '...';
+
+  try {
+    const res = await fetch(WORKER_URL + '/validate-key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key })
+    });
+    const data = await res.json();
+
+    if (data.valid) {
+      activeLicenseKey = data.key;
+      licenseCredits = data.remaining;
+      status.textContent = `Active · ${data.tier} · ${data.remaining} report${data.remaining !== 1 ? 's' : ''} remaining`;
+      status.className = 'license-status valid';
+      btn.textContent = 'Active';
+    } else {
+      status.textContent = data.error || 'Invalid key';
+      status.className = 'license-status invalid';
+      btn.textContent = 'Activate';
+    }
+  } catch (e) {
+    status.textContent = 'Check failed';
+    status.className = 'license-status invalid';
+    btn.textContent = 'Activate';
+  }
+}
+
+// ─── Stripe checkout ──────────────────────────────────────────────────────────
+
+async function startCheckout(tier) {
+  const btn = event && event.target;
+  const originalText = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting...'; }
+
+  try {
+    const res = await fetch(WORKER_URL + '/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Checkout failed. Please try again.');
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
+    }
+  } catch (e) {
+    alert('Checkout failed. Please try again.');
+    if (btn) { btn.disabled = false; btn.textContent = originalText; }
+  }
+}
+
+// ─── Analysis ─────────────────────────────────────────────────────────────────
+
 function runExample(name) {
   document.getElementById('artist-input').value = name;
   generateReport();
@@ -945,6 +1105,7 @@ async function generateReport() {
 
   const btn = document.getElementById('generate-btn');
   const loading = document.getElementById('loading');
+  const loadingText = document.getElementById('loading-text');
   const report = document.getElementById('report');
   const errorBox = document.getElementById('error-box');
   const rateLimitBox = document.getElementById('rate-limit-box');
@@ -954,12 +1115,24 @@ async function generateReport() {
   rateLimitBox.classList.remove('visible');
   report.classList.remove('visible');
   report.innerHTML = '';
+
+  // Loading message varies by tier
+  if (activeLicenseKey) {
+    loadingText.textContent = 'Running live search analysis';
+  } else {
+    loadingText.textContent = 'Running analysis';
+  }
   loading.classList.add('visible');
 
   try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (activeLicenseKey) {
+      headers['X-License-Key'] = activeLicenseKey;
+    }
+
     const res = await fetch(WORKER_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({ artist: name })
     });
 
@@ -974,7 +1147,17 @@ async function generateReport() {
     if (!res.ok) throw new Error('Worker error: ' + res.status);
 
     const data = await res.json();
-    renderReport(data);
+
+    // Update credits display if paid
+    if (activeLicenseKey && data) {
+      licenseCredits = Math.max(0, (licenseCredits || 1) - 1);
+      const status = document.getElementById('license-status');
+      if (status) {
+        status.textContent = `Active · ${licenseCredits} report${licenseCredits !== 1 ? 's' : ''} remaining`;
+      }
+    }
+
+    renderReport(data, !!activeLicenseKey);
   } catch (e) {
     loading.classList.remove('visible');
     errorBox.textContent = 'Analysis failed. Check your connection or try again.';
@@ -984,6 +1167,8 @@ async function generateReport() {
     btn.disabled = false;
   }
 }
+
+// ─── Render ───────────────────────────────────────────────────────────────────
 
 function scoreClass(n) {
   if (n <= 3) return 'val-low';
@@ -1009,8 +1194,12 @@ function immunityBar(n) {
   if (n >= 3) return 'bar-orange';
   return 'bar-red';
 }
+function capitalize(s) {
+  if (!s) return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
-function renderReport(d) {
+function renderReport(d, isPaid) {
   currentReport = d;
   const riskClass = d.overall_risk || 'moderate';
   const riskLabel = { low: 'Low risk', moderate: 'Moderate risk', high: 'High risk', critical: 'Critical risk' };
@@ -1023,10 +1212,68 @@ function renderReport(d) {
     pips += `<div class="pip ${cls}"></div>`;
   }
 
+  // Sources block — paid only
+  let sourcesHtml = '';
+  if (isPaid && d.sources && d.sources.length > 0) {
+    const items = d.sources.map(s => `
+      <div class="source-item">
+        <div class="source-title">${s.title || 'Untitled'}</div>
+        <div class="source-meta">
+          <span>${s.publication || ''}</span>
+          ${s.date ? `<span>${s.date}</span>` : ''}
+        </div>
+        <div class="source-url">${s.url || ''}</div>
+      </div>
+    `).join('');
+    sourcesHtml = `
+      <div class="sources-block">
+        <div class="sources-header">Sources (${d.sources.length})</div>
+        ${items}
+      </div>
+    `;
+  }
+
+  // Upgrade gate — free only
+  const upgradeHtml = isPaid ? '' : `
+    <div class="upgrade-gate">
+      <div class="upgrade-gate-header">
+        <span class="upgrade-gate-label">Paid features</span>
+        <span class="upgrade-gate-tag">Locked</span>
+      </div>
+      <div class="upgrade-gate-features">
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Deeper analysis</strong>
+            Free reports work from training data. Paid reports go looking for what happened last week.
+          </div>
+        </div>
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Sources</strong>
+            Web-sourced findings with citations
+          </div>
+        </div>
+        <div class="upgrade-feature">
+          <span class="upgrade-feature-icon">&#8599;</span>
+          <div class="upgrade-feature-text">
+            <strong>Unlimited reports</strong>
+            No daily limits.
+          </div>
+        </div>
+      </div>
+      <div class="upgrade-gate-cta">
+        <p>$5 per report &nbsp;·&nbsp; $29 for 10 reports &nbsp;·&nbsp; No account required</p>
+        <button class="upgrade-btn" onclick="startCheckout('intel')">Run a paid report — $5</button>
+      </div>
+    </div>
+  `;
+
   const html = `
     <div class="report-header">
       <div>
-        <div class="report-tag">Collapse risk report</div>
+        <div class="report-tag">Collapse risk report${isPaid ? ' · Live search' : ''}</div>
         <div class="report-artist">${d.artist}</div>
       </div>
       <div class="report-meta-col">
@@ -1122,60 +1369,16 @@ function renderReport(d) {
 
     <div class="conclusion"><p>${d.conclusion}</p></div>
 
+    ${sourcesHtml}
+
     <div class="export-row">
       <button class="export-btn" onclick="exportCard()">
         <span class="export-btn-icon">&#8615;</span> Download summary card
       </button>
-      <span class="export-btn-note">Free · Signal tier · 1200×630px</span>
+      <span class="export-btn-note">Free · 1200×630px</span>
     </div>
 
-    <div class="upgrade-gate">
-      <div class="upgrade-gate-header">
-        <span class="upgrade-gate-label">Paid features</span>
-        <span class="upgrade-gate-tag">Locked</span>
-      </div>
-      <div class="upgrade-gate-features">
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Deeper analysis</strong>
-            Free reports work from training data. Paid reports go looking for what happened last week.
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Sources</strong>
-            Web-sourced findings with citations
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Image export</strong>
-            Download report as a shareable image
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Permanent link</strong>
-            Share this report with a permanent URL
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Unlimited reports</strong>
-            No daily limits. Run as many as you need.
-          </div>
-        </div>
-      </div>
-      <div class="upgrade-gate-cta">
-        <p>$5 per report &nbsp;·&nbsp; $29 for 10 reports &nbsp;·&nbsp; No account required for single reports</p>
-        <a href="https://cce.lemonsqueezy.com/checkout/buy/c1ce4246-daa5-4965-a33a-b871fb970755" target="_blank" class="upgrade-btn">Run a paid report</a>
-      </div>
-    </div>
+    ${upgradeHtml}
   `;
 
   const reportEl = document.getElementById('report');
@@ -1184,75 +1387,42 @@ function renderReport(d) {
   reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function capitalize(s) {
-  if (!s) return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
+// ─── Export ───────────────────────────────────────────────────────────────────
 
-
-// Store report data globally for export
 let currentReport = null;
 
 function exportCard() {
   if (!currentReport) return;
   const btn = document.querySelector('.export-btn');
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...';
-  }
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...'; }
 
   const d = currentReport;
   const riskColors = { low: '#5dcaa5', moderate: '#ef9f27', high: '#e07b00', critical: '#e24b4a' };
   const riskColor = riskColors[d.overall_risk] || '#ef9f27';
-  const stageName = d.stage_name || ['No signal','Drift','Ironic consumption','Threshold crossing','Archive rewrite','Inversion'][d.collapse_stage] || 'Unknown';
+  const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
   const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
 
-  // Build card HTML
   const card = document.createElement('div');
   card.id = 'export-card';
-  card.style.cssText = `
-    position: fixed;
-    left: -9999px;
-    top: 0;
-    width: 1200px;
-    height: 630px;
-    background: #0a0a0a;
-    font-family: 'IBM Plex Sans', sans-serif;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 48px 56px;
-    box-sizing: border-box;
-  `;
+  card.style.cssText = `position:fixed;left:-9999px;top:0;width:1200px;height:630px;background:#0a0a0a;font-family:'IBM Plex Sans',sans-serif;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:48px 56px;box-sizing:border-box;`;
 
-  // Risk color left border
   const border = document.createElement('div');
-  border.style.cssText = `
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: ${riskColor};
-  `;
+  border.style.cssText = `position:absolute;left:0;top:0;bottom:0;width:4px;background:${riskColor};`;
   card.appendChild(border);
 
   card.innerHTML += `
     <div style="display:flex;justify-content:space-between;align-items:flex-start;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk Instrument</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;">${(d.overall_risk || 'moderate').toUpperCase()} RISK</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
     </div>
-
     <div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:12px;">Collapse Risk Report</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:0.9;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
     </div>
-
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;margin:8px 0;">
       <div style="background:#161616;padding:16px 14px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Drift</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.drift_score <= 3 ? '#5dcaa5' : d.drift_score <= 5 ? '#ef9f27' : d.drift_score <= 7 ? '#e07b00' : '#e24b4a'};">${d.drift_score}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a'};">${d.drift_score}</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">/ 10</div>
       </div>
       <div style="background:#161616;padding:16px 14px;">
@@ -1262,21 +1432,20 @@ function exportCard() {
       </div>
       <div style="background:#161616;padding:16px 14px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Depth</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${depthLabel[d.contract_depth]||capitalize(d.contract_depth)}</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${d.career_years}yr career</div>
       </div>
       <div style="background:#161616;padding:16px 14px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Stage</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.collapse_stage <= 1 ? '#5dcaa5' : d.collapse_stage <= 2 ? '#ef9f27' : d.collapse_stage <= 3 ? '#e07b00' : '#e24b4a'};">${d.collapse_stage}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a'};">${d.collapse_stage}</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${stageName}</div>
       </div>
       <div style="background:#161616;padding:16px 14px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Immunity</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.immunity_load >= 7 ? '#5dcaa5' : d.immunity_load >= 5 ? '#ef9f27' : d.immunity_load >= 3 ? '#e07b00' : '#e24b4a'};">${d.immunity_load}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a'};">${d.immunity_load}</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.depletion_rate)} depletion</div>
       </div>
     </div>
-
     <div style="display:flex;justify-content:space-between;align-items:flex-end;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:300;color:#888880;max-width:800px;line-height:1.5;">${d.risk_summary}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3a3a3a;letter-spacing:0.08em;white-space:nowrap;margin-left:24px;">collapse.chartreuseexplosives.com</div>
@@ -1286,36 +1455,25 @@ function exportCard() {
   card.appendChild(border);
   document.body.appendChild(card);
 
-  html2canvas(card, {
-    width: 1200,
-    height: 630,
-    scale: 1,
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#0a0a0a',
-    logging: false,
-  }).then(canvas => {
+  html2canvas(card, { width:1200, height:630, scale:1, useCORS:true, allowTaint:true, backgroundColor:'#0a0a0a', logging:false }).then(canvas => {
     const link = document.createElement('a');
-    link.download = `collapse-risk-${(d.artist || 'report').toLowerCase().replace(/\s+/g, '-')}.png`;
+    link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
     document.body.removeChild(card);
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download summary card';
-    }
+    if (btn) { btn.disabled=false; btn.innerHTML='<span class="export-btn-icon">&#8615;</span> Download summary card'; }
   }).catch(err => {
     console.error('Export failed:', err);
     document.body.removeChild(card);
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download summary card';
-    }
+    if (btn) { btn.disabled=false; btn.innerHTML='<span class="export-btn-icon">&#8615;</span> Download summary card'; }
   });
 }
 
 document.getElementById('artist-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') generateReport();
+});
+document.getElementById('license-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') activateLicense();
 });
 </script>
 </body>
