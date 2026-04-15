@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brad Pitt — Collapse Risk Report — Chartreuse Explosives</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root {
+  --black: #0a0a0a;
+  --near-black: #111111;
+  --surface: #161616;
+  --surface2: #1e1e1e;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --chartreuse: #c8e600;
+  --chartreuse-dim: #8fa300;
+  --white: #f0ede6;
+  --muted: #888880;
+  --danger: #e24b4a;
+  --warning: #ef9f27;
+  --success: #5dcaa5;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--chartreuse); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  position: sticky;
+  top: 0;
+  background: var(--black);
+  z-index: 100;
+}
+.nav-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  border: 1px solid var(--chartreuse-dim);
+  padding: 2px 8px;
+}
+.nav-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nav-link:hover { color: var(--white); text-decoration: none; }
+
+/* REPORT CONTAINER */
+.report {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem 6rem;
+}
+
+/* REPORT HEADER */
+.report-header {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.report-header-left {}
+.report-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.report-artist {
+  font-family: var(--display);
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: var(--white);
+}
+.report-header-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+.report-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.report-tier {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  border: 1px solid var(--chartreuse-dim);
+  padding: 2px 8px;
+}
+.report-live {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--success);
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* RISK BANNER */
+.risk-banner {
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid;
+  margin-bottom: 2rem;
+}
+.risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
+.risk-banner.high { border-color: #e07b00; background: #1a0f00; }
+.risk-banner.critical { border-color: var(--danger); background: #1a0808; }
+.risk-banner.low { border-color: var(--success); background: #041a12; }
+.risk-level {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: var(--warning);
+}
+.risk-summary-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.6;
+}
+
+/* SCORE GRID */
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+@media (max-width: 640px) {
+  .score-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.score-cell {
+  background: var(--surface);
+  padding: 1.25rem 1rem;
+}
+.score-cell-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.score-cell-value {
+  font-family: var(--display);
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.score-cell-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.val-low { color: var(--success); }
+.val-mod { color: var(--warning); }
+.val-high { color: #e07b00; }
+.val-crit { color: var(--danger); }
+.val-neutral { color: var(--white); }
+
+/* SECTION HEADER */
+.section-header {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* VARIABLE BLOCKS */
+.var-blocks { margin-bottom: 2rem; }
+.vblock {
+  border: 1px solid var(--border);
+  margin-bottom: 1px;
+}
+.vblock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.vblock-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.vblock-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.source-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border: 1px solid var(--border-bright);
+  padding: 1px 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.source-badge:hover {
+  border-color: var(--chartreuse-dim);
+  color: var(--chartreuse);
+  text-decoration: none;
+}
+.vblock-score {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+}
+.vblock-body {
+  padding: 1rem 1.25rem;
+  background: var(--near-black);
+}
+.vblock-body p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.7;
+}
+.bar {
+  height: 2px;
+  background: var(--border);
+  margin-top: 1rem;
+}
+.bar-fill {
+  height: 2px;
+}
+.bar-amber { background: var(--warning); }
+.bar-orange { background: #e07b00; }
+.bar-green { background: var(--success); }
+.bar-red { background: var(--danger); }
+
+/* STAGE PIPS */
+.stage-pips {
+  display: flex;
+  gap: 3px;
+  margin-top: 10px;
+}
+.pip { flex: 1; height: 3px; background: var(--border); }
+.pip.past { background: var(--chartreuse-dim); }
+.pip.active { background: var(--chartreuse); }
+
+/* PRESCRIPTION */
+.prescription {
+  border: 1px solid var(--chartreuse-dim);
+  background: #0d1200;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.prescription-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.prescription-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.7;
+}
+
+/* CONCLUSION */
+.conclusion {
+  border-left: 2px solid var(--border-bright);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.conclusion p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* SOURCES SECTION */
+.sources-section {
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.sources-header {
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sources-header-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.sources-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--chartreuse);
+  letter-spacing: 0.08em;
+}
+.sources-group {
+  border-bottom: 1px solid var(--border);
+}
+.sources-group:last-child { border-bottom: none; }
+.sources-group-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  background: #0d0d0d;
+  border-bottom: 1px solid var(--border);
+}
+.source-item {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: start;
+}
+.source-item:last-child { border-bottom: none; }
+.source-title {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.source-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.source-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--chartreuse-dim);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-bright);
+  padding-bottom: 1px;
+}
+.source-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); text-decoration: none; }
+
+/* PAID ACTIONS */
+.paid-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.action-btn {
+  height: 40px;
+  padding: 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.15s;
+  border: none;
+  text-decoration: none;
+}
+.action-btn.primary {
+  background: var(--chartreuse);
+  color: var(--black);
+}
+.action-btn.primary:hover { background: #d4f500; text-decoration: none; }
+.action-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--muted);
+}
+.action-btn.secondary:hover { border-color: var(--chartreuse); color: var(--chartreuse); text-decoration: none; }
+.action-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.copy-confirm {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--success);
+  letter-spacing: 0.08em;
+  display: none;
+}
+.copy-confirm.visible { display: block; }
+
+/* TEST BANNER */
+.test-banner {
+  background: #1a0808;
+  border-bottom: 1px solid var(--danger);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--danger);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.footer-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.footer-mark a { color: var(--chartreuse-dim); }
+.footer-right {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--border-bright);
+  letter-spacing: 0.06em;
+}
+</style>
+</head>
+<body>
+
+<div class="test-banner">TEST PAGE — Not linked from main site — Fabricated sources for design review only</div>
+
+<nav>
+  <span class="nav-mark">Chartreuse Explosives</span>
+  <div class="nav-right">
+    <span class="nav-tag">Intel</span>
+    <a href="/" class="nav-link">Run another</a>
+  </div>
+</nav>
+
+<div class="report">
+
+  <!-- REPORT HEADER -->
+  <div class="report-header">
+    <div class="report-header-left">
+      <div class="report-tag">Collapse Risk Report</div>
+      <div class="report-artist">Brad Pitt</div>
+    </div>
+    <div class="report-header-right">
+      <div class="report-tier">Intel</div>
+      <div class="report-live"><span class="live-dot"></span>Live analysis — April 14, 2026</div>
+      <div class="report-date">9 sources · Web search enabled</div>
+    </div>
+  </div>
+
+  <!-- RISK BANNER -->
+  <div class="risk-banner moderate">
+    <div class="risk-level">Moderate Risk</div>
+    <div class="risk-summary-text">Brad Pitt is at the last stage where a course correction actually changes the outcome. The belief contract is not broken but it is being paid down steadily by legal drama, celebrity vanity projects, and a public narrative he has lost editorial control over.</div>
+  </div>
+
+  <!-- SCORE GRID -->
+  <div class="score-grid">
+    <div class="score-cell">
+      <div class="score-cell-label">Drift score</div>
+      <div class="score-cell-value val-high">6</div>
+      <div class="score-cell-sub">out of 10</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Root cause</div>
+      <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">Authenticity</div>
+      <div class="score-cell-sub">Shame</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Depth</div>
+      <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">Moderate</div>
+      <div class="score-cell-sub">34 yr career</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Stage</div>
+      <div class="score-cell-value val-mod">2</div>
+      <div class="score-cell-sub">Ironic Consumption</div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Immunity</div>
+      <div class="score-cell-value val-high">6</div>
+      <div class="score-cell-sub">Moderate depletion</div>
+    </div>
+  </div>
+
+  <!-- VARIABLE BREAKDOWN -->
+  <div class="section-header">Variable breakdown</div>
+  <div class="var-blocks">
+
+    <!-- CONTRACT DRIFT -->
+    <div class="vblock">
+      <div class="vblock-header">
+        <div class="vblock-header-left">
+          <span class="vblock-name">Contract drift</span>
+          <a href="#sources-drift" class="source-badge">3 sources ↓</a>
+        </div>
+        <span class="vblock-score val-high">6/10</span>
+      </div>
+      <div class="vblock-body">
+        <p>Brad Pitt built his belief contract on two things: the face and the taste. The face is still operational. The taste — the thoughtful guy, the architect-obsessed craftsman, the serious actor who could have coasted but chose Fincher instead — that version is under significant pressure. The Angelina divorce proceedings dragged into public view a person his core audience had decided was the wronged party, then the wronged party started looking complicated, then the winery lawsuit made him look litigious and petty, then the face cream brand made him look like every other aging celebrity monetizing vanity. None of these individually broke anything. Together they eroded the specific story people told themselves about who Brad Pitt was.</p>
+        <div class="bar"><div class="bar-fill bar-orange" style="width:60%"></div></div>
+      </div>
+    </div>
+
+    <!-- ROOT CAUSE -->
+    <div class="vblock">
+      <div class="vblock-header">
+        <div class="vblock-header-left">
+          <span class="vblock-name">Root cause</span>
+          <a href="#sources-root" class="source-badge">2 sources ↓</a>
+        </div>
+        <span class="vblock-score">Authenticity</span>
+      </div>
+      <div class="vblock-body">
+        <p>The shame register is running in the comment sections, not the anger register. Nobody feels politically betrayed by Brad Pitt. They feel slightly embarrassed that they had a whole narrative about him being different from other celebrities of his tier. The Jolie custody battle coverage flipped the script on who was sympathetic. The wine brand legal dispute over a French estate felt like a rich person problem performed publicly. The skincare line, Le Domaine, markets at a price point that signals he is absolutely not the guy people projected onto him. The audience is not furious. They are quietly revising.</p>
+      </div>
+    </div>
+
+    <!-- CONTRACT DEPTH -->
+    <div class="vblock">
+      <div class="vblock-header">
+        <div class="vblock-header-left">
+          <span class="vblock-name">Contract depth</span>
+          <a href="#sources-depth" class="source-badge">1 source ↓</a>
+        </div>
+        <span class="vblock-score">Moderate</span>
+      </div>
+      <div class="vblock-body">
+        <p>Pitt's audience is moderate depth, not critical. People do not organize their identity around being Brad Pitt fans the way they do around being fans of artists whose work carries political or subcultural weight. His contract is built on admiration and projection, not belonging. That means the exit is quieter and faster than a deep-contract collapse. Nobody writes a manifesto about leaving Brad Pitt. They just stop defending him and start shrugging.</p>
+      </div>
+    </div>
+
+    <!-- COLLAPSE STAGE -->
+    <div class="vblock">
+      <div class="vblock-header">
+        <div class="vblock-header-left">
+          <span class="vblock-name">Collapse stage</span>
+          <a href="#sources-stage" class="source-badge">2 sources ↓</a>
+        </div>
+        <span class="vblock-score val-mod">Ironic Consumption</span>
+      </div>
+      <div class="vblock-body">
+        <p>The audience is still present and the box office still works — 'Wolfs' and 'Babylon' show he can still get people into seats or onto a streaming platform. But the mode of consumption has shifted. The jokes about his public appearances at the Venice Film Festival with Ines de Ramon read as watching a show, not believing a story. The skincare brand is cited more as a punchline than a purchase. Stage 2 is the last fixable stage. He is in it. He has not crossed the threshold into irreversibility, but the rationalization budget is thinner than it looks from the outside.</p>
+        <div class="stage-pips">
+          <div class="pip past"></div>
+          <div class="pip active"></div>
+          <div class="pip"></div>
+          <div class="pip"></div>
+          <div class="pip"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMMUNITY LOAD -->
+    <div class="vblock">
+      <div class="vblock-header">
+        <div class="vblock-header-left">
+          <span class="vblock-name">Immunity load</span>
+          <a href="#sources-immunity" class="source-badge">1 source ↓</a>
+        </div>
+        <span class="vblock-score">6/10 · Moderate depletion</span>
+      </div>
+      <div class="vblock-body">
+        <p>Thirty-four years of mainstream presence and a catalog that includes 'Fight Club,' 'Se7en,' 'Inglourious Basterds,' and 'The Tree of Life' is a significant immunity reserve. That catalog does not expire quickly. But the depletion rate is moderate because the incidents are not slowing down — the Jolie legal proceedings continue to generate press, the wine litigation keeps moving, and every new brand or vanity project costs a small amount of the craftsman story he built his equity on. He is not burning through immunity fast, but he is burning through it consistently with no visible rebuild happening.</p>
+        <div class="bar"><div class="bar-fill bar-amber" style="width:60%"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRESCRIPTION -->
+  <div class="prescription">
+    <div class="prescription-label">What they should do next</div>
+    <div class="prescription-text">One serious performance that reasserts the craftsman story is the only lever that actually works here. Not a franchise, not a cameo, not a prestige project that looks like prestige from the outside but plays like a paycheck. A Fincher-level collaboration or something that puts craft visibly back at the center would slow the depletion rate. The window is roughly 18 months before stage 3 becomes the probable next stop. If the next major public story is another legal filing or another luxury brand launch, the rationalization budget hits zero.</div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <p>Brad Pitt is not in freefall. He is in something more insidious: a slow, quiet revision where the audience does not announce they are leaving, they just stop showing up with the same energy. The craftsman story was the whole game and it is currently losing to the celebrity story. The catalog is real, the talent is real, and none of that will matter if the next two years are defined by French estate disputes and moisturizer. He has the runway. The question is whether anyone around him knows what it is actually being spent on.</p>
+  </div>
+
+  <!-- PAID ACTIONS -->
+  <div class="paid-actions">
+    <button class="action-btn primary" onclick="exportPaidCard()">
+      &#8615; Download report card
+    </button>
+    <button class="action-btn secondary" onclick="copyLink()">
+      &#10697; Copy permanent link
+    </button>
+    <span class="copy-confirm" id="copy-confirm">Link copied</span>
+  </div>
+
+  <!-- SOURCES SECTION -->
+  <div class="sources-section">
+    <div class="sources-header">
+      <span class="sources-header-label">Sources</span>
+      <span class="sources-count">9 sources · Live web search · April 14, 2026</span>
+    </div>
+
+    <div class="sources-group" id="sources-drift">
+      <div class="sources-group-label">Contract drift</div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Brad Pitt and Angelina Jolie's custody battle: A full timeline of the legal proceedings</div>
+          <div class="source-meta">The Guardian · March 2026</div>
+        </div>
+        <a href="#" class="source-link">guardian.com ↗</a>
+      </div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Le Domaine skincare: Brad Pitt's $385 cream is the latest celebrity beauty venture</div>
+          <div class="source-meta">Vogue Business · January 2026</div>
+        </div>
+        <a href="#" class="source-link">vogue.com ↗</a>
+      </div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Château Miraval dispute: Pitt files new claims against Jolie over winery sale</div>
+          <div class="source-meta">Reuters · February 2026</div>
+        </div>
+        <a href="#" class="source-link">reuters.com ↗</a>
+      </div>
+    </div>
+
+    <div class="sources-group" id="sources-root">
+      <div class="sources-group-label">Root cause</div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Public sentiment analysis: How the Jolie-Pitt custody coverage shifted sympathy</div>
+          <div class="source-meta">Hollywood Reporter · December 2025</div>
+        </div>
+        <a href="#" class="source-link">hollywoodreporter.com ↗</a>
+      </div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Le Domaine by Brad Pitt is being mocked online — and selling anyway</div>
+          <div class="source-meta">Vulture · October 2025</div>
+        </div>
+        <a href="#" class="source-link">vulture.com ↗</a>
+      </div>
+    </div>
+
+    <div class="sources-group" id="sources-depth">
+      <div class="sources-group-label">Contract depth</div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">The Brad Pitt fan base: admiration without identity investment</div>
+          <div class="source-meta">The Atlantic · November 2025</div>
+        </div>
+        <a href="#" class="source-link">theatlantic.com ↗</a>
+      </div>
+    </div>
+
+    <div class="sources-group" id="sources-stage">
+      <div class="sources-group-label">Collapse stage</div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Venice Film Festival 2025: Brad Pitt and Ines de Ramon's red carpet moment becomes a meme</div>
+          <div class="source-meta">Page Six · September 2025</div>
+        </div>
+        <a href="#" class="source-link">pagesix.com ↗</a>
+      </div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Wolfs box office: Brad Pitt and George Clooney's Apple TV+ film performs below projections</div>
+          <div class="source-meta">Deadline · October 2025</div>
+        </div>
+        <a href="#" class="source-link">deadline.com ↗</a>
+      </div>
+    </div>
+
+    <div class="sources-group" id="sources-immunity">
+      <div class="sources-group-label">Immunity load</div>
+      <div class="source-item">
+        <div>
+          <div class="source-title">Brad Pitt at 62: the catalog that still defines him and the projects that don't</div>
+          <div class="source-meta">Variety · January 2026</div>
+        </div>
+        <a href="#" class="source-link">variety.com ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a></span>
+  <span class="footer-right">When The Crowd Turns · Intel Report</span>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const confirm = document.getElementById('copy-confirm');
+    confirm.classList.add('visible');
+    setTimeout(() => confirm.classList.remove('visible'), 2000);
+  });
+}
+
+function exportPaidCard() {
+  const btn = document.querySelector('.action-btn.primary');
+  btn.disabled = true;
+  btn.innerHTML = '&#8635; Generating...';
+
+  const card = document.createElement('div');
+  card.style.cssText = `
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    width: 1200px;
+    height: 630px;
+    background: #0a0a0a;
+    font-family: 'IBM Plex Sans', sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 56px;
+    box-sizing: border-box;
+  `;
+
+  const border = document.createElement('div');
+  border.style.cssText = `position:absolute;left:0;top:0;bottom:0;width:4px;background:#ef9f27;`;
+  card.appendChild(border);
+
+  card.innerHTML += `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk Instrument</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#c8e600;text-transform:uppercase;border:1px solid #8fa300;padding:2px 8px;">Intel</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#ef9f27;text-transform:uppercase;border:1px solid #ef9f27;padding:3px 10px;">Moderate Risk</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:12px;">Collapse Risk Report &nbsp;·&nbsp; Live Analysis</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:0.9;letter-spacing:0.02em;color:#f0ede6;">BRAD PITT</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;margin:8px 0;">
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Drift</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#e07b00;">6</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">/ 10</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Root cause</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1.2;color:#f0ede6;">Authenticity</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">Shame</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Depth</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1.2;color:#f0ede6;">Moderate</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">34yr career</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Stage</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#ef9f27;">2</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">Ironic Consumption</div>
+      </div>
+      <div style="background:#161616;padding:16px 14px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Immunity</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#e07b00;">6</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">Moderate depletion</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:300;color:#888880;max-width:760px;line-height:1.5;">Brad Pitt is not in freefall. He is in something more insidious: a slow, quiet revision where the audience does not announce they are leaving.</div>
+      <div style="text-align:right;flex-shrink:0;margin-left:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#3a3a3a;letter-spacing:0.08em;">9 sources · Live search</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#3a3a3a;letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(card);
+
+  html2canvas(card, {
+    width: 1200,
+    height: 630,
+    scale: 1,
+    useCORS: true,
+    backgroundColor: '#0a0a0a',
+    logging: false,
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'collapse-risk-brad-pitt-intel.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    document.body.removeChild(card);
+    btn.disabled = false;
+    btn.innerHTML = '&#8615; Download report card';
+  }).catch(err => {
+    console.error(err);
+    document.body.removeChild(card);
+    btn.disabled = false;
+    btn.innerHTML = '&#8615; Download report card';
+  });
+}
+</script>
+</body>
+</html>
