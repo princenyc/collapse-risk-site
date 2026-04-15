@@ -274,7 +274,6 @@ nav {
 }
 .example-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); }
 
-/* LICENSE KEY INPUT */
 .license-section {
   max-width: 600px;
   margin-top: 1.25rem;
@@ -303,10 +302,7 @@ nav {
 }
 .license-status.valid { color: var(--success); }
 .license-status.invalid { color: var(--danger); }
-.license-row {
-  display: flex;
-  gap: 0;
-}
+.license-row { display: flex; gap: 0; }
 #license-input {
   flex: 1;
   background: transparent;
@@ -336,24 +332,10 @@ nav {
 }
 #license-btn:hover { color: var(--chartreuse); }
 
-#loading {
-  display: none;
-  padding: 2rem 1.25rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
+#loading { display: none; padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; }
 #loading.visible { display: block; }
-.loading-inner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.loading-bar {
-  width: 160px;
-  height: 2px;
-  background: var(--border);
-  overflow: hidden;
-}
+.loading-inner { display: flex; align-items: center; gap: 12px; }
+.loading-bar { width: 160px; height: 2px; background: var(--border); overflow: hidden; }
 .loading-bar-fill {
   height: 2px;
   background: var(--chartreuse);
@@ -385,36 +367,12 @@ nav {
 }
 #error-box.visible { display: block; }
 
-#rate-limit-box {
-  display: none;
-  max-width: 600px;
-  margin-top: 1rem;
-  border: 1px solid var(--chartreuse-dim);
-  background: #0d1200;
-}
+#rate-limit-box { display: none; max-width: 600px; margin-top: 1rem; border: 1px solid var(--chartreuse-dim); background: #0d1200; }
 #rate-limit-box.visible { display: block; }
 .rate-limit-inner { padding: 1.25rem; }
-.rate-limit-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.rate-limit-message {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-}
-.rate-limit-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
+.rate-limit-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 8px; }
+.rate-limit-message { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.6; margin-bottom: 1.25rem; }
+.rate-limit-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 .rate-limit-cta {
   background: var(--chartreuse);
   border: none;
@@ -434,411 +392,131 @@ nav {
   transition: background 0.15s;
 }
 .rate-limit-cta:hover { background: #d4f500; text-decoration: none; }
-.rate-limit-reset {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
+.rate-limit-reset { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
 
-#report {
-  display: none;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1.25rem 4rem;
-  animation: fadein 0.4s ease;
-}
+#report { display: none; max-width: 960px; margin: 0 auto; padding: 0 1.25rem 4rem; animation: fadein 0.4s ease; }
 #report.visible { display: block; }
 @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-.report-header {
-  padding: 2rem 0 1.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.report-artist {
-  font-family: var(--display);
-  font-size: clamp(32px, 8vw, 64px);
-  line-height: 1;
-  letter-spacing: 0.03em;
-  color: var(--white);
-}
+.report-header { padding: 2rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; }
+.report-artist { font-family: var(--display); font-size: clamp(32px, 8vw, 64px); line-height: 1; letter-spacing: 0.03em; color: var(--white); }
 .report-meta-col { text-align: right; }
-.report-date {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-.report-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
+.report-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+.report-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 4px; }
 
-.risk-banner {
-  padding: 1rem 1.25rem;
-  border-left: 3px solid;
-  margin-bottom: 1.5rem;
-}
+.risk-banner { padding: 1rem 1.25rem; border-left: 3px solid; margin-bottom: 1.5rem; }
 .risk-banner.low { border-color: var(--success); background: #041a12; }
 .risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
 .risk-banner.high { border-color: #e07b00; background: #1a0f00; }
 .risk-banner.critical { border-color: var(--danger); background: #1a0808; }
-.risk-level {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
+.risk-level { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
 .risk-banner.low .risk-level { color: var(--success); }
 .risk-banner.moderate .risk-level { color: var(--warning); }
 .risk-banner.high .risk-level { color: #e07b00; }
 .risk-banner.critical .risk-level { color: var(--danger); }
-.risk-summary-text {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.6;
-}
+.risk-summary-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.6; }
 
-.score-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-}
-.score-cell {
-  background: var(--surface);
-  padding: 1rem 0.75rem;
-}
-.score-cell-label {
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.score-cell-value {
-  font-family: var(--display);
-  font-size: 28px;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.score-cell-sub {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--muted);
-  letter-spacing: 0.03em;
-}
+.score-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.score-cell { background: var(--surface); padding: 1rem 0.75rem; }
+.score-cell-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+.score-cell-value { font-family: var(--display); font-size: 28px; line-height: 1; margin-bottom: 4px; }
+.score-cell-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.03em; }
 .val-low { color: var(--success); }
 .val-mod { color: var(--warning); }
 .val-high { color: #e07b00; }
 .val-crit { color: var(--danger); }
 .val-neutral { color: var(--white); }
 
-.section-header {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
+.section-header { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
 .var-blocks { margin-bottom: 1.5rem; }
-.vblock {
-  border: 1px solid var(--border);
-  margin-bottom: 1px;
-}
-.vblock-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.875rem 1rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  gap: 0.5rem;
-}
-.vblock-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-}
-.vblock-score {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  text-align: right;
-  flex-shrink: 0;
-}
-.vblock-body {
-  padding: 1rem;
-  background: var(--near-black);
-}
-.vblock-body p {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.7;
-}
-.bar {
-  height: 2px;
-  background: var(--border);
-  margin-top: 1rem;
-}
-.bar-fill {
-  height: 2px;
-  transition: width 0.6s ease;
-}
+.vblock { border: 1px solid var(--border); margin-bottom: 1px; }
+.vblock-header { display: flex; justify-content: space-between; align-items: center; padding: 0.875rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); gap: 0.5rem; }
+.vblock-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--chartreuse); text-transform: uppercase; }
+.vblock-score { font-family: var(--mono); font-size: 10px; font-weight: 500; text-align: right; flex-shrink: 0; }
+.vblock-body { padding: 1rem; background: var(--near-black); }
+.vblock-body p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
+.bar { height: 2px; background: var(--border); margin-top: 1rem; }
+.bar-fill { height: 2px; transition: width 0.6s ease; }
 .bar-green { background: var(--success); }
 .bar-amber { background: var(--warning); }
 .bar-orange { background: #e07b00; }
 .bar-red { background: var(--danger); }
 
-.stage-pips {
-  display: flex;
-  gap: 3px;
-  margin-top: 10px;
-}
-.pip {
-  flex: 1;
-  height: 3px;
-  background: var(--border);
-}
+.stage-pips { display: flex; gap: 3px; margin-top: 10px; }
+.pip { flex: 1; height: 3px; background: var(--border); }
 .pip.past { background: var(--chartreuse-dim); }
 .pip.active { background: var(--chartreuse); }
 
-.prescription {
-  border: 1px solid var(--chartreuse-dim);
-  background: #0d1200;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-.prescription-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.prescription-text {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.7;
-}
+.prescription { border: 1px solid var(--chartreuse-dim); background: #0d1200; padding: 1.25rem; margin-bottom: 1.5rem; }
+.prescription-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 10px; }
+.prescription-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
 
-.conclusion {
-  border-left: 2px solid var(--border-bright);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-}
-.conclusion p {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-}
+.conclusion { border-left: 2px solid var(--border-bright); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+.conclusion p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
 
-/* SOURCES */
-.sources-block {
-  border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-}
-.sources-header {
-  padding: 0.75rem 1rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-}
-.source-item {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
+.sources-block { border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.sources-header { padding: 0.75rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--chartreuse); text-transform: uppercase; }
+.source-item { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
 .source-item:last-child { border-bottom: none; }
-.source-title {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--white);
-}
-.source-meta {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.source-url {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--chartreuse-dim);
-  word-break: break-all;
-}
+.source-title { font-size: 13px; font-weight: 400; color: var(--white); }
+.source-meta { font-family: var(--mono); font-size: 10px; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
+.source-url { font-family: var(--mono); font-size: 10px; color: var(--chartreuse-dim); word-break: break-all; }
 
-.upgrade-gate {
-  border: 1px solid var(--border-bright);
-  background: var(--surface);
-  margin-bottom: 2rem;
-}
-.upgrade-gate-header {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.upgrade-gate-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-.upgrade-gate-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  border: 1px solid var(--chartreuse-dim);
-  padding: 2px 8px;
-}
-.upgrade-gate-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1px;
-  background: var(--border);
-}
-.upgrade-feature {
-  background: var(--near-black);
-  padding: 0.875rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  opacity: 0.5;
-  cursor: default;
-}
-.upgrade-feature-icon {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-.upgrade-feature-text {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.5;
-}
-.upgrade-feature-text strong {
-  display: block;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 3px;
-  font-weight: 500;
-}
-.upgrade-gate-cta {
-  padding: 1rem 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  border-top: 1px solid var(--border);
-}
-.upgrade-gate-cta p {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--muted);
-}
-.upgrade-btn {
-  background: var(--chartreuse);
-  border: none;
-  padding: 0 1.5rem;
-  height: 44px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--black);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  width: 100%;
-}
+.upgrade-gate { border: 1px solid var(--border-bright); background: var(--surface); margin-bottom: 2rem; }
+.upgrade-gate-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.upgrade-gate-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; }
+.upgrade-gate-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--chartreuse); text-transform: uppercase; border: 1px solid var(--chartreuse-dim); padding: 2px 8px; }
+.upgrade-gate-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); }
+.upgrade-feature { background: var(--near-black); padding: 0.875rem 1rem; display: flex; align-items: flex-start; gap: 8px; opacity: 0.5; cursor: default; }
+.upgrade-feature-icon { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 1px; flex-shrink: 0; }
+.upgrade-feature-text { font-size: 12px; font-weight: 300; color: var(--white); line-height: 1.5; }
+.upgrade-feature-text strong { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; font-weight: 500; }
+.upgrade-gate-cta { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
+.upgrade-gate-cta p { font-size: 12px; font-weight: 300; color: var(--muted); }
+.upgrade-btn { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 44px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background 0.15s; width: 100%; }
 .upgrade-btn:hover { background: #d4f500; }
 .upgrade-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
 
-.tier-notice {
-  max-width: 600px;
-  margin-top: 1.25rem;
-  padding: 0.875rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.tier-notice-limits {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.tier-notice-paid {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  color: var(--white);
-}
-.tier-notice-link {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  color: var(--chartreuse);
-  cursor: pointer;
-}
+.tier-notice { max-width: 600px; margin-top: 1.25rem; padding: 0.875rem 1rem; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.5rem; }
+.tier-notice-limits { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--muted); line-height: 1.6; }
+.tier-notice-paid { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--white); }
+.tier-notice-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--chartreuse); cursor: pointer; }
 .tier-notice-link:hover { text-decoration: underline; }
 
+/* EXPORT ROW */
 .export-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+}
+.export-format-group {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border-bright);
+}
+.export-format-btn {
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border-bright);
+  padding: 0 0.875rem;
+  height: 40px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.export-format-btn:last-child { border-right: none; }
+.export-format-btn:hover { background: var(--surface); color: var(--white); }
+.export-format-btn.active {
+  background: var(--chartreuse);
+  color: var(--black);
+  border-color: var(--chartreuse);
 }
 .export-btn {
   background: transparent;
@@ -860,35 +538,12 @@ nav {
 .export-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
 .export-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .export-btn-icon { font-size: 14px; }
-.export-btn-note {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--border-bright);
-  letter-spacing: 0.06em;
-}
+.export-btn-note { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: 0.06em; }
 
-footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.footer-mark {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-}
+footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+.footer-mark { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
 .footer-mark a { color: var(--chartreuse-dim); }
-.footer-right {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--border-bright);
-  letter-spacing: 0.06em;
-}
+.footer-right { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: 0.06em; }
 
 @media (max-width: 640px) {
   .bridge { display: none; }
@@ -899,6 +554,7 @@ footer {
   .upgrade-gate-cta p { text-align: center; }
   .rate-limit-actions { flex-direction: column; align-items: stretch; }
   .rate-limit-cta { justify-content: center; }
+  .export-row { flex-direction: column; align-items: flex-start; }
 }
 @media (min-width: 641px) and (max-width: 960px) {
   .hero { padding: 4rem 2rem 3rem; }
@@ -977,7 +633,6 @@ footer {
     <span class="tier-notice-link" onclick="startCheckout('intel')">Get a paid report &rarr;</span>
   </div>
 
-  <!-- License key entry -->
   <div class="license-section" style="margin-top:1.25rem;">
     <div class="license-header">
       <span class="license-label">License key</span>
@@ -1029,17 +684,14 @@ const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold cross
 
 let activeLicenseKey = null;
 let licenseCredits = null;
-
-// ─── License key activation ───────────────────────────────────────────────────
+let exportFormat = 'twitter'; // default
 
 async function activateLicense() {
   const key = document.getElementById('license-input').value.trim();
   if (!key) return;
-
   const btn = document.getElementById('license-btn');
   const status = document.getElementById('license-status');
   btn.textContent = '...';
-
   try {
     const res = await fetch(WORKER_URL + '/validate-key', {
       method: 'POST',
@@ -1047,7 +699,6 @@ async function activateLicense() {
       body: JSON.stringify({ key })
     });
     const data = await res.json();
-
     if (data.valid) {
       activeLicenseKey = data.key;
       licenseCredits = data.remaining;
@@ -1066,13 +717,22 @@ async function activateLicense() {
   }
 }
 
-// ─── Stripe checkout ──────────────────────────────────────────────────────────
-
 function startCheckout(tier) {
   alert('Paid reports are coming soon. Check back in a few days.');
 }
 
-// ─── Analysis ─────────────────────────────────────────────────────────────────
+function setExportFormat(fmt) {
+  exportFormat = fmt;
+  document.querySelectorAll('.export-format-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.fmt === fmt);
+  });
+  const note = document.querySelector('.export-btn-note');
+  if (note) {
+    const sizes = { twitter: '1200×630', ig_square: '1080×1080', ig_portrait: '1080×1350' };
+    const labels = { twitter: 'X / Twitter', ig_square: 'Instagram Square', ig_portrait: 'Instagram Portrait' };
+    note.textContent = `${labels[fmt]} · ${sizes[fmt]}`;
+  }
+}
 
 function runExample(name) {
   document.getElementById('artist-input').value = name;
@@ -1082,7 +742,6 @@ function runExample(name) {
 async function generateReport() {
   const name = document.getElementById('artist-input').value.trim();
   if (!name) return;
-
   const btn = document.getElementById('generate-btn');
   const loading = document.getElementById('loading');
   const loadingText = document.getElementById('loading-text');
@@ -1095,48 +754,30 @@ async function generateReport() {
   rateLimitBox.classList.remove('visible');
   report.classList.remove('visible');
   report.innerHTML = '';
-
-  // Loading message varies by tier
-  if (activeLicenseKey) {
-    loadingText.textContent = 'Running live search analysis';
-  } else {
-    loadingText.textContent = 'Running analysis';
-  }
+  loadingText.textContent = activeLicenseKey ? 'Running live search analysis' : 'Running analysis';
   loading.classList.add('visible');
 
   try {
     const headers = { 'Content-Type': 'application/json' };
-    if (activeLicenseKey) {
-      headers['X-License-Key'] = activeLicenseKey;
-    }
-
+    if (activeLicenseKey) headers['X-License-Key'] = activeLicenseKey;
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers,
       body: JSON.stringify({ artist: name })
     });
-
     loading.classList.remove('visible');
-
     if (res.status === 429) {
       rateLimitBox.classList.add('visible');
       rateLimitBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
-
     if (!res.ok) throw new Error('Worker error: ' + res.status);
-
     const data = await res.json();
-
-    // Update credits display if paid
     if (activeLicenseKey && data) {
       licenseCredits = Math.max(0, (licenseCredits || 1) - 1);
       const status = document.getElementById('license-status');
-      if (status) {
-        status.textContent = `Active · ${licenseCredits} report${licenseCredits !== 1 ? 's' : ''} remaining`;
-      }
+      if (status) status.textContent = `Active · ${licenseCredits} report${licenseCredits !== 1 ? 's' : ''} remaining`;
     }
-
     renderReport(data, !!activeLicenseKey);
   } catch (e) {
     loading.classList.remove('visible');
@@ -1147,8 +788,6 @@ async function generateReport() {
     btn.disabled = false;
   }
 }
-
-// ─── Render ───────────────────────────────────────────────────────────────────
 
 function scoreClass(n) {
   if (n <= 3) return 'val-low';
@@ -1192,7 +831,6 @@ function renderReport(d, isPaid) {
     pips += `<div class="pip ${cls}"></div>`;
   }
 
-  // Sources block — paid only
   let sourcesHtml = '';
   if (isPaid && d.sources && d.sources.length > 0) {
     const items = d.sources.map(s => `
@@ -1205,15 +843,9 @@ function renderReport(d, isPaid) {
         <div class="source-url">${s.url || ''}</div>
       </div>
     `).join('');
-    sourcesHtml = `
-      <div class="sources-block">
-        <div class="sources-header">Sources (${d.sources.length})</div>
-        ${items}
-      </div>
-    `;
+    sourcesHtml = `<div class="sources-block"><div class="sources-header">Sources (${d.sources.length})</div>${items}</div>`;
   }
 
-  // Upgrade gate — free only
   const upgradeHtml = isPaid ? '' : `
     <div class="upgrade-gate">
       <div class="upgrade-gate-header">
@@ -1223,24 +855,15 @@ function renderReport(d, isPaid) {
       <div class="upgrade-gate-features">
         <div class="upgrade-feature">
           <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Deeper analysis</strong>
-            Free reports work from training data. Paid reports go looking for what happened last week.
-          </div>
+          <div class="upgrade-feature-text"><strong>Deeper analysis</strong>Free reports work from training data. Paid reports go looking for what happened last week.</div>
         </div>
         <div class="upgrade-feature">
           <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Sources</strong>
-            Web-sourced findings with citations
-          </div>
+          <div class="upgrade-feature-text"><strong>Sources</strong>Web-sourced findings with citations</div>
         </div>
         <div class="upgrade-feature">
           <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Unlimited reports</strong>
-            No daily limits.
-          </div>
+          <div class="upgrade-feature-text"><strong>Unlimited reports</strong>No daily limits.</div>
         </div>
       </div>
       <div class="upgrade-gate-cta">
@@ -1260,12 +883,10 @@ function renderReport(d, isPaid) {
         <div class="report-date">${d.generated || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
       </div>
     </div>
-
     <div class="risk-banner ${riskClass}">
       <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
       <div class="risk-summary-text">${d.risk_summary}</div>
     </div>
-
     <div class="score-grid">
       <div class="score-cell">
         <div class="score-cell-label">Drift score</div>
@@ -1293,71 +914,46 @@ function renderReport(d, isPaid) {
         <div class="score-cell-sub">${capitalize(d.depletion_rate)} depletion</div>
       </div>
     </div>
-
     <div class="section-header">Variable breakdown</div>
     <div class="var-blocks">
       <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Contract drift</span>
-          <span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span>
-        </div>
-        <div class="vblock-body">
-          <p>${d.drift_finding}</p>
-          <div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div>
-        </div>
+        <div class="vblock-header"><span class="vblock-name">Contract drift</span><span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span></div>
+        <div class="vblock-body"><p>${d.drift_finding}</p><div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div></div>
       </div>
       <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Root cause</span>
-          <span class="vblock-score">${capitalize(d.root_cause)}</span>
-        </div>
+        <div class="vblock-header"><span class="vblock-name">Root cause</span><span class="vblock-score">${capitalize(d.root_cause)}</span></div>
         <div class="vblock-body"><p>${d.root_finding}</p></div>
       </div>
       <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Contract depth</span>
-          <span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span>
-        </div>
+        <div class="vblock-header"><span class="vblock-name">Contract depth</span><span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span></div>
         <div class="vblock-body"><p>${d.depth_finding}</p></div>
       </div>
       <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Collapse stage</span>
-          <span class="vblock-score ${scoreClass(d.collapse_stage)}">${stageName}</span>
-        </div>
-        <div class="vblock-body">
-          <p>${d.stage_finding}</p>
-          <div class="stage-pips">${pips}</div>
-        </div>
+        <div class="vblock-header"><span class="vblock-name">Collapse stage</span><span class="vblock-score ${scoreClass(d.collapse_stage)}">${stageName}</span></div>
+        <div class="vblock-body"><p>${d.stage_finding}</p><div class="stage-pips">${pips}</div></div>
       </div>
       <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Immunity load</span>
-          <span class="vblock-score">${d.immunity_load}/10 &middot; ${d.depletion_rate} depletion</span>
-        </div>
-        <div class="vblock-body">
-          <p>${d.immunity_finding}</p>
-          <div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div>
-        </div>
+        <div class="vblock-header"><span class="vblock-name">Immunity load</span><span class="vblock-score">${d.immunity_load}/10 &middot; ${d.depletion_rate} depletion</span></div>
+        <div class="vblock-body"><p>${d.immunity_finding}</p><div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div></div>
       </div>
     </div>
-
     <div class="prescription">
       <div class="prescription-label">What they should do next</div>
       <div class="prescription-text">${d.prescription}</div>
     </div>
-
     <div class="conclusion"><p>${d.conclusion}</p></div>
-
     ${sourcesHtml}
-
     <div class="export-row">
+      <div class="export-format-group">
+        <button class="export-format-btn active" data-fmt="twitter" onclick="setExportFormat('twitter')">X / Twitter</button>
+        <button class="export-format-btn" data-fmt="ig_square" onclick="setExportFormat('ig_square')">IG Square</button>
+        <button class="export-format-btn" data-fmt="ig_portrait" onclick="setExportFormat('ig_portrait')">IG Portrait</button>
+      </div>
       <button class="export-btn" onclick="exportCard()">
-        <span class="export-btn-icon">&#8615;</span> Download summary card
+        <span class="export-btn-icon">&#8615;</span> Download card
       </button>
-      <span class="export-btn-note">Free · 1200×630px</span>
+      <span class="export-btn-note">X / Twitter · 1200×630</span>
     </div>
-
     ${upgradeHtml}
   `;
 
@@ -1377,14 +973,63 @@ function exportCard() {
   if (btn) { btn.disabled = true; btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...'; }
 
   const d = currentReport;
+  const fmt = exportFormat || 'twitter';
   const riskColors = { low: '#5dcaa5', moderate: '#ef9f27', high: '#e07b00', critical: '#e24b4a' };
   const riskColor = riskColors[d.overall_risk] || '#ef9f27';
   const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
   const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
 
+  // Canvas dimensions by format
+  const dims = {
+    twitter:     { w: 1200, h: 630 },
+    ig_square:   { w: 1080, h: 1080 },
+    ig_portrait: { w: 1080, h: 1350 },
+  };
+  const { w, h } = dims[fmt];
+
+  // Score cell helper
+  function scoreCell(label, valueHtml, sub) {
+    return `<div style="background:#161616;padding:16px 14px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">${label}</div>
+      ${valueHtml}
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${sub}</div>
+    </div>`;
+  }
+
+  const driftVal = `<div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a'};">${d.drift_score}</div>`;
+  const stageVal = `<div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a'};">${d.collapse_stage}</div>`;
+  const immuneVal = `<div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a'};">${d.immunity_load}</div>`;
+  const rootVal = `<div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${capitalize(d.root_cause)}</div>`;
+  const depthVal = `<div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${depthLabel[d.contract_depth]||capitalize(d.contract_depth)}</div>`;
+
+  const scoreGridCols = fmt === 'twitter' ? 'repeat(5,1fr)' : 'repeat(3,1fr)';
+  const artistFontSize = fmt === 'twitter' ? '96px' : '80px';
+  const pad = fmt === 'twitter' ? '48px 56px' : '56px 56px';
+
+  // For portrait/square, show all 5 cells — 3 on top row, 2 on bottom (centered)
+  let scoreCellsHtml;
+  if (fmt === 'twitter') {
+    scoreCellsHtml = `
+      ${scoreCell('Drift', driftVal, '/ 10')}
+      ${scoreCell('Root cause', rootVal, capitalize(d.audience_emotion))}
+      ${scoreCell('Depth', depthVal, `${d.career_years}yr career`)}
+      ${scoreCell('Stage', stageVal, stageName)}
+      ${scoreCell('Immunity', immuneVal, `${capitalize(d.depletion_rate)} depletion`)}
+    `;
+  } else {
+    // 3 cols — first row: drift, root, depth. Second row: stage, immunity (span or center)
+    scoreCellsHtml = `
+      ${scoreCell('Drift', driftVal, '/ 10')}
+      ${scoreCell('Root cause', rootVal, capitalize(d.audience_emotion))}
+      ${scoreCell('Depth', depthVal, `${d.career_years}yr career`)}
+      ${scoreCell('Stage', stageVal, stageName)}
+      ${scoreCell('Immunity', immuneVal, `${capitalize(d.depletion_rate)} depletion`)}
+      <div style="background:#161616;"></div>
+    `;
+  }
+
   const card = document.createElement('div');
-  card.id = 'export-card';
-  card.style.cssText = `position:fixed;left:-9999px;top:0;width:1200px;height:630px;background:#0a0a0a;font-family:'IBM Plex Sans',sans-serif;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:48px 56px;box-sizing:border-box;`;
+  card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:#0a0a0a;font-family:'IBM Plex Sans',sans-serif;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:${pad};box-sizing:border-box;`;
 
   const border = document.createElement('div');
   border.style.cssText = `position:absolute;left:0;top:0;bottom:0;width:4px;background:${riskColor};`;
@@ -1397,56 +1042,33 @@ function exportCard() {
     </div>
     <div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:12px;">Collapse Risk Report</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:0.9;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:${artistFontSize};line-height:0.9;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;margin:8px 0;">
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Drift</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a'};">${d.drift_score}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">/ 10</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Root cause</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${capitalize(d.root_cause)}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.audience_emotion)}</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Depth</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${depthLabel[d.contract_depth]||capitalize(d.contract_depth)}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${d.career_years}yr career</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Stage</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a'};">${d.collapse_stage}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${stageName}</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Immunity</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a'};">${d.immunity_load}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.depletion_rate)} depletion</div>
-      </div>
+    <div style="display:grid;grid-template-columns:${scoreGridCols};gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;">
+      ${scoreCellsHtml}
     </div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:300;color:#888880;max-width:800px;line-height:1.5;">${d.risk_summary}</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:300;color:#888880;max-width:${fmt==='twitter'?'800px':'900px'};line-height:1.5;">${d.risk_summary}</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#888880;letter-spacing:0.08em;white-space:nowrap;margin-left:24px;">collapse.chartreuseexplosives.com</div>
-      
     </div>
   `;
 
   card.appendChild(border);
   document.body.appendChild(card);
 
-  html2canvas(card, { width:1200, height:630, scale:1, useCORS:true, allowTaint:true, backgroundColor:'#0a0a0a', logging:false }).then(canvas => {
+  const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait' };
+
+  html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: '#0a0a0a', logging: false }).then(canvas => {
     const link = document.createElement('a');
-    link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}.png`;
+    link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
     document.body.removeChild(card);
-    if (btn) { btn.disabled=false; btn.innerHTML='<span class="export-btn-icon">&#8615;</span> Download summary card'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
   }).catch(err => {
     console.error('Export failed:', err);
     document.body.removeChild(card);
-    if (btn) { btn.disabled=false; btn.innerHTML='<span class="export-btn-icon">&#8615;</span> Download summary card'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
   });
 }
 
