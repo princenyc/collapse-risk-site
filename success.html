@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Confirmed — Collapse Risk Instrument</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --near-black: #111111;
+  --surface: #161616;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --chartreuse: #c8e600;
+  --chartreuse-dim: #8fa300;
+  --white: #f0ede6;
+  --muted: #888880;
+  --danger: #e24b4a;
+  --success: #5dcaa5;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+nav {
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  background: var(--black);
+}
+.nav-mark {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--success);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.title {
+  font-family: var(--display);
+  font-size: clamp(40px, 8vw, 72px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+/* Loading state */
+#state-loading {
+  display: block;
+}
+.loading-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 1rem;
+}
+.loading-bar {
+  width: 160px;
+  height: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 2px;
+  background: var(--chartreuse);
+  animation: loadbar 1.8s ease-in-out infinite;
+}
+@keyframes loadbar {
+  0% { width: 0%; margin-left: 0%; }
+  50% { width: 60%; margin-left: 20%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+.loading-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Key display state */
+#state-key {
+  display: none;
+}
+.key-block {
+  border: 1px solid var(--chartreuse-dim);
+  background: #0d1200;
+  margin-bottom: 2rem;
+}
+.key-block-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--chartreuse-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.key-block-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+}
+.key-block-tier {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.key-display {
+  padding: 1.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.key-value {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  word-break: break-all;
+}
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  padding: 0 1rem;
+  height: 36px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.copy-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
+.copy-btn.copied { border-color: var(--success); color: var(--success); }
+
+.key-warning {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--chartreuse-dim);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.credits-display {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.credits-display span { color: var(--white); }
+
+.instructions {
+  margin-bottom: 2rem;
+}
+.instructions-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.step {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.875rem;
+  align-items: flex-start;
+}
+.step-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--chartreuse);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.step-text strong { color: var(--white); font-weight: 400; }
+
+.go-btn {
+  background: var(--chartreuse);
+  border: none;
+  padding: 0 2rem;
+  height: 52px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+.go-btn:hover { background: #d4f500; text-decoration: none; }
+
+/* Error state */
+#state-error {
+  display: none;
+}
+.error-block {
+  border: 1px solid var(--danger);
+  background: #1a0808;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+.error-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--danger);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.error-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.error-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://collapse.chartreuseexplosives.com" class="nav-mark">Chartreuse Explosives</a>
+</nav>
+
+<div class="main">
+
+  <!-- Loading -->
+  <div id="state-loading">
+    <div class="eyebrow">Payment confirmed</div>
+    <div class="title">Retrieving<br>your key.</div>
+    <div class="loading-inner">
+      <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+      <span class="loading-text">One moment</span>
+    </div>
+  </div>
+
+  <!-- Key display -->
+  <div id="state-key">
+    <div class="eyebrow">Payment confirmed</div>
+    <div class="title">Your key<br>is ready.</div>
+
+    <div class="key-block">
+      <div class="key-block-header">
+        <span class="key-block-label">License key</span>
+        <span class="key-block-tier" id="tier-display"></span>
+      </div>
+      <div class="key-display">
+        <span class="key-value" id="key-display"></span>
+        <button class="copy-btn" id="copy-btn" onclick="copyKey()">Copy</button>
+      </div>
+      <div class="key-warning">Save this key. It is not emailed. It will not be shown again after you leave this page.</div>
+    </div>
+
+    <div class="credits-display" id="credits-display"></div>
+
+    <div class="instructions">
+      <div class="instructions-label">How to use it</div>
+      <div class="step">
+        <span class="step-num">01</span>
+        <span class="step-text">Go to <strong>collapse.chartreuseexplosives.com</strong></span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <span class="step-text">Paste your key into the <strong>License key</strong> field and click <strong>Activate</strong></span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <span class="step-text">Run your analysis. Live web search activates automatically.</span>
+      </div>
+    </div>
+
+    <a href="https://collapse.chartreuseexplosives.com" class="go-btn">Run a report &rarr;</a>
+  </div>
+
+  <!-- Error -->
+  <div id="state-error">
+    <div class="eyebrow">Something went wrong</div>
+    <div class="title">Key not<br>found.</div>
+    <div class="error-block">
+      <div class="error-label">Error</div>
+      <div class="error-text" id="error-text">We couldn't retrieve your license key. Your payment was processed — this is a delivery issue only.</div>
+      <div class="error-sub">Email Prince@princecampbell.com with your payment confirmation and we'll send your key manually.</div>
+    </div>
+    <a href="https://collapse.chartreuseexplosives.com" class="go-btn">Back to the instrument</a>
+  </div>
+
+</div>
+
+<script>
+const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
+
+let retrievedKey = null;
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  if (!sessionId) {
+    showError('No session ID found in URL.');
+    return;
+  }
+
+  try {
+    const res = await fetch(WORKER_URL + '/validate-key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: sessionId })
+    });
+
+    const data = await res.json();
+
+    if (data.valid && data.key) {
+      showKey(data);
+    } else if (data.error === 'Session not found') {
+      // Webhook may not have fired yet — retry once after 3s
+      setTimeout(() => retry(sessionId), 3000);
+    } else {
+      showError(data.error || 'Key retrieval failed.');
+    }
+  } catch (e) {
+    showError('Network error. Please try again.');
+  }
+}
+
+async function retry(sessionId) {
+  try {
+    const res = await fetch(WORKER_URL + '/validate-key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: sessionId })
+    });
+    const data = await res.json();
+    if (data.valid && data.key) {
+      showKey(data);
+    } else {
+      showError('Payment confirmed but key not yet available. Email Prince@chartreuseexplosives.com with your Stripe receipt.');
+    }
+  } catch (e) {
+    showError('Network error on retry.');
+  }
+}
+
+function showKey(data) {
+  retrievedKey = data.key;
+  document.getElementById('key-display').textContent = data.key;
+  document.getElementById('tier-display').textContent = data.tier === 'archive' ? 'Archive · 10 reports' : 'Intel · 1 report';
+  document.getElementById('credits-display').innerHTML = `Credits remaining: <span>${data.remaining}</span>`;
+
+  document.getElementById('state-loading').style.display = 'none';
+  document.getElementById('state-key').style.display = 'block';
+}
+
+function showError(msg) {
+  if (msg) document.getElementById('error-text').textContent = msg + ' Your payment was processed — this is a delivery issue only.';
+  document.getElementById('state-loading').style.display = 'none';
+  document.getElementById('state-error').style.display = 'block';
+}
+
+function copyKey() {
+  if (!retrievedKey) return;
+  navigator.clipboard.writeText(retrievedKey).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+init();
+</script>
+</body>
+</html>
