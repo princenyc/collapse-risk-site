@@ -1004,7 +1004,7 @@ footer {
 </footer>
 
 <script>
-const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev?mode=test&key=dvd123dvd';
+const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev?mode=test&key=REPLACE_WITH_YOUR_TEST_KEY';
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
 
 function runExample(name) {
@@ -1194,6 +1194,25 @@ function renderReport(d) {
     </div>
 
     <div class="conclusion"><p>${d.conclusion}</p></div>
+
+    ${d.sources && d.sources.length > 0 ? `
+    <div class="sources-section">
+      <div class="sources-header">
+        <span class="sources-header-label">Sources</span>
+        <span class="sources-count">${d.sources.length} source${d.sources.length !== 1 ? 's' : ''} &nbsp;&middot;&nbsp; Live web search &nbsp;&middot;&nbsp; ${d.generated || ''}</span>
+      </div>
+      <div class="sources-list">
+        ${d.sources.map((s, i) => `
+        <div class="source-item">
+          <div class="source-num">${i + 1}</div>
+          <div class="source-body">
+            <div class="source-title">${s.title || ''}</div>
+            <div class="source-meta">${s.publication || ''}${s.date ? ' &nbsp;&middot;&nbsp; ' + s.date : ''}</div>
+          </div>
+          ${s.url && s.url !== '#' && s.url.startsWith('http') ? `<a href="${s.url}" target="_blank" rel="noopener" class="source-link">Visit ↗</a>` : ''}
+        </div>`).join('')}
+      </div>
+    </div>` : ''}
 
     <div class="export-row">
       <button class="export-btn" onclick="exportCard()">
