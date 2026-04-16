@@ -43,7 +43,6 @@ body {
 a { color: var(--chartreuse); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* NAV */
 nav {
   border-bottom: 1px solid var(--border);
   padding: 0 1.25rem;
@@ -56,846 +55,201 @@ nav {
   background: var(--black);
   z-index: 100;
 }
-.nav-mark {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-}
-.nav-link {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
+.nav-mark { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; color: var(--chartreuse); text-transform: uppercase; }
+.nav-link { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
 .nav-link:hover { color: var(--white); text-decoration: none; }
 
-/* HERO */
-.hero {
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 1.25rem 2.5rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-.hero-title {
-  font-family: var(--display);
-  font-size: clamp(48px, 10vw, 96px);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  margin-bottom: 1.25rem;
-}
+.hero { border-bottom: 1px solid var(--border); padding: 3rem 1.25rem 2.5rem; max-width: 960px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 1.25rem; }
+.hero-title { font-family: var(--display); font-size: clamp(48px, 10vw, 96px); line-height: 0.95; letter-spacing: 0.02em; color: var(--white); margin-bottom: 1.25rem; }
 .hero-title span { color: var(--chartreuse); }
+.hero-lines { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.15rem; }
+.hero-lines p { font-size: clamp(16px, 3vw, 22px); font-weight: 300; color: var(--muted); line-height: 1.5; }
+.hero-why { font-size: clamp(16px, 3vw, 22px) !important; font-weight: 400 !important; color: var(--chartreuse) !important; margin-top: 0.75rem !important; }
 
-/* HERO LINES */
-.hero-lines {
-  margin-top: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-.hero-lines p {
-  font-size: clamp(16px, 3vw, 22px);
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.5;
-}
-.hero-why {
-  font-size: clamp(16px, 3vw, 22px) !important;
-  font-weight: 400 !important;
-  color: var(--chartreuse) !important;
-  margin-top: 0.75rem !important;
-}
-
-/* BRIDGE — hidden on mobile */
-.bridge {
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 2rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.bridge p {
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 640px;
-  margin-bottom: 1.25rem;
-}
+.bridge { border-bottom: 1px solid var(--border); padding: 3rem 2rem; max-width: 960px; margin: 0 auto; }
+.bridge p { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 640px; margin-bottom: 1.25rem; }
 .bridge p:last-child { margin-bottom: 0; }
-.bridge-cta {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--white) !important;
-  margin-top: 2rem !important;
-}
+.bridge-cta { font-size: 15px; font-weight: 400; color: var(--white) !important; margin-top: 2rem !important; }
 
-/* VARIABLES STRIP — hidden on mobile */
-.vars-strip {
-  border-bottom: 1px solid var(--border);
-  padding: 2rem 1.25rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.vars-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-.vars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-.var-item {
-  background: var(--near-black);
-  padding: 1rem 1.25rem;
-}
-.var-item-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.var-item-desc {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.5;
-}
+.vars-strip { border-bottom: 1px solid var(--border); padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; }
+.vars-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+.vars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.var-item { background: var(--near-black); padding: 1rem 1.25rem; }
+.var-item-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 6px; }
+.var-item-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; }
 
-/* INPUT SECTION */
-.input-section {
-  padding: 2rem 1.25rem;
-  max-width: 960px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--border);
-}
-.input-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  display: block;
-}
-.input-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--muted);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-.input-prescription {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--white);
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
-  max-width: 600px;
-}
+.input-section { padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+.input-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+.input-desc { font-size: 13px; font-weight: 300; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+.input-prescription { font-size: 13px; font-weight: 400; color: var(--white); margin-bottom: 1.25rem; line-height: 1.6; max-width: 600px; }
 
-.input-row {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--border-bright);
-  width: 100%;
-  max-width: 600px;
-}
+.input-row { display: flex; gap: 0; border: 1px solid var(--border-bright); width: 100%; max-width: 600px; }
 .input-row:focus-within { border-color: var(--chartreuse); }
-#artist-input {
-  flex: 1;
-  background: var(--surface);
-  border: none;
-  outline: none;
-  padding: 0 1rem;
-  height: 52px;
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--white);
-  letter-spacing: 0.01em;
-  min-width: 0;
-}
+#artist-input { flex: 1; background: var(--surface); border: none; outline: none; padding: 0 1rem; height: 52px; font-family: var(--sans); font-size: 16px; font-weight: 400; color: var(--white); letter-spacing: 0.01em; min-width: 0; }
 #artist-input::placeholder { color: var(--muted); }
-#generate-btn {
-  background: var(--chartreuse);
-  border: none;
-  padding: 0 1.25rem;
-  height: 52px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--black);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  flex-shrink: 0;
-}
+#generate-btn { background: var(--chartreuse); border: none; padding: 0 1.25rem; height: 52px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
 #generate-btn:hover { background: #d4f500; }
-#generate-btn:active { background: #b0ca00; }
 #generate-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
 
-.examples {
-  margin-top: 1rem;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0;
-  align-items: center;
-}
+.examples { margin-top: 1rem; font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.25rem 0; align-items: center; }
 .examples span { margin-right: 0.5rem; }
-.example-link {
-  color: var(--muted);
-  cursor: pointer;
-  margin-right: 0.875rem;
-  transition: color 0.1s;
-  border-bottom: 1px solid var(--border-bright);
-  padding-bottom: 1px;
-}
+.example-link { color: var(--muted); cursor: pointer; margin-right: 0.875rem; transition: color 0.1s; border-bottom: 1px solid var(--border-bright); padding-bottom: 1px; }
 .example-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); }
 
-/* LOADING */
-#loading {
-  display: none;
-  padding: 2rem 1.25rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
+.tier-notice { max-width: 600px; margin-top: 1.25rem; padding: 0.875rem 1rem; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.5rem; }
+.tier-notice-limits { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--muted); line-height: 1.6; }
+.tier-notice-paid { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--white); }
+.tier-notice-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--chartreuse); }
+.tier-notice-link:hover { text-decoration: underline; }
+
+#loading { display: none; padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; }
 #loading.visible { display: block; }
-.loading-inner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.loading-bar {
-  width: 160px;
-  height: 2px;
-  background: var(--border);
-  overflow: hidden;
-}
-.loading-bar-fill {
-  height: 2px;
-  background: var(--chartreuse);
-  animation: loadbar 1.8s ease-in-out infinite;
-}
+.loading-inner { display: flex; align-items: center; gap: 12px; }
+.loading-bar { width: 160px; height: 2px; background: var(--border); overflow: hidden; }
+.loading-bar-fill { height: 2px; background: var(--chartreuse); animation: loadbar 1.8s ease-in-out infinite; }
 @keyframes loadbar {
   0% { width: 0%; margin-left: 0%; }
   50% { width: 60%; margin-left: 20%; }
   100% { width: 0%; margin-left: 100%; }
 }
-.loading-text {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
+.loading-text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
 
-/* ERROR */
-#error-box {
-  display: none;
-  padding: 1rem 1.25rem;
-  background: #1a0a0a;
-  border: 1px solid var(--danger);
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--danger);
-  max-width: 600px;
-  margin-top: 1rem;
-}
+#error-box { display: none; padding: 1rem 1.25rem; background: #1a0a0a; border: 1px solid var(--danger); font-family: var(--mono); font-size: 12px; color: var(--danger); max-width: 600px; margin-top: 1rem; }
 #error-box.visible { display: block; }
 
-/* RATE LIMIT BOX */
-#rate-limit-box {
-  display: none;
-  max-width: 600px;
-  margin-top: 1rem;
-  border: 1px solid var(--chartreuse-dim);
-  background: #0d1200;
-}
+#rate-limit-box { display: none; max-width: 600px; margin-top: 1rem; border: 1px solid var(--chartreuse-dim); background: #0d1200; }
 #rate-limit-box.visible { display: block; }
 .rate-limit-inner { padding: 1.25rem; }
-.rate-limit-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.rate-limit-message {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-}
-.rate-limit-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.rate-limit-cta {
-  background: var(--chartreuse);
-  border: none;
-  padding: 0 1.5rem;
-  height: 44px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--black);
-  cursor: pointer;
-  white-space: nowrap;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: background 0.15s;
-}
+.rate-limit-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 8px; }
+.rate-limit-message { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.6; margin-bottom: 1.25rem; }
+.rate-limit-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.rate-limit-cta { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 44px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; transition: background 0.15s; }
 .rate-limit-cta:hover { background: #d4f500; text-decoration: none; }
-.rate-limit-reset {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
+.rate-limit-reset { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
 
-/* REPORT */
-#report {
-  display: none;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1.25rem 4rem;
-  animation: fadein 0.4s ease;
-}
+#report { display: none; max-width: 960px; margin: 0 auto; padding: 0 1.25rem 4rem; animation: fadein 0.4s ease; }
 #report.visible { display: block; }
 @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-.report-header {
-  padding: 2rem 0 1.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.report-artist {
-  font-family: var(--display);
-  font-size: clamp(32px, 8vw, 64px);
-  line-height: 1;
-  letter-spacing: 0.03em;
-  color: var(--white);
-}
+.report-header { padding: 2rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; }
+.report-artist { font-family: var(--display); font-size: clamp(32px, 8vw, 64px); line-height: 1; letter-spacing: 0.03em; color: var(--white); }
 .report-meta-col { text-align: right; }
-.report-date {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-.report-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
+.report-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+.report-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 4px; }
 
-/* RISK BANNER */
-.risk-banner {
-  padding: 1rem 1.25rem;
-  border-left: 3px solid;
-  margin-bottom: 1.5rem;
-}
+.risk-banner { padding: 1rem 1.25rem; border-left: 3px solid; margin-bottom: 1.5rem; }
 .risk-banner.low { border-color: var(--success); background: #041a12; }
 .risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
 .risk-banner.high { border-color: #e07b00; background: #1a0f00; }
 .risk-banner.critical { border-color: var(--danger); background: #1a0808; }
-.risk-level {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
+.risk-level { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
 .risk-banner.low .risk-level { color: var(--success); }
 .risk-banner.moderate .risk-level { color: var(--warning); }
 .risk-banner.high .risk-level { color: #e07b00; }
 .risk-banner.critical .risk-level { color: var(--danger); }
-.risk-summary-text {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.6;
-}
+.risk-summary-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.6; }
 
-/* SCORE GRID */
-.score-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-}
-.score-cell {
-  background: var(--surface);
-  padding: 1rem 0.75rem;
-}
-.score-cell-label {
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.score-cell-value {
-  font-family: var(--display);
-  font-size: 28px;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.score-cell-sub {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--muted);
-  letter-spacing: 0.03em;
-}
+.score-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.score-cell { background: var(--surface); padding: 1rem 0.75rem; }
+.score-cell-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+.score-cell-value { font-family: var(--display); font-size: 28px; line-height: 1; margin-bottom: 4px; }
+.score-cell-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.03em; }
 .val-low { color: var(--success); }
 .val-mod { color: var(--warning); }
 .val-high { color: #e07b00; }
 .val-crit { color: var(--danger); }
 .val-neutral { color: var(--white); }
 
-/* BREAKDOWN */
-.section-header {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
+.section-header { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
 .var-blocks { margin-bottom: 1.5rem; }
-.vblock {
-  border: 1px solid var(--border);
-  margin-bottom: 1px;
-}
-.vblock-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.875rem 1rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  gap: 0.5rem;
-}
-.vblock-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-}
-.vblock-score {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  text-align: right;
-  flex-shrink: 0;
-}
-.vblock-body {
-  padding: 1rem;
-  background: var(--near-black);
-}
-.vblock-body p {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.7;
-}
-.bar {
-  height: 2px;
-  background: var(--border);
-  margin-top: 1rem;
-}
-.bar-fill {
-  height: 2px;
-  transition: width 0.6s ease;
-}
+.vblock { border: 1px solid var(--border); margin-bottom: 1px; }
+.vblock-header { display: flex; justify-content: space-between; align-items: center; padding: 0.875rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); gap: 0.5rem; }
+.vblock-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--chartreuse); text-transform: uppercase; }
+.vblock-score { font-family: var(--mono); font-size: 10px; font-weight: 500; text-align: right; flex-shrink: 0; }
+.vblock-body { padding: 1rem; background: var(--near-black); }
+.vblock-body p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
+.bar { height: 2px; background: var(--border); margin-top: 1rem; }
+.bar-fill { height: 2px; transition: width 0.6s ease; }
 .bar-green { background: var(--success); }
 .bar-amber { background: var(--warning); }
 .bar-orange { background: #e07b00; }
 .bar-red { background: var(--danger); }
 
-/* STAGE PIPS */
-.stage-pips {
-  display: flex;
-  gap: 3px;
-  margin-top: 10px;
-}
-.pip {
-  flex: 1;
-  height: 3px;
-  background: var(--border);
-}
+.stage-pips { display: flex; gap: 3px; margin-top: 10px; }
+.pip { flex: 1; height: 3px; background: var(--border); }
 .pip.past { background: var(--chartreuse-dim); }
 .pip.active { background: var(--chartreuse); }
 
-/* PRESCRIPTION */
-.prescription {
-  border: 1px solid var(--chartreuse-dim);
-  background: #0d1200;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-.prescription-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.prescription-text {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.7;
-}
+.prescription { border: 1px solid var(--chartreuse-dim); background: #0d1200; padding: 1.25rem; margin-bottom: 1.5rem; }
+.prescription-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 10px; }
+.prescription-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
 
-/* CONCLUSION */
-.conclusion {
-  border-left: 2px solid var(--border-bright);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-}
-.conclusion p {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-}
+.conclusion { border-left: 2px solid var(--border-bright); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+.conclusion p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
 
-/* UPGRADE GATE */
-.upgrade-gate {
-  border: 1px solid var(--border-bright);
-  background: var(--surface);
-  margin-bottom: 2rem;
-}
-.upgrade-gate-header {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.upgrade-gate-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-.upgrade-gate-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  border: 1px solid var(--chartreuse-dim);
-  padding: 2px 8px;
-}
-.upgrade-gate-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1px;
-  background: var(--border);
-}
-.upgrade-feature {
-  background: var(--near-black);
-  padding: 0.875rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  opacity: 0.5;
-  cursor: default;
-}
-.upgrade-feature-icon {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-.upgrade-feature-text {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.5;
-}
-.upgrade-feature-text strong {
-  display: block;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 3px;
-  font-weight: 500;
-}
-.upgrade-gate-cta {
-  padding: 1rem 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  border-top: 1px solid var(--border);
-}
-.upgrade-gate-cta p {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--muted);
-}
-.upgrade-btn {
-  background: var(--chartreuse);
-  border: none;
-  padding: 0 1.5rem;
-  height: 44px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--black);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  width: 100%;
-}
+.sources-section { border: 1px solid var(--border); margin-bottom: 2rem; }
+.sources-header { padding: 1rem 1.25rem; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.sources-header-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; }
+.sources-count { font-family: var(--mono); font-size: 10px; color: var(--chartreuse); letter-spacing: 0.06em; }
+.sources-list { display: flex; flex-direction: column; }
+.source-item { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 24px 1fr auto; gap: 1rem; align-items: start; }
+.source-item:last-child { border-bottom: none; }
+.source-num { font-family: var(--mono); font-size: 11px; color: var(--border-bright); padding-top: 2px; }
+.source-title { font-size: 13px; font-weight: 400; color: var(--white); line-height: 1.5; margin-bottom: 3px; }
+.source-meta { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+.source-link { font-family: var(--mono); font-size: 10px; color: var(--chartreuse-dim); letter-spacing: 0.06em; white-space: nowrap; text-decoration: none; border-bottom: 1px solid var(--border-bright); padding-bottom: 1px; margin-top: 2px; }
+.source-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); text-decoration: none; }
+
+.upgrade-gate { border: 1px solid var(--border-bright); background: var(--surface); margin-bottom: 2rem; }
+.upgrade-gate-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.upgrade-gate-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; }
+.upgrade-gate-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--chartreuse); text-transform: uppercase; border: 1px solid var(--chartreuse-dim); padding: 2px 8px; }
+.upgrade-gate-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); }
+.upgrade-feature { background: var(--near-black); padding: 0.875rem 1rem; display: flex; align-items: flex-start; gap: 8px; opacity: 0.5; cursor: default; }
+.upgrade-feature-icon { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 1px; flex-shrink: 0; }
+.upgrade-feature-text { font-size: 12px; font-weight: 300; color: var(--white); line-height: 1.5; }
+.upgrade-feature-text strong { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; font-weight: 500; }
+.upgrade-gate-cta { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
+.upgrade-gate-cta p { font-size: 12px; font-weight: 300; color: var(--muted); }
+.upgrade-btn { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 44px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background 0.15s; width: 100%; }
 .upgrade-btn:hover { background: #d4f500; }
 
-/* TIER NOTICE */
-.tier-notice {
-  max-width: 600px;
-  margin-top: 1.25rem;
-  padding: 0.875rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.tier-notice-limits {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.tier-notice-paid {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  color: var(--white);
-}
-.tier-notice-link {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.07em;
-  color: var(--chartreuse);
-}
-.tier-notice-link:hover { text-decoration: underline; }
-
 /* EXPORT ROW */
-.export-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.export-btn {
-  background: transparent;
-  border: 1px solid var(--border-bright);
-  padding: 0 1.25rem;
-  height: 40px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.15s;
-}
+.export-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.export-format-group { display: flex; gap: 0; border: 1px solid var(--border-bright); }
+.export-format-btn { background: transparent; border: none; border-right: 1px solid var(--border-bright); padding: 0 0.875rem; height: 40px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+.export-format-btn:last-child { border-right: none; }
+.export-format-btn:hover { background: var(--surface); color: var(--white); }
+.export-format-btn.active { background: var(--chartreuse); color: var(--black); border-color: var(--chartreuse); }
+.export-btn { background: transparent; border: 1px solid var(--border-bright); padding: 0 1.25rem; height: 40px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.15s; }
 .export-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
 .export-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .export-btn-icon { font-size: 14px; }
-.export-btn-note {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--border-bright);
-  letter-spacing: 0.06em;
-}
+.export-btn-note { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: 0.06em; }
 
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.footer-mark {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-}
+footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+.footer-mark { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
 .footer-mark a { color: var(--chartreuse-dim); }
-.footer-right {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--border-bright);
-  letter-spacing: 0.06em;
-}
+.footer-right { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: 0.06em; }
 
-/* MOBILE — hide bridge and vars, tighten score grid */
 @media (max-width: 640px) {
   .bridge { display: none; }
   .vars-strip { display: none; }
   .score-grid { grid-template-columns: repeat(3, 1fr); }
-  .score-cell:nth-child(4),
-  .score-cell:nth-child(5) { grid-column: span 1; }
   .upgrade-gate-features { grid-template-columns: 1fr 1fr; }
   .upgrade-gate-cta { flex-direction: column; align-items: stretch; }
   .upgrade-gate-cta p { text-align: center; }
   .rate-limit-actions { flex-direction: column; align-items: stretch; }
   .rate-limit-cta { justify-content: center; }
+  .export-row { flex-direction: column; align-items: flex-start; }
 }
-
-/* TABLET — keep everything, tighten layout */
 @media (min-width: 641px) and (max-width: 960px) {
   .hero { padding: 4rem 2rem 3rem; }
   .score-grid { grid-template-columns: repeat(5, 1fr); }
   .upgrade-btn { width: auto; }
 }
-
-/* SOURCES SECTION */
-.sources-section {
-  border: 1px solid var(--border);
-  margin-bottom: 2rem;
-}
-.sources-header {
-  padding: 1rem 1.25rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.sources-header-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-.sources-count {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--chartreuse);
-  letter-spacing: 0.06em;
-}
-.sources-list { display: flex; flex-direction: column; }
-.source-item {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 24px 1fr auto;
-  gap: 1rem;
-  align-items: start;
-}
-.source-item:last-child { border-bottom: none; }
-.source-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--border-bright);
-  padding-top: 2px;
-}
-.source-body {}
-.source-title {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--white);
-  line-height: 1.5;
-  margin-bottom: 3px;
-}
-.source-meta {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-}
-.source-link {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--chartreuse-dim);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  text-decoration: none;
-  border-bottom: 1px solid var(--border-bright);
-  padding-bottom: 1px;
-  margin-top: 2px;
-}
-.source-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); text-decoration: none; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -931,29 +285,13 @@ footer {
 <div class="vars-strip">
   <div class="vars-label">The five variables</div>
   <div class="vars-grid">
-    <div class="var-item">
-      <div class="var-item-name">Contract drift</div>
-      <div class="var-item-desc">The gap between the story they're selling and what the audience actually sees. Scored 1 to 10.</div>
-    </div>
-    <div class="var-item">
-      <div class="var-item-name">Root cause</div>
-      <div class="var-item-desc">Shame or betrayal. The audience felt foolish or they felt sold out. Different breaks. Different endings. Different timelines.</div>
-    </div>
-    <div class="var-item">
-      <div class="var-item-name">Contract depth</div>
-      <div class="var-item-desc">How deep the audience went in. Surface fans leave quietly. True believers become the loudest critics on the way out.</div>
-    </div>
-    <div class="var-item">
-      <div class="var-item-name">Collapse stage</div>
-      <div class="var-item-desc">Zero to five. Drift to inversion. The line between stage two and stage three is the last point where any of this is still fixable.</div>
-    </div>
-    <div class="var-item">
-      <div class="var-item-name">Immunity load</div>
-      <div class="var-item-desc">How much runway is left. Catalog depth, audience age, cultural moment. When it runs out, the next mistake isn't a mistake. It's the verdict.</div>
-    </div>
+    <div class="var-item"><div class="var-item-name">Contract drift</div><div class="var-item-desc">The gap between the story they're selling and what the audience actually sees. Scored 1 to 10.</div></div>
+    <div class="var-item"><div class="var-item-name">Root cause</div><div class="var-item-desc">Shame or betrayal. The audience felt foolish or they felt sold out. Different breaks. Different endings. Different timelines.</div></div>
+    <div class="var-item"><div class="var-item-name">Contract depth</div><div class="var-item-desc">How deep the audience went in. Surface fans leave quietly. True believers become the loudest critics on the way out.</div></div>
+    <div class="var-item"><div class="var-item-name">Collapse stage</div><div class="var-item-desc">Zero to five. Drift to inversion. The line between stage two and stage three is the last point where any of this is still fixable.</div></div>
+    <div class="var-item"><div class="var-item-name">Immunity load</div><div class="var-item-desc">How much runway is left. Catalog depth, audience age, cultural moment. When it runs out, the next mistake isn't a mistake. It's the verdict.</div></div>
   </div>
 </div>
-
 
 <div class="input-section">
   <label class="input-label" for="artist-input">Run it</label>
@@ -968,7 +306,6 @@ footer {
     <span class="tier-notice-paid">Paid reports use live web search for current, sourced analysis.</span>
     <a href="/pricing" class="tier-notice-link">See paid plans &rarr;</a>
   </div>
-
   <div class="examples">
     <span>Try:</span>
     <span class="example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
@@ -980,9 +317,9 @@ footer {
   <div id="rate-limit-box">
     <div class="rate-limit-inner">
       <div class="rate-limit-label">Daily limit reached</div>
-      <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Unlock unlimited reports, image export, shareable links, and sourced analysis with a paid plan.</div>
+      <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight.</div>
       <div class="rate-limit-actions">
-        <a href="https://cce.lemonsqueezy.com/checkout/buy/c1ce4246-daa5-4965-a33a-b871fb970755" target="_blank" class="rate-limit-cta">Run a paid report</a>
+        <a href="/pricing" class="rate-limit-cta">See paid plans</a>
         <span class="rate-limit-reset">Resets at midnight</span>
       </div>
     </div>
@@ -1007,6 +344,22 @@ footer {
 const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev?mode=test&key=dvd123dvd';
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
 
+let currentReport = null;
+let exportFormat = 'twitter';
+
+function setExportFormat(fmt) {
+  exportFormat = fmt;
+  document.querySelectorAll('.export-format-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.fmt === fmt);
+  });
+  const note = document.querySelector('.export-btn-note');
+  if (note) {
+    const sizes = { twitter: '1200×630', ig_square: '1080×1080', ig_portrait: '1080×1350' };
+    const labels = { twitter: 'X / Twitter', ig_square: 'Instagram Square', ig_portrait: 'Instagram Portrait' };
+    note.textContent = `${labels[fmt]} · ${sizes[fmt]}`;
+  }
+}
+
 function runExample(name) {
   document.getElementById('artist-input').value = name;
   generateReport();
@@ -1015,7 +368,6 @@ function runExample(name) {
 async function generateReport() {
   const name = document.getElementById('artist-input').value.trim();
   if (!name) return;
-
   const btn = document.getElementById('generate-btn');
   const loading = document.getElementById('loading');
   const report = document.getElementById('report');
@@ -1035,17 +387,13 @@ async function generateReport() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ artist: name })
     });
-
     loading.classList.remove('visible');
-
     if (res.status === 429) {
       rateLimitBox.classList.add('visible');
       rateLimitBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
-
     if (!res.ok) throw new Error('Worker error: ' + res.status);
-
     const data = await res.json();
     renderReport(data);
   } catch (e) {
@@ -1082,6 +430,10 @@ function immunityBar(n) {
   if (n >= 3) return 'bar-orange';
   return 'bar-red';
 }
+function capitalize(s) {
+  if (!s) return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 function renderReport(d) {
   currentReport = d;
@@ -1096,106 +448,7 @@ function renderReport(d) {
     pips += `<div class="pip ${cls}"></div>`;
   }
 
-  const html = `
-    <div class="report-header">
-      <div>
-        <div class="report-tag">Collapse risk report</div>
-        <div class="report-artist">${d.artist}</div>
-      </div>
-      <div class="report-meta-col">
-        <div class="report-date">${d.generated || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-      </div>
-    </div>
-
-    <div class="risk-banner ${riskClass}">
-      <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
-      <div class="risk-summary-text">${d.risk_summary}</div>
-    </div>
-
-    <div class="score-grid">
-      <div class="score-cell">
-        <div class="score-cell-label">Drift score</div>
-        <div class="score-cell-value ${scoreClass(d.drift_score)}">${d.drift_score}</div>
-        <div class="score-cell-sub">out of 10</div>
-      </div>
-      <div class="score-cell">
-        <div class="score-cell-label">Root cause</div>
-        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${capitalize(d.root_cause)}</div>
-        <div class="score-cell-sub">${capitalize(d.audience_emotion)}</div>
-      </div>
-      <div class="score-cell">
-        <div class="score-cell-label">Depth</div>
-        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
-        <div class="score-cell-sub">${d.career_years} yr career</div>
-      </div>
-      <div class="score-cell">
-        <div class="score-cell-label">Stage</div>
-        <div class="score-cell-value ${scoreClass(d.collapse_stage)}">${d.collapse_stage}</div>
-        <div class="score-cell-sub">${stageName}</div>
-      </div>
-      <div class="score-cell">
-        <div class="score-cell-label">Immunity</div>
-        <div class="score-cell-value ${immunityColor(d.immunity_load)}">${d.immunity_load}</div>
-        <div class="score-cell-sub">${capitalize(d.depletion_rate)} depletion</div>
-      </div>
-    </div>
-
-    <div class="section-header">Variable breakdown</div>
-    <div class="var-blocks">
-      <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Contract drift</span>
-          <span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span>
-        </div>
-        <div class="vblock-body">
-          <p>${d.drift_finding}</p>
-          <div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div>
-        </div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Root cause</span>
-          <span class="vblock-score">${capitalize(d.root_cause)}</span>
-        </div>
-        <div class="vblock-body"><p>${d.root_finding}</p></div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Contract depth</span>
-          <span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span>
-        </div>
-        <div class="vblock-body"><p>${d.depth_finding}</p></div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Collapse stage</span>
-          <span class="vblock-score ${scoreClass(d.collapse_stage)}">${stageName}</span>
-        </div>
-        <div class="vblock-body">
-          <p>${d.stage_finding}</p>
-          <div class="stage-pips">${pips}</div>
-        </div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header">
-          <span class="vblock-name">Immunity load</span>
-          <span class="vblock-score">${d.immunity_load}/10 &middot; ${d.depletion_rate} depletion</span>
-        </div>
-        <div class="vblock-body">
-          <p>${d.immunity_finding}</p>
-          <div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="prescription">
-      <div class="prescription-label">What they should do next</div>
-      <div class="prescription-text">${d.prescription}</div>
-    </div>
-
-    <div class="conclusion"><p>${d.conclusion}</p></div>
-
-    ${d.sources && d.sources.length > 0 ? `
+  const sourcesHtml = d.sources && d.sources.length > 0 ? `
     <div class="sources-section">
       <div class="sources-header">
         <span class="sources-header-label">Sources</span>
@@ -1212,61 +465,68 @@ function renderReport(d) {
           ${s.url && s.url !== '#' && s.url.startsWith('http') ? `<a href="${s.url}" target="_blank" rel="noopener" class="source-link">Visit ↗</a>` : ''}
         </div>`).join('')}
       </div>
-    </div>` : ''}
+    </div>` : '';
 
-    <div class="export-row">
-      <button class="export-btn" onclick="exportCard()">
-        <span class="export-btn-icon">&#8615;</span> Download summary card
-      </button>
-      <span class="export-btn-note">Free · Signal tier · 1200×630px</span>
+  const html = `
+    <div class="report-header">
+      <div>
+        <div class="report-tag">Collapse risk report · Live search</div>
+        <div class="report-artist">${d.artist}</div>
+      </div>
+      <div class="report-meta-col">
+        <div class="report-date">${d.generated || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+      </div>
     </div>
-
-    <div class="upgrade-gate">
-      <div class="upgrade-gate-header">
-        <span class="upgrade-gate-label">Paid features</span>
-        <span class="upgrade-gate-tag">Locked</span>
+    <div class="risk-banner ${riskClass}">
+      <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
+      <div class="risk-summary-text">${d.risk_summary}</div>
+    </div>
+    <div class="score-grid">
+      <div class="score-cell"><div class="score-cell-label">Drift score</div><div class="score-cell-value ${scoreClass(d.drift_score)}">${d.drift_score}</div><div class="score-cell-sub">out of 10</div></div>
+      <div class="score-cell"><div class="score-cell-label">Root cause</div><div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${capitalize(d.root_cause)}</div><div class="score-cell-sub">${capitalize(d.audience_emotion)}</div></div>
+      <div class="score-cell"><div class="score-cell-label">Depth</div><div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div><div class="score-cell-sub">${d.career_years} yr career</div></div>
+      <div class="score-cell"><div class="score-cell-label">Stage</div><div class="score-cell-value ${scoreClass(d.collapse_stage)}">${d.collapse_stage}</div><div class="score-cell-sub">${stageName}</div></div>
+      <div class="score-cell"><div class="score-cell-label">Immunity</div><div class="score-cell-value ${immunityColor(d.immunity_load)}">${d.immunity_load}</div><div class="score-cell-sub">${capitalize(d.depletion_rate)} depletion</div></div>
+    </div>
+    <div class="section-header">Variable breakdown</div>
+    <div class="var-blocks">
+      <div class="vblock">
+        <div class="vblock-header"><span class="vblock-name">Contract drift</span><span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span></div>
+        <div class="vblock-body"><p>${d.drift_finding}</p><div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div></div>
       </div>
-      <div class="upgrade-gate-features">
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Deeper analysis</strong>
-            Free reports work from training data. Paid reports go looking for what happened last week.
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Sources</strong>
-            Web-sourced findings with citations
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Image export</strong>
-            Download report as a shareable image
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Permanent link</strong>
-            Share this report with a permanent URL
-          </div>
-        </div>
-        <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text">
-            <strong>Unlimited reports</strong>
-            No daily limits. Run as many as you need.
-          </div>
-        </div>
+      <div class="vblock">
+        <div class="vblock-header"><span class="vblock-name">Root cause</span><span class="vblock-score">${capitalize(d.root_cause)}</span></div>
+        <div class="vblock-body"><p>${d.root_finding}</p></div>
       </div>
-      <div class="upgrade-gate-cta">
-        <p>$5 per report &nbsp;·&nbsp; $29 for 10 reports &nbsp;·&nbsp; No account required for single reports</p>
-        <a href="https://cce.lemonsqueezy.com/checkout/buy/c1ce4246-daa5-4965-a33a-b871fb970755" target="_blank" class="upgrade-btn">Run a paid report</a>
+      <div class="vblock">
+        <div class="vblock-header"><span class="vblock-name">Contract depth</span><span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span></div>
+        <div class="vblock-body"><p>${d.depth_finding}</p></div>
       </div>
+      <div class="vblock">
+        <div class="vblock-header"><span class="vblock-name">Collapse stage</span><span class="vblock-score ${scoreClass(d.collapse_stage)}">${stageName}</span></div>
+        <div class="vblock-body"><p>${d.stage_finding}</p><div class="stage-pips">${pips}</div></div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-header"><span class="vblock-name">Immunity load</span><span class="vblock-score">${d.immunity_load}/10 &middot; ${d.depletion_rate} depletion</span></div>
+        <div class="vblock-body"><p>${d.immunity_finding}</p><div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div></div>
+      </div>
+    </div>
+    <div class="prescription">
+      <div class="prescription-label">What they should do next</div>
+      <div class="prescription-text">${d.prescription}</div>
+    </div>
+    <div class="conclusion"><p>${d.conclusion}</p></div>
+    ${sourcesHtml}
+    <div class="export-row">
+      <div class="export-format-group">
+        <button class="export-format-btn active" data-fmt="twitter" onclick="setExportFormat('twitter')">X / Twitter</button>
+        <button class="export-format-btn" data-fmt="ig_square" onclick="setExportFormat('ig_square')">IG Square</button>
+        <button class="export-format-btn" data-fmt="ig_portrait" onclick="setExportFormat('ig_portrait')">IG Portrait</button>
+      </div>
+      <button class="export-btn" onclick="exportCard()">
+        <span class="export-btn-icon">&#8615;</span> Download card
+      </button>
+      <span class="export-btn-note">X / Twitter · 1200×630</span>
     </div>
   `;
 
@@ -1276,133 +536,133 @@ function renderReport(d) {
   reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function capitalize(s) {
-  if (!s) return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-
-// Store report data globally for export
-let currentReport = null;
-
 function exportCard() {
   if (!currentReport) return;
   const btn = document.querySelector('.export-btn');
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...';
-  }
+  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...'; }
 
   const d = currentReport;
+  const fmt = exportFormat || 'twitter';
   const riskColors = { low: '#5dcaa5', moderate: '#ef9f27', high: '#e07b00', critical: '#e24b4a' };
   const riskColor = riskColors[d.overall_risk] || '#ef9f27';
-  const stageName = d.stage_name || ['No signal','Drift','Ironic consumption','Threshold crossing','Archive rewrite','Inversion'][d.collapse_stage] || 'Unknown';
+  const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
   const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
+  const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait' };
 
-  // Build card HTML
+  const dims = { twitter: { w: 1200, h: 630 }, ig_square: { w: 1080, h: 1080 }, ig_portrait: { w: 1080, h: 1350 } };
+  const { w, h } = dims[fmt];
+
+  function scorePill(label, value, color) {
+    return `<div style="display:flex;flex-direction:column;align-items:center;background:#161616;padding:14px 10px;min-width:0;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;white-space:nowrap;">${label}</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:${color};">${value}</div>
+    </div>`;
+  }
+
+  const driftColor = d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a';
+  const stageColor = d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a';
+  const immuneColor = d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a';
+
+  const scoreStrip = `
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;">
+      ${scorePill('Drift', d.drift_score, driftColor)}
+      ${scorePill('Root', capitalize(d.root_cause), '#f0ede6')}
+      ${scorePill('Depth', depthLabel[d.contract_depth]||capitalize(d.contract_depth), '#f0ede6')}
+      ${scorePill('Stage', d.collapse_stage, stageColor)}
+      ${scorePill('Immunity', d.immunity_load, immuneColor)}
+    </div>
+  `;
+
+  let cardHtml = '';
+
+  if (fmt === 'twitter') {
+    cardHtml = `
+      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${riskColor};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:44px 56px 44px 68px;box-sizing:border-box;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 12px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0 12px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:88px;line-height:0.92;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;margin-bottom:18px;">${d.artist}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;margin-bottom:10px;">What they should do next</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:300;color:#f0ede6;line-height:1.55;max-width:820px;">${d.prescription}</div>
+        </div>
+        <div>
+          ${scoreStrip}
+          <div style="display:flex;justify-content:flex-end;margin-top:10px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#888880;letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (fmt === 'ig_square') {
+    const nameLen = d.artist.length;
+    const nameFontSize = nameLen <= 6 ? '200px' : nameLen <= 12 ? '140px' : nameLen <= 18 ? '100px' : '72px';
+    cardHtml = `
+      <div style="position:absolute;top:0;left:0;right:0;height:6px;background:${riskColor};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:56px 56px 48px;box-sizing:border-box;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:4px 14px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:${nameFontSize};line-height:0.88;letter-spacing:0.01em;color:#f0ede6;text-transform:uppercase;word-break:break-word;">${d.artist}</div>
+        <div style="border-left:3px solid ${riskColor};padding-left:20px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;margin-bottom:12px;">What they should do next</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:19px;font-weight:300;color:#f0ede6;line-height:1.55;">${d.prescription}</div>
+        </div>
+        <div>
+          ${scoreStrip}
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555550;letter-spacing:0.06em;">Collapse Risk Instrument</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#888880;letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    const nameLen = d.artist.length;
+    const nameFontSize = nameLen <= 6 ? '220px' : nameLen <= 12 ? '160px' : nameLen <= 18 ? '120px' : '88px';
+    cardHtml = `
+      <div style="position:absolute;top:0;left:0;right:0;height:6px;background:${riskColor};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:64px 60px 56px;box-sizing:border-box;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:4px 14px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:${nameFontSize};line-height:0.88;letter-spacing:0.01em;color:#f0ede6;text-transform:uppercase;word-break:break-word;">${d.artist}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:300;color:#888880;line-height:1.6;max-width:900px;border-top:1px solid #2a2a2a;padding-top:28px;">${d.risk_summary}</div>
+        <div style="border-left:3px solid ${riskColor};padding-left:24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${riskColor};text-transform:uppercase;margin-bottom:14px;">What they should do next</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:21px;font-weight:300;color:#f0ede6;line-height:1.6;">${d.prescription}</div>
+        </div>
+        <div>
+          ${scoreStrip}
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555550;letter-spacing:0.06em;">Collapse Risk Instrument</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#888880;letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   const card = document.createElement('div');
-  card.id = 'export-card';
-  card.style.cssText = `
-    position: fixed;
-    left: -9999px;
-    top: 0;
-    width: 1200px;
-    height: 630px;
-    background: #0a0a0a;
-    font-family: 'IBM Plex Sans', sans-serif;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 48px 56px;
-    box-sizing: border-box;
-  `;
-
-  // Risk color left border
-  const border = document.createElement('div');
-  border.style.cssText = `
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: ${riskColor};
-  `;
-  card.appendChild(border);
-
-  card.innerHTML += `
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#c8e600;text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk Instrument</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;">${(d.overall_risk || 'moderate').toUpperCase()} RISK</div>
-    </div>
-
-    <div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:12px;">Collapse Risk Report</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:0.9;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#2a2a2a;border:1px solid #2a2a2a;margin:8px 0;">
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Drift</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.drift_score <= 3 ? '#5dcaa5' : d.drift_score <= 5 ? '#ef9f27' : d.drift_score <= 7 ? '#e07b00' : '#e24b4a'};">${d.drift_score}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">/ 10</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Root cause</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${capitalize(d.root_cause)}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.audience_emotion)}</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Depth</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.2;color:#f0ede6;">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${d.career_years}yr career</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Stage</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.collapse_stage <= 1 ? '#5dcaa5' : d.collapse_stage <= 2 ? '#ef9f27' : d.collapse_stage <= 3 ? '#e07b00' : '#e24b4a'};">${d.collapse_stage}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${stageName}</div>
-      </div>
-      <div style="background:#161616;padding:16px 14px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#888880;text-transform:uppercase;margin-bottom:8px;">Immunity</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:${d.immunity_load >= 7 ? '#5dcaa5' : d.immunity_load >= 5 ? '#ef9f27' : d.immunity_load >= 3 ? '#e07b00' : '#e24b4a'};">${d.immunity_load}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#888880;">${capitalize(d.depletion_rate)} depletion</div>
-      </div>
-    </div>
-
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:300;color:#888880;max-width:800px;line-height:1.5;">${d.risk_summary}</div>
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#888880;letter-spacing:0.08em;white-space:nowrap;margin-left:24px;">collapse.chartreuseexplosives.com</div>
-    </div>
-  `;
-
-  card.appendChild(border);
+  card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:#0a0a0a;overflow:hidden;box-sizing:border-box;`;
+  card.innerHTML = cardHtml;
   document.body.appendChild(card);
 
-  html2canvas(card, {
-    width: 1200,
-    height: 630,
-    scale: 1,
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#0a0a0a',
-    logging: false,
-  }).then(canvas => {
+  html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: '#0a0a0a', logging: false }).then(canvas => {
     const link = document.createElement('a');
-    link.download = `collapse-risk-${(d.artist || 'report').toLowerCase().replace(/\s+/g, '-')}.png`;
+    link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
     document.body.removeChild(card);
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download summary card';
-    }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
   }).catch(err => {
     console.error('Export failed:', err);
     document.body.removeChild(card);
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download summary card';
-    }
+    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
   });
 }
 
