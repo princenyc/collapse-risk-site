@@ -547,24 +547,13 @@ function exportCard() {
   const riskColor = riskColors[d.overall_risk] || '#ef9f27';
   const isCritical = d.overall_risk === 'critical';
   const isHigh = d.overall_risk === 'high';
-  const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
-  const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
+  const isLow = d.overall_risk === 'low';
   const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait' };
 
   const dims = { twitter: { w: 1200, h: 630 }, ig_square: { w: 1080, h: 1080 }, ig_portrait: { w: 1080, h: 1350 } };
   const { w, h } = dims[fmt];
 
-  const bgColor = isCritical ? '#e24b4a' : isHigh ? '#0f0600' : '#0a0a0a';
-  const textPrimary = isCritical ? '#0a0a0a' : '#f0ede6';
-  const textMuted = isCritical ? 'rgba(10,10,10,0.55)' : '#888880';
-  const textDim = isCritical ? 'rgba(10,10,10,0.35)' : '#555550';
-  const brandColor = isCritical ? '#0a0a0a' : '#c8e600';
-  const accentBorder = isCritical ? '#0a0a0a' : riskColor;
-  const riskBadgeText = isCritical ? '#e24b4a' : riskColor;
-  const riskBadgeBg = isCritical ? '#0a0a0a' : 'transparent';
-  const scoreCardBg = isCritical ? 'rgba(0,0,0,0.15)' : '#161616';
-  const scoreGridBg = isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a';
-
+  // Pull sharpest line — shortest sentence under 120 chars, else first sentence
   function sharpLine(text) {
     if (!text) return text;
     const sentences = text.match(/[^.!?]+[.!?]+/g);
@@ -572,130 +561,239 @@ function exportCard() {
     const short = sentences.find(s => s.trim().length <= 120);
     return (short || sentences[0]).trim();
   }
-  const prescriptionHook = sharpLine(d.prescription);
 
-  function scorePill(label, value, color) {
-    return `<div style="display:flex;flex-direction:column;align-items:center;background:${scoreCardBg};padding:14px 10px;min-width:0;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:0.12em;color:${textDim};text-transform:uppercase;margin-bottom:6px;white-space:nowrap;">${label}</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:${isCritical ? '#0a0a0a' : color};">${value}</div>
-    </div>`;
+  // Risk level display text
+  const riskDisplay = { low: 'LOW RISK', moderate: 'MODERATE RISK', high: 'HIGH RISK', critical: 'CRITICAL RISK' };
+  const riskLabel = riskDisplay[d.overall_risk] || 'MODERATE RISK';
+
+  // Quote card (X/Twitter) — take from conclusion or prescription, pick sharpest
+  const conclusionHook = sharpLine(d.conclusion);
+  const prescriptionHook = sharpLine(d.prescription);
+  // Use whichever is shorter and punchier
+  const quoteText = (conclusionHook && conclusionHook.length <= 140) ? conclusionHook : prescriptionHook;
+
+  // Font scaling helpers
+  function quoteFontSize(text, w) {
+    const len = text ? text.length : 0;
+    if (w === 1200) {
+      // Twitter landscape
+      if (len < 60) return '42px';
+      if (len < 90) return '34px';
+      if (len < 120) return '28px';
+      return '23px';
+    } else {
+      // Square/portrait
+      if (len < 60) return '52px';
+      if (len < 90) return '42px';
+      if (len < 120) return '34px';
+      return '28px';
+    }
   }
 
-  const driftColor = d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a';
-  const stageColor = d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a';
-  const immuneColor = d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a';
+  function artistFontSize(name, w) {
+    const len = name ? name.length : 0;
+    if (w === 1200) {
+      if (len <= 4) return '72px';
+      if (len <= 10) return '56px';
+      if (len <= 16) return '44px';
+      return '34px';
+    } else {
+      if (len <= 4) return '120px';
+      if (len <= 10) return '88px';
+      if (len <= 16) return '64px';
+      return '48px';
+    }
+  }
 
-  const scoreStrip = `
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:${scoreGridBg};border:1px solid ${scoreGridBg};">
-      ${scorePill('Drift', d.drift_score, driftColor)}
-      ${scorePill('Root', capitalize(d.root_cause), textPrimary)}
-      ${scorePill('Depth', depthLabel[d.contract_depth]||capitalize(d.contract_depth), textPrimary)}
-      ${scorePill('Stage', d.collapse_stage, stageColor)}
-      ${scorePill('Immunity', d.immunity_load, immuneColor)}
-    </div>
-  `;
-
-  function prescFontSize(text, base) {
-    if (!text) return base + 'px';
-    if (text.length < 60) return (base + 4) + 'px';
-    if (text.length < 100) return base + 'px';
-    return (base - 3) + 'px';
+  function verdictFontSize(name, w) {
+    const len = name ? name.length : 0;
+    if (w === 1200) {
+      if (len <= 4) return '200px';
+      if (len <= 10) return '160px';
+      if (len <= 16) return '120px';
+      return '90px';
+    } else {
+      if (len <= 4) return '240px';
+      if (len <= 10) return '180px';
+      if (len <= 16) return '140px';
+      return '100px';
+    }
   }
 
   let cardHtml = '';
 
+  // ── X/TWITTER — Quote Card ─────────────────────────────────────────────────
+  // Dark background. Giant quote. Artist name + branding small at bottom.
+  // Looks like a publication pull quote. Designed to be screenshot and shared.
   if (fmt === 'twitter') {
-    const pSize = prescFontSize(prescriptionHook, 18);
+    const qSize = quoteFontSize(quoteText, 1200);
+    const aSize = artistFontSize(d.artist, 1200);
+    const bgColor = isCritical ? '#0f0000' : isHigh ? '#0f0600' : '#0a0a0a';
+    const accentLine = riskColor;
+
     cardHtml = `
-      <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${isCritical ? '#0a0a0a' : riskColor};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:44px 56px 44px 68px;box-sizing:border-box;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:${brandColor};text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskBadgeText};text-transform:uppercase;background:${riskBadgeBg};border:1px solid ${accentBorder};padding:3px 12px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${accentLine};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:56px 72px 48px;box-sizing:border-box;">
+
+        <!-- Quote — dominant element -->
+        <div style="flex:1;display:flex;align-items:center;">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${qSize};font-weight:300;color:#f0ede6;line-height:1.35;max-width:1000px;">&ldquo;${quoteText}&rdquo;</div>
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0 12px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:88px;line-height:0.92;letter-spacing:0.02em;color:${textPrimary};text-transform:uppercase;margin-bottom:20px;">${d.artist}</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${isCritical ? 'rgba(10,10,10,0.6)' : riskColor};text-transform:uppercase;margin-bottom:10px;">What they should do next</div>
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.5;max-width:820px;">${prescriptionHook}</div>
-        </div>
-        <div>
-          ${scoreStrip}
-          <div style="display:flex;justify-content:flex-end;margin-top:10px;">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:${textMuted};letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+
+        <!-- Bottom: artist + source -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid #2a2a2a;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Collapse Risk Report</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:1;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;margin-bottom:8px;display:inline-block;">${riskLabel}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555550;letter-spacing:0.08em;display:block;">collapse.chartreuseexplosives.com</div>
           </div>
         </div>
       </div>
     `;
-  } else if (fmt === 'ig_square') {
-    const nameLen = d.artist.length;
-    const nameFontSize = nameLen <= 6 ? '200px' : nameLen <= 12 ? '140px' : nameLen <= 18 ? '100px' : '72px';
-    const pSize = prescFontSize(prescriptionHook, 20);
-    cardHtml = `
-      <div style="position:absolute;top:0;left:0;right:0;height:6px;background:${isCritical ? '#0a0a0a' : riskColor};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:56px 56px 48px;box-sizing:border-box;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${brandColor};text-transform:uppercase;">Chartreuse Explosives</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:${riskBadgeText};text-transform:uppercase;background:${riskBadgeBg};border:1px solid ${accentBorder};padding:4px 14px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
-        </div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:${nameFontSize};line-height:0.88;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;word-break:break-word;">${d.artist}</div>
-        <div style="border-left:3px solid ${isCritical ? '#0a0a0a' : riskColor};padding-left:20px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:${isCritical ? 'rgba(10,10,10,0.6)' : riskColor};text-transform:uppercase;margin-bottom:12px;">What they should do next</div>
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.5;">${prescriptionHook}</div>
-        </div>
-        <div>
-          ${scoreStrip}
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:${textDim};letter-spacing:0.06em;">Collapse Risk Instrument</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:${textMuted};letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
-          </div>
-        </div>
-      </div>
-    `;
-  } else {
-    const nameLen = d.artist.length;
-    const nameFontSize = nameLen <= 6 ? '220px' : nameLen <= 12 ? '160px' : nameLen <= 18 ? '120px' : '88px';
-    const pSize = prescFontSize(prescriptionHook, 22);
-    cardHtml = `
-      <div style="position:absolute;top:0;left:0;right:0;height:6px;background:${isCritical ? '#0a0a0a' : riskColor};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:64px 60px 56px;box-sizing:border-box;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${brandColor};text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:${riskBadgeText};text-transform:uppercase;background:${riskBadgeBg};border:1px solid ${accentBorder};padding:4px 14px;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
-        </div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:${nameFontSize};line-height:0.88;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;word-break:break-word;">${d.artist}</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:${textMuted};line-height:1.6;max-width:900px;border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:28px;">${d.risk_summary}</div>
-        <div style="border-left:3px solid ${isCritical ? '#0a0a0a' : riskColor};padding-left:24px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${isCritical ? 'rgba(10,10,10,0.6)' : riskColor};text-transform:uppercase;margin-bottom:14px;">What they should do next</div>
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.55;">${prescriptionHook}</div>
-        </div>
-        <div>
-          ${scoreStrip}
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:${textDim};letter-spacing:0.06em;">Collapse Risk Instrument</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:${textMuted};letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
-          </div>
-        </div>
-      </div>
-    `;
+
+    const card = document.createElement('div');
+    card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
+    card.innerHTML = cardHtml;
+    document.body.appendChild(card);
+
+    html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      document.body.removeChild(card);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    }).catch(err => {
+      console.error('Export failed:', err);
+      document.body.removeChild(card);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    });
   }
 
-  const card = document.createElement('div');
-  card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
-  card.innerHTML = cardHtml;
-  document.body.appendChild(card);
+  // ── IG SQUARE — Verdict Card ───────────────────────────────────────────────
+  // Risk level huge. Artist name. One prescription line. Looks like a warning label.
+  else if (fmt === 'ig_square') {
+    const bgColor = isCritical ? '#e24b4a' : isHigh ? '#0f0600' : '#0a0a0a';
+    const textPrimary = isCritical ? '#0a0a0a' : '#f0ede6';
+    const textMuted = isCritical ? 'rgba(10,10,10,0.5)' : '#555550';
+    const accentColor = isCritical ? '#0a0a0a' : riskColor;
+    const riskWordSize = isCritical ? '120px' : isHigh ? '100px' : '88px';
+    const aSize = artistFontSize(d.artist, 1080);
+    const pSize = quoteFontSize(prescriptionHook, 1080);
 
-  html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
-    const link = document.createElement('a');
-    link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    document.body.removeChild(card);
-    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-  }).catch(err => {
-    console.error('Export failed:', err);
-    document.body.removeChild(card);
-    if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-  });
+    // Risk level split: "CRITICAL" big, "RISK" smaller on same line
+    const riskWord = (d.overall_risk || 'moderate').toUpperCase();
+
+    cardHtml = `
+      <div style="position:absolute;top:0;left:0;right:0;height:8px;background:${accentColor};"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:8px;background:${accentColor};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:72px 64px 72px;box-sizing:border-box;">
+
+        <!-- Top: branding -->
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:${isCritical ? 'rgba(10,10,10,0.5)' : '#c8e600'};text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
+
+        <!-- Middle: verdict -->
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;color:${textMuted};text-transform:uppercase;margin-bottom:12px;">Verdict</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:${riskWordSize};line-height:0.88;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;">${riskWord}</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.92;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;margin-top:16px;opacity:0.9;">${d.artist}</div>
+        </div>
+
+        <!-- Bottom: prescription hook + url -->
+        <div>
+          <div style="border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:24px;margin-bottom:20px;">
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.45;">${prescriptionHook}</div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textMuted};letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+        </div>
+
+      </div>
+    `;
+
+    const card = document.createElement('div');
+    card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
+    card.innerHTML = cardHtml;
+    document.body.appendChild(card);
+
+    html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      document.body.removeChild(card);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    }).catch(err => {
+      console.error('Export failed:', err);
+      document.body.removeChild(card);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    });
+  }
+
+  // ── IG PORTRAIT — Verdict Card tall ───────────────────────────────────────
+  // Same as square but taller — risk level even bigger, adds risk summary line
+  else {
+    const bgColor = isCritical ? '#e24b4a' : isHigh ? '#0f0600' : '#0a0a0a';
+    const textPrimary = isCritical ? '#0a0a0a' : '#f0ede6';
+    const textMuted = isCritical ? 'rgba(10,10,10,0.5)' : '#555550';
+    const accentColor = isCritical ? '#0a0a0a' : riskColor;
+    const riskWord = (d.overall_risk || 'moderate').toUpperCase();
+    const vSize = verdictFontSize(d.artist, 1080);
+    const aSize = artistFontSize(d.artist, 1080);
+    const pSize = quoteFontSize(prescriptionHook, 1080);
+
+    cardHtml = `
+      <div style="position:absolute;top:0;left:0;right:0;height:8px;background:${accentColor};"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:8px;background:${accentColor};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:80px 64px;box-sizing:border-box;">
+
+        <!-- Top: branding -->
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:${isCritical ? 'rgba(10,10,10,0.5)' : '#c8e600'};text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
+
+        <!-- Risk word — huge -->
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;color:${textMuted};text-transform:uppercase;margin-bottom:16px;">Verdict</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:${vSize};line-height:0.85;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;">${riskWord}</div>
+        </div>
+
+        <!-- Artist name -->
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.9;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;opacity:0.85;">${d.artist}</div>
+
+        <!-- Risk summary -->
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:${textMuted};line-height:1.6;border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:28px;">${d.risk_summary}</div>
+
+        <!-- Prescription hook -->
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${isCritical ? 'rgba(10,10,10,0.5)' : riskColor};text-transform:uppercase;margin-bottom:14px;">What they should do next</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.5;">${prescriptionHook}</div>
+        </div>
+
+        <!-- URL -->
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textMuted};letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
+
+      </div>
+    `;
+
+    const card = document.createElement('div');
+    card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
+    card.innerHTML = cardHtml;
+    document.body.appendChild(card);
+
+    html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      document.body.removeChild(card);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    }).catch(err => {
+      console.error('Export failed:', err);
+      document.body.removeChild(card);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    });
+  }
 }
 
 
