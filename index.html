@@ -717,8 +717,27 @@ async function activateLicense() {
   }
 }
 
-function startCheckout(tier) {
-  alert('Paid reports are coming soon. Check back in a few days.');
+async function startCheckout(tier) {
+  const btn = event && event.target;
+  const originalText = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting...'; }
+  try {
+    const res = await fetch(WORKER_URL + '/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier })
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Checkout failed. Please try again.');
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
+    }
+  } catch (e) {
+    alert('Checkout failed. Please try again.');
+    if (btn) { btn.disabled = false; btn.textContent = originalText; }
+  }
 }
 
 function setExportFormat(fmt) {
