@@ -561,6 +561,123 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
   .score-grid { grid-template-columns: repeat(5, 1fr); }
   .upgrade-btn { width: auto; }
 }
+
+/* HERO EXAMPLES */
+.hero-examples {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0;
+}
+.hero-examples-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-right: 0.75rem;
+}
+.hero-example-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--chartreuse);
+  cursor: pointer;
+  margin-right: 1.25rem;
+  border-bottom: 1px solid var(--chartreuse-dim);
+  padding-bottom: 1px;
+  transition: color 0.1s;
+}
+.hero-example-link:hover { color: var(--white); border-color: var(--border-bright); }
+
+/* TIER COMPARE */
+.tier-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 1.5rem;
+  max-width: 600px;
+}
+.tier-col {
+  background: var(--near-black);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.tier-col--paid { background: #0d1200; }
+.tier-col-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.tier-col-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.tier-col--paid .tier-col-name { color: var(--chartreuse); }
+.tier-col-price {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.tier-col--paid .tier-col-price { color: var(--chartreuse); }
+.tier-col-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tier-feature {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  padding-left: 1.25rem;
+  position: relative;
+}
+.tier-feature::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.tier-feature--yes { color: var(--white); }
+.tier-feature--yes::before { background: var(--success); }
+.tier-feature--no { color: var(--muted); }
+.tier-feature--no::before { background: var(--border-bright); }
+.tier-col-note {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.tier-col-cta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--chartreuse);
+  cursor: pointer;
+  border-top: 1px solid var(--chartreuse-dim);
+  padding-top: 0.875rem;
+  margin-top: auto;
+  transition: color 0.15s;
+}
+.tier-col-cta:hover { color: var(--white); }
+
+@media (max-width: 480px) {
+  .tier-compare { grid-template-columns: 1fr; }
+}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -577,12 +694,18 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 
 <div class="hero">
   <div class="hero-eyebrow">Collapse Risk Instrument</div>
-  <h1 class="hero-title">The Crowd<br><span>Hasn't Left Yet.</span></h1>
+  <h1 class="hero-title">Type a name.<br><span>Get the verdict.</span></h1>
   <div class="hero-lines">
+    <p>The crowd hasn't left yet.</p>
     <p>But they stopped believing six months ago.</p>
-    <p>There's a difference.</p>
     <p>By the time it's obvious, it's already over.</p>
-    <p class="hero-why">Here's why.</p>
+  </div>
+  <div class="hero-examples">
+    <span class="hero-examples-label">Try:</span>
+    <span class="hero-example-link" onclick="runExample('Elon Musk')">Elon Musk</span>
+    <span class="hero-example-link" onclick="runExample('Kanye West')">Kanye West</span>
+    <span class="hero-example-link" onclick="runExample('Balenciaga')">Balenciaga</span>
+    <span class="hero-example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
   </div>
 </div>
 
@@ -620,22 +743,47 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 
 <div class="input-section">
   <label class="input-label" for="artist-input">Run it</label>
-  <p class="input-desc">Type any artist, politician, athlete, or public figure. The instrument scores all five variables and returns a full diagnostic in under a minute.</p>
-  <p class="input-prescription">The report also tells you exactly what they should do next. You'll know before they do.</p>
   <div class="input-row">
-    <input type="text" id="artist-input" placeholder="Artist, band, or public figure" autocomplete="off" />
+    <input type="text" id="artist-input" placeholder="Artist, politician, athlete, brand&hellip;" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
 
-  <div class="tier-notice">
-    <span class="tier-notice-limits">Free tier &mdash; 3 reports per day &nbsp;&middot;&nbsp; No export &nbsp;&middot;&nbsp; No sources &nbsp;&middot;&nbsp; Data through mid-2025</span>
-    <span class="tier-notice-paid">Paid reports use live web search for current, sourced analysis.</span>
-    <span class="tier-notice-link" onclick="startCheckout('intel')">Get a paid report &rarr;</span>
+  <div class="tier-compare">
+    <div class="tier-col tier-col--free">
+      <div class="tier-col-header">
+        <span class="tier-col-name">Free</span>
+        <span class="tier-col-price">3 / day</span>
+      </div>
+      <ul class="tier-col-features">
+        <li class="tier-feature tier-feature--yes">Five-variable analysis</li>
+        <li class="tier-feature tier-feature--yes">Prescription &amp; verdict</li>
+        <li class="tier-feature tier-feature--yes">Downloadable card</li>
+        <li class="tier-feature tier-feature--no">Live web search</li>
+        <li class="tier-feature tier-feature--no">Sourced findings</li>
+        <li class="tier-feature tier-feature--no">Data current as of today</li>
+      </ul>
+      <div class="tier-col-note">Training data through mid-2025. Good for established figures with long histories. Not for breaking situations.</div>
+    </div>
+    <div class="tier-col tier-col--paid">
+      <div class="tier-col-header">
+        <span class="tier-col-name">Paid</span>
+        <span class="tier-col-price">$5 / report</span>
+      </div>
+      <ul class="tier-col-features">
+        <li class="tier-feature tier-feature--yes">Five-variable analysis</li>
+        <li class="tier-feature tier-feature--yes">Prescription &amp; verdict</li>
+        <li class="tier-feature tier-feature--yes">Downloadable card</li>
+        <li class="tier-feature tier-feature--yes">Live web search</li>
+        <li class="tier-feature tier-feature--yes">Sourced findings</li>
+        <li class="tier-feature tier-feature--yes">Data current as of today</li>
+      </ul>
+      <div class="tier-col-cta" onclick="startCheckout('intel')">Get a paid report &rarr;</div>
+    </div>
   </div>
 
   <div class="license-section" style="margin-top:1.25rem;">
     <div class="license-header">
-      <span class="license-label">License key</span>
+      <span class="license-label">Have a license key?</span>
       <span class="license-status" id="license-status">Not activated</span>
     </div>
     <div class="license-row">
@@ -644,20 +792,13 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
     </div>
   </div>
 
-  <div class="examples">
-    <span>Try:</span>
-    <span class="example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
-    <span class="example-link" onclick="runExample('Nicki Minaj')">Nicki Minaj</span>
-    <span class="example-link" onclick="runExample('Elon Musk')">Elon Musk</span>
-    <span class="example-link" onclick="runExample('Balenciaga')">Balenciaga</span>
-  </div>
   <div id="error-box"></div>
   <div id="rate-limit-box">
     <div class="rate-limit-inner">
       <div class="rate-limit-label">Daily limit reached</div>
-      <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Unlock unlimited reports, image export, shareable links, and sourced analysis with a paid plan.</div>
+      <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Paid reports use live web search and have no daily limit.</div>
       <div class="rate-limit-actions">
-        <button class="rate-limit-cta" onclick="startCheckout('intel')">Run a paid report — $5</button>
+        <button class="rate-limit-cta" onclick="startCheckout('intel')">Get a paid report &mdash; $5</button>
         <span class="rate-limit-reset">Or: <span class="tier-notice-link" onclick="startCheckout('archive')" style="cursor:pointer;">10 reports for $29</span></span>
       </div>
     </div>
