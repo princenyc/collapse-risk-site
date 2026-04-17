@@ -706,6 +706,11 @@ function exportCard() {
   const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait', argument: 'argument' };
 
   const dims = { twitter: { w: 1200, h: 630 }, ig_square: { w: 1080, h: 1080 }, ig_portrait: { w: 1080, h: 1350 }, argument: { w: 1200, h: 630 } };
+
+  // Score colors — defined here so all format branches can access them
+  const driftColor = d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a';
+  const stageColor = d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a';
+  const immuneColor = d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a';
   const { w, h } = dims[fmt];
 
   // Pull sharpest line — shortest sentence under 120 chars, else first sentence
