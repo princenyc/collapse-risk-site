@@ -700,8 +700,6 @@ function exportCard() {
   const fmt = exportFormat || 'twitter';
   const riskColors = { low: '#5dcaa5', moderate: '#ef9f27', high: '#e07b00', critical: '#e24b4a' };
   const riskColor = riskColors[d.overall_risk] || '#ef9f27';
-  const isCritical = d.overall_risk === 'critical';
-  const isHigh = d.overall_risk === 'high';
   const isLow = d.overall_risk === 'low';
   const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait', argument: 'argument' };
 
