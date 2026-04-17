@@ -949,17 +949,17 @@ function exportCard() {
           </div>
         </div>
 
-        <!-- Risk summary -->
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:${textMuted};line-height:1.6;border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:28px;">${d.risk_summary}</div>
-
-        <!-- Prescription hook -->
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${isCritical ? 'rgba(10,10,10,0.5)' : riskColor};text-transform:uppercase;margin-bottom:14px;">What they should do next</div>
+             <!-- Prescription hook — main event -->
+        <div style="border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:32px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${isCritical ? 'rgba(10,10,10,0.5)' : riskColor};text-transform:uppercase;margin-bottom:16px;">What they should do next</div>
           <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.5;">${prescriptionHook}</div>
         </div>
 
+        <!-- Risk summary — supporting -->
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:300;color:${textMuted};line-height:1.65;">${d.risk_summary}</div>
+
         <!-- URL -->
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:#888880;letter-spacing:0.06em;">collapse.chartreuseexplosives.com</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;color:${isCritical ? 'rgba(10,10,10,0.6)' : '#888880'};letter-spacing:0.06em;">collapse.chartreuseexplosives.com</div>
 
       </div>
     `;
