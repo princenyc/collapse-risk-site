@@ -1228,9 +1228,18 @@ function exportCard() {
       <div style="display:flex;flex-direction:column;height:100%;padding:52px 72px 44px;box-sizing:border-box;">
 
         <!-- Top: artist name + risk badge -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:1;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;flex-shrink:0;margin-left:24px;margin-top:4px;">${riskLabel}</div>
+        </div>
+
+        <!-- Stat line -->
+        <div style="display:flex;gap:20px;align-items:center;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #1e1e1e;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#555550;text-transform:uppercase;">Drift <span style="color:${driftColor};font-size:13px;font-weight:500;">${d.drift_score}</span>/10</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2a2a2a;">·</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#555550;text-transform:uppercase;">Stage <span style="color:${stageColor};font-size:13px;font-weight:500;">${d.collapse_stage}</span>/5</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2a2a2a;">·</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#555550;text-transform:uppercase;">Immunity <span style="color:${immuneColor};font-size:13px;font-weight:500;">${d.immunity_load}</span>/10</span>
         </div>
 
         <!-- Quote — fills remaining space, vertically centered -->
@@ -1292,6 +1301,13 @@ function exportCard() {
           <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;color:${textMuted};text-transform:uppercase;margin-bottom:12px;">Verdict</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:${riskWordSize};line-height:0.88;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;">${riskWord}</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.92;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;margin-top:16px;opacity:0.9;">${d.artist}</div>
+          <div style="display:flex;gap:16px;margin-top:12px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Drift <span style="color:${isCritical?'#0a0a0a':driftColor};font-size:14px;font-weight:500;">${d.drift_score}</span>/10</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Stage <span style="color:${isCritical?'#0a0a0a':stageColor};font-size:14px;font-weight:500;">${d.collapse_stage}</span>/5</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Immunity <span style="color:${isCritical?'#0a0a0a':immuneColor};font-size:14px;font-weight:500;">${d.immunity_load}</span>/10</span>
+          </div>
         </div>
 
         <!-- Bottom: prescription hook + url -->
@@ -1350,8 +1366,17 @@ function exportCard() {
           <div style="font-family:'Bebas Neue',sans-serif;font-size:${vSize};line-height:0.85;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;">${riskWord}</div>
         </div>
 
-        <!-- Artist name -->
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.9;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;opacity:0.85;">${d.artist}</div>
+        <!-- Artist name + stats -->
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.9;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;opacity:0.85;">${d.artist}</div>
+          <div style="display:flex;gap:16px;margin-top:14px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Drift <span style="color:${isCritical?'#0a0a0a':driftColor};font-size:14px;font-weight:500;">${d.drift_score}</span>/10</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Stage <span style="color:${isCritical?'#0a0a0a':stageColor};font-size:14px;font-weight:500;">${d.collapse_stage}</span>/5</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Immunity <span style="color:${isCritical?'#0a0a0a':immuneColor};font-size:14px;font-weight:500;">${d.immunity_load}</span>/10</span>
+          </div>
+        </div>
 
         <!-- Risk summary -->
         <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:${textMuted};line-height:1.6;border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:28px;">${d.risk_summary}</div>
