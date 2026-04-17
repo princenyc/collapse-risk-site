@@ -712,7 +712,7 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 <div class="bridge">
   <p>By the time it's visible, it's already late. The crowd doesn't announce the exit. It just stops believing. Then it leaves. Then it rewrites what it believed in the first place.</p>
   <p>The break happens in five moves. Every time. Same sequence. Same shape.</p>
-  <p class="bridge-cta">This is the instrument that runs that analysis. Type a name. Get the read in less than 2 minutes.</p>
+  <p class="bridge-cta">This is the instrument that runs that analysis. Type a name. Get the read.</p>
 </div>
 
 <div class="vars-strip">
@@ -888,8 +888,8 @@ function setExportFormat(fmt) {
   });
   const note = document.querySelector('.export-btn-note');
   if (note) {
-    const sizes = { twitter: '1200×630', ig_square: '1080×1080', ig_portrait: '1080×1350' };
-    const labels = { twitter: 'X / Twitter', ig_square: 'Instagram Square', ig_portrait: 'Instagram Portrait' };
+    const sizes = { twitter: '1200×630', ig_square: '1080×1080', ig_portrait: '1080×1350', argument: '1200×630' };
+    const labels = { twitter: 'X / Twitter', ig_square: 'Instagram Square', ig_portrait: 'Instagram Portrait', argument: 'Argument Card' };
     note.textContent = `${labels[fmt]} · ${sizes[fmt]}`;
   }
 }
@@ -1015,7 +1015,7 @@ function renderReport(d, isPaid) {
       <div class="upgrade-gate-features">
         <div class="upgrade-feature">
           <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text"><strong>Deeper analysis</strong>Free reports work from training data. Paid reports go looking for what happened today.</div>
+          <div class="upgrade-feature-text"><strong>Deeper analysis</strong>Free reports work from training data. Paid reports go looking for what happened last week.</div>
         </div>
         <div class="upgrade-feature">
           <span class="upgrade-feature-icon">&#8599;</span>
@@ -1108,6 +1108,7 @@ function renderReport(d, isPaid) {
         <button class="export-format-btn active" data-fmt="twitter" onclick="setExportFormat('twitter')">X / Twitter</button>
         <button class="export-format-btn" data-fmt="ig_square" onclick="setExportFormat('ig_square')">IG Square</button>
         <button class="export-format-btn" data-fmt="ig_portrait" onclick="setExportFormat('ig_portrait')">IG Portrait</button>
+        <button class="export-format-btn" data-fmt="argument" onclick="setExportFormat('argument')">Argument</button>
       </div>
       <button class="export-btn" onclick="exportCard()">
         <span class="export-btn-icon">&#8615;</span> Download card
@@ -1139,9 +1140,9 @@ function exportCard() {
   const isCritical = d.overall_risk === 'critical';
   const isHigh = d.overall_risk === 'high';
   const isLow = d.overall_risk === 'low';
-  const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait' };
+  const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait', argument: 'argument' };
 
-  const dims = { twitter: { w: 1200, h: 630 }, ig_square: { w: 1080, h: 1080 }, ig_portrait: { w: 1080, h: 1350 } };
+  const dims = { twitter: { w: 1200, h: 630 }, ig_square: { w: 1080, h: 1080 }, ig_portrait: { w: 1080, h: 1350 }, argument: { w: 1200, h: 630 } };
   const { w, h } = dims[fmt];
 
   // Pull sharpest line — shortest sentence under 120 chars, else first sentence
@@ -1224,23 +1225,23 @@ function exportCard() {
 
     cardHtml = `
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${accentLine};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:56px 72px 48px;box-sizing:border-box;">
+      <div style="display:flex;flex-direction:column;height:100%;padding:52px 72px 44px;box-sizing:border-box;">
 
-        <!-- Quote — dominant element -->
-        <div style="flex:1;display:flex;align-items:center;">
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${qSize};font-weight:300;color:#f0ede6;line-height:1.35;max-width:1000px;">&ldquo;${quoteText}&rdquo;</div>
+        <!-- Top: artist name + risk badge -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:1;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;flex-shrink:0;margin-left:24px;margin-top:4px;">${riskLabel}</div>
         </div>
 
-        <!-- Bottom: artist + source -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid #2a2a2a;">
-          <div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Collapse Risk Report</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:1;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;margin-bottom:8px;display:inline-block;">${riskLabel}</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555550;letter-spacing:0.08em;display:block;">collapse.chartreuseexplosives.com</div>
-          </div>
+        <!-- Quote — fills remaining space, vertically centered -->
+        <div style="flex:1;display:flex;align-items:center;">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${qSize};font-weight:300;color:#f0ede6;line-height:1.4;max-width:980px;">&ldquo;${quoteText}&rdquo;</div>
+        </div>
+
+        <!-- Bottom: source -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid #1e1e1e;margin-top:24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#3a3a3a;text-transform:uppercase;">Collapse Risk · Chartreuse Explosives</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555550;letter-spacing:0.08em;">collapse.chartreuseexplosives.com</div>
         </div>
       </div>
     `;
@@ -1366,6 +1367,61 @@ function exportCard() {
 
       </div>
     `;
+
+  // ── ARGUMENT CARD 1200x630 ────────────────────────────────────────────────
+  if (fmt === 'argument') {
+    const nameLen2 = d.artist.length;
+    const nameFontSize2 = nameLen2 <= 6 ? '120px' : nameLen2 <= 12 ? '88px' : nameLen2 <= 18 ? '66px' : '50px';
+    const argLine = sharpLine(d.prescription);
+    const argFontSize = argLine.length < 80 ? '28px' : argLine.length < 120 ? '23px' : '19px';
+
+    const argCardHtml = `
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${riskColor};"></div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:48px 64px 40px;box-sizing:border-box;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:${nameFontSize2};line-height:0.88;letter-spacing:0.01em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
+        <div style="display:flex;gap:48px;align-items:flex-end;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Drift</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:${driftColor};">${d.drift_score}<span style="font-size:24px;color:#555550;">/10</span></div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Stage</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:${stageColor};">${d.collapse_stage}<span style="font-size:24px;color:#555550;">/5</span></div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Immunity</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:${immuneColor};">${d.immunity_load}<span style="font-size:24px;color:#555550;">/10</span></div>
+          </div>
+          <div style="flex:1;padding-bottom:8px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:10px;">Verdict</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:4px 12px;display:inline-block;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #1e1e1e;padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${argFontSize};font-weight:300;color:#f0ede6;line-height:1.4;flex:1;">${argLine}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#3a3a3a;letter-spacing:0.08em;white-space:nowrap;padding-bottom:2px;">collapse.chartreuseexplosives.com</div>
+        </div>
+      </div>
+    `;
+
+    const argCard = document.createElement('div');
+    argCard.style.cssText = 'position:fixed;left:-9999px;top:0;width:1200px;height:630px;background:#0a0a0a;overflow:hidden;box-sizing:border-box;';
+    argCard.innerHTML = argCardHtml;
+    document.body.appendChild(argCard);
+
+    html2canvas(argCard, { width: 1200, height: 630, scale: 1, useCORS: true, allowTaint: true, backgroundColor: '#0a0a0a', logging: false }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'collapse-risk-' + (d.artist||'report').toLowerCase().replace(/\s+/g,'-') + '-argument.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      document.body.removeChild(argCard);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    }).catch(err => {
+      document.body.removeChild(argCard);
+      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
+    });
+    return;
+  }
 
     const card = document.createElement('div');
     card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
