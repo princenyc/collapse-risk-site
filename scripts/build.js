@@ -15,8 +15,7 @@ const SITE_TITLE = 'The Signal — Collapse Risk Instrument';
 const SITE_DESCRIPTION = 'Public figure legitimacy collapse analysis. Five variables. Real-time verdicts.';
 
 const postsDir = path.join(__dirname, '../posts');
-const distDir = path.join(__dirname, '../dist');
-const signalDir = path.join(distDir, 'signal');
+const signalDir = path.join(__dirname, '../signal');
 
 // Ensure output dirs exist
 fs.mkdirSync(signalDir, { recursive: true });
