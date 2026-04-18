@@ -1,0 +1,49 @@
+{
+  "slug": "kanye-west-2022",
+  "subject": "Kanye West",
+  "category": "person",
+  "subcategory": "music",
+  "date_published": "2026-04-17",
+  "date_updated": "2026-04-17",
+  "collapse_stage": 5,
+  "contract_drift": 9,
+  "root_cause": "betrayal",
+  "contract_depth": "true believers",
+  "immunity_load": 1,
+  "verdict": "Inversion complete. The audience didn't leave — it turned.",
+  "prescription": "No prescription. Stage 5 is post-intervention. The catalog survives. The figure doesn't.",
+  "summary": "The collapse didn't happen because of the antisemitic comments. Those were the confirmation. The crowd had already started rewriting what it believed three years earlier — when the gap between the genius myth and the visible behavior became impossible to hold together.",
+  "sources": [
+    {
+      "label": "NYT: Adidas ends Yeezy partnership",
+      "url": "https://www.nytimes.com/2022/10/25/business/adidas-yeezy-kanye-west.html"
+    },
+    {
+      "label": "Billboard: Ye dropped by CAA, Gap, Foot Locker",
+      "url": "https://www.billboard.com/music/music-news/kanye-west-ye-business-deals-terminated-1235158030/"
+    }
+  ],
+  "variables": {
+    "contract_drift": {
+      "score": 9,
+      "analysis": "The original contract — tortured genius, visionary outsider — held through 808s, through Yeezus, even through early Trump. It broke when the behavior stopped being readable as performance and started being readable as belief. Drift started around 2018. By 2022 it was a chasm."
+    },
+    "root_cause": {
+      "type": "betrayal",
+      "analysis": "The audience felt sold out, not foolish. They didn't feel stupid for believing — they felt used. That's the harder break. Shame collapses faster. Betrayal calcifies into active opposition. The loudest critics are always former true believers."
+    },
+    "contract_depth": {
+      "level": "true believers",
+      "analysis": "This was a deep contract. The audience didn't like Kanye — they identified with him. When the break came, the depth of investment became the depth of the reversal. Casual fans moved on. The core became the prosecution."
+    },
+    "collapse_stage": {
+      "stage": 5,
+      "label": "Inversion",
+      "analysis": "Stage 5 is when the crowd rewrites history. They didn't love him — they were fooled. The legacy is now contested ground. The music survives because catalogs outlast narratives, but the figure is permanently altered."
+    },
+    "immunity_load": {
+      "score": 1,
+      "analysis": "He had the deepest immunity load in modern pop culture. Genius mythology, cultural debt, catalog, the martyr narrative. He burned through all of it in roughly 18 months. When immunity runs to zero, the next incident isn't a mistake. It's the verdict."
+    }
+  }
+}
