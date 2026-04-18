@@ -149,9 +149,7 @@ nav {
   max-width: 640px;
 }
 .section p:last-child { margin-bottom: 0; }
-.section p.muted {
-  color: var(--muted);
-}
+.section p.muted { color: var(--muted); }
 
 /* ROOT CAUSE GRID */
 .root-cause-grid {
@@ -283,6 +281,156 @@ nav {
 .stage-item.warning .stage-number { color: var(--warning); }
 .stage-item.critical .stage-number { color: var(--danger); }
 
+/* CASE STUDIES */
+.case-studies {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.case {
+  border: 1px solid var(--border);
+  background: var(--near-black);
+}
+
+.case-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .case-header { grid-template-columns: 1fr; }
+}
+
+.case-subject {
+  font-family: var(--display);
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+
+.case-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .case-meta { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; }
+}
+
+.case-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--border-bright);
+  color: var(--muted);
+}
+
+.case-tag.root-both { border-color: var(--danger); color: var(--danger); }
+.case-tag.root-allegiance { border-color: var(--warning); color: var(--warning); }
+
+.case-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.case-body p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0;
+}
+
+.case-scores {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+@media (max-width: 600px) {
+  .case-scores { grid-template-columns: repeat(3, 1fr); }
+}
+
+.score-cell {
+  background: var(--surface);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.score-cell-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.score-cell-value {
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--white);
+}
+
+.score-cell-value.danger { color: var(--danger); }
+.score-cell-value.warning { color: var(--warning); }
+.score-cell-value.text {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding-top: 4px;
+}
+
+.case-intervention {
+  background: var(--surface);
+  border: 1px solid var(--border-bright);
+  padding: 1.25rem 1.5rem;
+}
+
+.case-intervention-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--chartreuse);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.case-intervention p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.7;
+  max-width: none;
+  margin: 0;
+}
+
+.case-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  border-left: 2px solid var(--border-bright);
+  padding-left: 1rem;
+}
+
 /* CLOSING */
 .closing {
   padding: 3rem 0 1rem;
@@ -313,9 +461,9 @@ nav {
   margin-bottom: 0;
 }
 
-/* CTA BAR */
+/* CTA BARS */
 .cta-bar {
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding: 1.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -351,6 +499,43 @@ nav {
   transition: background 0.15s;
 }
 .cta-btn:hover { background: #d4f500; text-decoration: none; }
+
+.cta-bar-b2b {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: var(--black);
+  border: 1px solid var(--border-bright);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.cta-bar-b2b p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+.cta-btn-outline {
+  border: 1px solid var(--border-bright);
+  padding: 0 1.5rem;
+  height: 44px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+.cta-btn-outline:hover { border-color: var(--white); text-decoration: none; }
 
 /* FOOTER */
 footer {
@@ -427,7 +612,7 @@ footer {
       </div>
       <div class="root-cause-card">
         <div class="label">Feeling betrayed</div>
-        <p>The artist picked a side. And it was the wrong side. Not wrong like a bad opinion. Wrong like they crossed the room and stood with the people who are actively against the audience that built them.</p>
+        <p>The figure picked a side. And it was the wrong side. Not wrong like a bad opinion. Wrong like they crossed the room and stood with the people who are actively against the audience that built them.</p>
         <p>When this happens, the audience doesn't get embarrassed. They get cold.</p>
         <div class="audience-voice">You were never for us. I know exactly what this is. I just didn't want to see it.</div>
         <p class="consequence">The difference between these two breaks is everything. Shame requires a different repair than betrayal. A different timeline. A different prescription. Running both simultaneously is the category of disaster most careers don't survive.</p>
@@ -464,7 +649,7 @@ footer {
 
   <div class="section">
     <div class="section-label">The five stages</div>
-    <p>Collapse is not an event. It's a process with a shape. The shape is consistent across artists, politicians, athletes, executives, and brands. The speed varies. The shape doesn't.</p>
+    <p>Collapse is not an event. It's a process with a shape. The shape is consistent across musicians, politicians, athletes, executives, and brands. The speed varies. The shape doesn't.</p>
     <div class="stages-list">
       <div class="stage-item">
         <div class="stage-number">0</div>
@@ -512,6 +697,146 @@ footer {
   </div>
 
   <div class="section">
+    <div class="section-label">Three cases</div>
+    <p>The framework produces the same output regardless of category. Musician. Politician. Brand. The mechanism is identical. The variables scale. The stages apply. The root causes don't change.</p>
+    <p>Each case below was scored at the point of collapse using only information available at that time. Outcomes are documented public record.</p>
+
+    <div class="case-studies">
+
+      <!-- KANYE -->
+      <div class="case">
+        <div class="case-header">
+          <div class="case-subject">Kanye West</div>
+          <div class="case-meta">
+            <span class="case-tag">Music</span>
+            <span class="case-tag root-both">Root cause: Both</span>
+            <span class="case-tag">Collapse complete</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <p>He sold unfiltered genius. The one person in the room saying what everyone else was too afraid to say. The outsider who won on his own terms. That contract held through controversies that would have ended most careers. It held because the audience needed it to be true.</p>
+          <p>The authenticity break arrived first. By 2016, the rebellion was reading as instability. The genius was reading as performance. Fans were still defending, but they were explaining more than celebrating. Ironic consumption had entered the relationship. He was at stage two.</p>
+          <p>The allegiance break completed it. The antisemitic remarks in October 2022 weren't a new position. They were confirmation of something the audience had been negotiating with for six years. Adidas terminated the Yeezy partnership within days. Gap and Balenciaga had already exited. Defenders didn't go quiet gradually. They went quiet overnight. The people who had spent years building arguments on his behalf began publicly dismantling those same arguments. That is stage five operating at speed.</p>
+          <div class="case-scores">
+            <div class="score-cell">
+              <div class="score-cell-label">Drift</div>
+              <div class="score-cell-value danger">9</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Root cause</div>
+              <div class="score-cell-value text danger">Both</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Depth</div>
+              <div class="score-cell-value text danger">Critical</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Stage</div>
+              <div class="score-cell-value danger">4</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Immunity</div>
+              <div class="score-cell-value danger">1</div>
+            </div>
+          </div>
+          <div class="case-intervention">
+            <div class="case-intervention-label">Where intervention was possible</div>
+            <p>Stage two. Approximately 2016, post-hospitalization, pre-2018 MAGA period. At that point the drift score was elevated but the contract was not broken. The immunity load was still 7 or above. The prescription at stage two with an authenticity break and critical contract depth: go quiet for 18 months, release no public statements on anything outside the work, let the catalog carry the relationship. That window closed in 2018. By October 2022, no prescription existed. The framework doesn't offer repair paths after stage four with a depleted immunity load. It offers an accurate read of what comes next.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIZ CHENEY -->
+      <div class="case">
+        <div class="case-header">
+          <div class="case-subject">Liz Cheney</div>
+          <div class="case-meta">
+            <span class="case-tag">Politics</span>
+            <span class="case-tag root-allegiance">Root cause: Allegiance</span>
+            <span class="case-tag">Collapse complete</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <p>She sold institutional Republican authority. Wyoming conservative. Daughter of a former Vice President. The party's third-ranking House member. The brand was party loyalty and hawkish orthodoxy. Her audience's contract with her was built on a specific belief: she was one of them.</p>
+          <p>The break was a single move. She voted to impeach Donald Trump in January 2021, then co-chaired the January 6 Select Committee. In the language of the framework, she crossed the room. She stood with the people her audience believed were actively against them. This is a textbook allegiance break. Pure root cause. The audience didn't feel foolish for supporting her. They felt sold out. The emotional register shifted to cold anger immediately: she was never for us.</p>
+          <p>The timeline compressed because political audiences operate on shorter cycles than music audiences. By the 2022 primary, the immunity load had depleted entirely. Thirty years of Wyoming Republican credibility, her family name, her committee positions. None of it absorbed the allegiance break. She lost her primary by 37 points, the largest margin in a Wyoming Republican primary in the modern polling era.</p>
+          <div class="case-scores">
+            <div class="score-cell">
+              <div class="score-cell-label">Drift</div>
+              <div class="score-cell-value danger">8</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Root cause</div>
+              <div class="score-cell-value text warning">Allegiance</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Depth</div>
+              <div class="score-cell-value text danger">Critical</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Stage</div>
+              <div class="score-cell-value danger">4</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Immunity</div>
+              <div class="score-cell-value danger">1</div>
+            </div>
+          </div>
+          <div class="case-intervention">
+            <div class="case-intervention-label">Where intervention was possible</div>
+            <p>There was no stage two for this specific audience. The allegiance break was instantaneous and complete. The contract depth was critical, meaning the audience's political identity was load-bearing on this exact question. The prescription wasn't damage control for Wyoming. It was audience migration: stop running as a Wyoming Republican immediately, reposition for a different audience before the primary, and accept that the original contract was irreversibly broken. The 37-point loss confirmed there was no repair path inside the original audience. The framework would have said so the day of the impeachment vote.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUD LIGHT -->
+      <div class="case">
+        <div class="case-header">
+          <div class="case-subject">Bud Light</div>
+          <div class="case-meta">
+            <span class="case-tag">Brand</span>
+            <span class="case-tag root-allegiance">Root cause: Allegiance</span>
+            <span class="case-tag">Ongoing — unresolved</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <p>Bud Light sold unpretentious American working-class beer. The beer of the game, the bar, the backyard. The brand identity was built around a specific audience's vision of themselves: regular people, not complicated, not political. The contract was implicit and load-bearing: we are not taking sides.</p>
+          <p>April 2023. Bud Light partnered with Dylan Mulvaney, a transgender influencer, for a promotional campaign. The core audience interpreted this as the brand crossing the room. The response was fast and organized. Within two weeks, distributors in key markets were reporting significant sales declines. Within months, Bud Light had fallen from the top-selling beer in the United States to third place, a position it had held for more than two decades.</p>
+          <p>The Anheuser-Busch CEO response made the collapse worse. The statement neither defended the campaign nor clearly distanced from it. In the framework, a non-committal response at stage three is the single move most likely to accelerate to stage four. It signals the brand doesn't believe in its own choice. The audience read it correctly: the brand wasn't standing for anything. That is worse than standing for the wrong thing, because it confirms the contract was always empty.</p>
+          <div class="case-scores">
+            <div class="score-cell">
+              <div class="score-cell-label">Drift</div>
+              <div class="score-cell-value danger">8</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Root cause</div>
+              <div class="score-cell-value text warning">Allegiance</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Depth</div>
+              <div class="score-cell-value text warning">Moderate</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Stage</div>
+              <div class="score-cell-value warning">3</div>
+            </div>
+            <div class="score-cell">
+              <div class="score-cell-label">Immunity</div>
+              <div class="score-cell-value danger">3</div>
+            </div>
+          </div>
+          <div class="case-intervention">
+            <div class="case-intervention-label">Where intervention was possible</div>
+            <p>The stage three threshold was crossed within 72 hours of the campaign launch. At that point, one prescription remained: full public ownership of the decision, stated with conviction, no hedging. Not an apology. A position. An audience in an allegiance break does not respond to apology — apology confirms there was something to be ashamed of, which compounds the authenticity damage on top of the allegiance break. The CEO statement attempted to walk both sides. That move closed the last door. The prescription had a narrow window. It was not taken.</p>
+          </div>
+          <p class="case-note">Note: This case is ongoing. Bud Light has not recovered its pre-April 2023 market position as of this writing. The scores above reflect the state of the framework variables at the time of the collapse, not current status. Unlike the Kanye and Cheney cases, final resolution is not yet established.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
     <div class="section-label">The prescription</div>
     <p>The instrument doesn't just score the five variables. It tells you what the subject should do next.</p>
     <p>Not generic advice. Not "reconnect with your roots" or "take a break." Specific moves based on their exact stage, their root cause, and their remaining immunity. The prescription changes depending on whether someone is at stage one or stage three. It changes depending on whether the break is shame or betrayal. It names the move.</p>
@@ -533,8 +858,8 @@ footer {
   </div>
 
   <div class="closing">
-    <p>The crowd doesn't leave because the artist changed.</p>
-    <p>It leaves because it finally understands what the artist always was.</p>
+    <p>The crowd doesn't leave because the person changed.</p>
+    <p>It leaves because it finally understands what the person always was.</p>
     <p>That's when the archive gets rewritten.</p>
     <p>And that rewrite is permanent.</p>
   </div>
@@ -544,8 +869,13 @@ footer {
   </div>
 
   <div class="cta-bar">
-    <p>Run the instrument on any artist, politician, athlete, or public figure.</p>
+    <p>Run the instrument on any musician, politician, athlete, or public figure.</p>
     <a href="/" class="cta-btn">Run analysis</a>
+  </div>
+
+  <div class="cta-bar-b2b">
+    <p>For institutional use, white-label analysis, or ongoing monitoring engagements, contact directly.</p>
+    <a href="mailto:prince@princecampbell.com" class="cta-btn-outline">Get in touch</a>
   </div>
 
 </div>
