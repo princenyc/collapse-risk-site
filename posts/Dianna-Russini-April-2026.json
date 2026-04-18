@@ -1,0 +1,49 @@
+{
+  "slug": "Dianna-Russini-April-2026",
+  "subject": "Dianna Russini",
+  "category": "person",
+  "subcategory": "sports",
+  "date_published": "2026-04-17",
+  "date_updated": "2026-04-17",
+  "collapse_stage": "Archive Rewrite",
+  "contract_drift": 9,
+  "root_cause": "both",
+  "contract_depth": "moderate",
+  "immunity_load": 2,
+  "verdict": " The neutral middle (the audience that just wanted good NFL reporting) has quietly moved on. She is 43 years old, has 15 years of real work in the industry, and is now effectively starting over with a biography that leads with a Page Six photograph.",
+  "prescription": "The one move that accelerates her collapse is any public statement in the next 30 days that reads as defensive, because every audience member who reads it will now grade it on the Vrabel curve.",
+  "summary": "Russini's career was built on a single asset: the belief that she knew things first because she was trusted, not because she was owed. That asset is gone.",
+  "sources": [
+    {
+      "label": "Dianna Russini Resigns From The Athletic Amid Mike Vrabel Scandal",
+      "url": "https://www.tmz.com/2026/04/14/dianna-russini-resigns-from-the-athletic-amid-mike-vrabel-scandal/"
+    },
+    {
+      "label": "Dianna Russini resigns from The Athletic amid Mike Vrabel controversy",
+      "url": "https://www.foxnews.com/sports/dianna-russini-resigns-from-athletic-amid-mike-vrabel-controversy"
+    }
+  ],
+  "variables": {
+    "contract_drift": {
+      "score": 9,
+      "analysis": "The belief contract for a reporter is simple: the audience trusts that the information they receive is clean. The moment an audience starts asking 'how did she get that story,' the contract is over."
+    },
+    "root_cause": {
+      "type": "both",
+      "analysis": "The authenticity break is severe: the audience believed Russini was operating as an independent professional journalist. The Vrabel photos — poolside, hot tub, hands intertwined, both married — cracked that story open."
+    },
+    "contract_depth": {
+      "level": "moderate",
+      "analysis": "Russini's audience was not a fandom. It was a utility relationship. NFL fans and media consumers followed her because she broke news fast and accurately. That is a surface-to-moderate contract. They believed in her function, not her identity."
+    },
+    "collapse_stage": {
+      "stage": 4,
+      "label": "Archive Rewrite",
+      "analysis": "When your employer's ethics team is re-reading your catalog, the audience is doing the same thing on social media."
+    },
+    "immunity_load": {
+      "score": 2,
+      "analysis": "Russini had a strong catalog and a respected reputation built over 11 years across NBC, ESPN, and The Athletic. That immunity is now structurally compromised, not depleted through attrition but punctured through a single event that retroactively questions everything that came before it."
+    }
+  }
+}
