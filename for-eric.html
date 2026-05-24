@@ -73,22 +73,6 @@ nav {
 }
 .nav-link:hover { color: var(--white); text-decoration: none; }
 
-/* LICENSE BANNER */
-#license-banner {
-  display: none;
-  padding: 0.75rem 1.25rem;
-  background: #0d1200;
-  border-bottom: 1px solid var(--chartreuse-dim);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  text-align: center;
-}
-#license-banner.visible { display: block; }
-#license-banner .credits { color: var(--white); margin-left: 0.5rem; }
-
 /* HERO */
 .hero {
   border-bottom: 1px solid var(--border);
@@ -634,10 +618,6 @@ footer {
 </head>
 <body>
 
-<div id="license-banner">
-  Unlimited access<span class="credits" id="credits-display"></span>
-</div>
-
 <nav>
   <span class="nav-mark">Chartreuse Explosives</span>
   <div class="nav-right">
@@ -925,37 +905,10 @@ footer {
 </footer>
 
 <script>
-const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
+// Use test-mode URL so the worker always treats requests from this page as paid (web search enabled).
+// This page is a private demo URL and bypasses the license-key system entirely.
+const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev?mode=test&key=dvd123dvd';
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
-let activeLicenseKey = null;
-let licenseCredits = null;
-
-// Auto-activate from URL param ?k=KEY
-async function autoActivateFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  const key = params.get('k');
-  if (!key) return;
-  try {
-    const res = await fetch(WORKER_URL + '/validate-key', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ key })
-    });
-    const data = await res.json();
-    if (data.valid) {
-      activeLicenseKey = data.key;
-      licenseCredits = data.remaining;
-      const banner = document.getElementById('license-banner');
-      const credits = document.getElementById('credits-display');
-      banner.classList.add('visible');
-      if (typeof licenseCredits === 'number' && licenseCredits < 9000) {
-        credits.textContent = ' · ' + licenseCredits + ' reports remaining';
-      }
-    }
-  } catch (e) {
-    // silent — falls back to free tier
-  }
-}
 
 async function generateReport() {
   const name = document.getElementById('artist-input').value.trim();
@@ -972,21 +925,17 @@ async function generateReport() {
   report.classList.remove('visible');
   report.innerHTML = '';
 
-  loadingText.textContent = activeLicenseKey ? 'Running live search analysis' : 'Running analysis';
+  loadingText.textContent = 'Running live search analysis';
   loading.classList.add('visible');
 
   try {
-    const headers = { 'Content-Type': 'application/json' };
-    if (activeLicenseKey) headers['X-License-Key'] = activeLicenseKey;
-
-    // Use AbortController with a 3-minute timeout for paid runs (web search can take 60-120s)
+    // 3-minute timeout — web search can take 60-90s for complex subjects
     const controller = new AbortController();
-    const timeoutMs = activeLicenseKey ? 180000 : 60000;
-    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    const timeoutId = setTimeout(() => controller.abort(), 180000);
 
     const res = await fetch(WORKER_URL, {
       method: 'POST',
-      headers,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ artist: name }),
       signal: controller.signal
     });
@@ -994,7 +943,7 @@ async function generateReport() {
     loading.classList.remove('visible');
 
     if (res.status === 429) {
-      errorBox.textContent = 'Rate limited. If the license key did not activate, refresh the page.';
+      errorBox.textContent = 'Rate limited. Refresh the page and try again.';
       errorBox.classList.add('visible');
       return;
     }
@@ -1004,15 +953,7 @@ async function generateReport() {
       throw new Error('Worker error: ' + res.status);
     }
     const data = await res.json();
-
-    if (activeLicenseKey && data) {
-      if (typeof licenseCredits === 'number' && licenseCredits < 9000) {
-        licenseCredits = Math.max(0, licenseCredits - 1);
-        const credits = document.getElementById('credits-display');
-        if (credits) credits.textContent = ' · ' + licenseCredits + ' reports remaining';
-      }
-    }
-    renderReport(data, !!activeLicenseKey);
+    renderReport(data);
     report.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (e) {
     loading.classList.remove('visible');
@@ -1054,7 +995,7 @@ function immunityBar(n) {
 }
 function capitalize(s) { if (!s) return ''; return s.charAt(0).toUpperCase() + s.slice(1); }
 
-function renderReport(d, isPaid) {
+function renderReport(d) {
   const report = document.getElementById('report');
   const riskClass = d.overall_risk || 'moderate';
   const riskLabel = { low: 'Low risk', moderate: 'Moderate risk', high: 'High risk', critical: 'Critical risk' };
@@ -1068,17 +1009,22 @@ function renderReport(d, isPaid) {
     pips += `<div class="pip ${cls}"></div>`;
   }
 
-  // Sources block — only for paid runs with actual sources
+  // Sources block — always show when real web sources exist.
+  // Filter out the "training data" placeholder source returned when web search is disabled.
+  const realSources = (d.sources || []).filter(s =>
+    s && s.url && s.url.startsWith('http') &&
+    s.title !== 'Analysis based on training data'
+  );
   let sourcesHtml = '';
-  if (isPaid && d.sources && d.sources.length > 0) {
-    const items = d.sources.map(s => `
+  if (realSources.length > 0) {
+    const items = realSources.map(s => `
       <div class="source-item">
         <div class="source-title">${s.title || 'Untitled'}</div>
         <div class="source-meta"><span>${s.publication || ''}</span><span>${s.date || ''}</span></div>
-        ${s.url && s.url.startsWith('http') ? `<a class="source-url" href="${s.url}" target="_blank" rel="noopener">${s.url}</a>` : ''}
+        <a class="source-url" href="${s.url}" target="_blank" rel="noopener">${s.url}</a>
       </div>`).join('');
     sourcesHtml = `<div class="sources-block">
-      <div class="sources-header">${d.sources.length} source${d.sources.length !== 1 ? 's' : ''} · Live web search · ${d.generated || ''}</div>
+      <div class="sources-header">${realSources.length} source${realSources.length !== 1 ? 's' : ''} · Live web search · ${d.generated || ''}</div>
       ${items}
     </div>`;
   }
@@ -1086,7 +1032,7 @@ function renderReport(d, isPaid) {
   report.innerHTML = `
     <div class="report-header">
       <div>
-        <div class="report-tag">${isPaid ? 'Collapse risk report · Live search' : 'Collapse risk report'}</div>
+        <div class="report-tag">Collapse risk report · Live search</div>
         <div class="report-artist">${d.artist || ''}</div>
       </div>
       <div class="report-meta-col">
@@ -1179,8 +1125,7 @@ function renderReport(d, isPaid) {
   report.classList.add('visible');
 }
 
-// Boot
-autoActivateFromUrl();
+// No auto-activation needed — page is always paid via test-mode worker URL.
 </script>
 
 </body>
