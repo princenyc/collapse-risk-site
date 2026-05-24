@@ -131,7 +131,7 @@ nav {
 }
 .hero-byline strong { color: var(--white); font-weight: 500; }
 
-/* RUN STRIP — sits above the methodology, lets him use the instrument immediately */
+/* RUN STRIP */
 .run-strip {
   border-bottom: 1px solid var(--border);
   padding: 2.5rem 1.25rem;
@@ -424,7 +424,7 @@ nav {
 .stage-item.warning .stage-number { color: var(--warning); }
 .stage-item.critical .stage-number { color: var(--danger); }
 
-/* WORKED EXAMPLES — slots for pre-loaded reports */
+/* WORKED EXAMPLES */
 .examples-intro {
   margin-bottom: 2rem;
 }
@@ -490,7 +490,6 @@ nav {
   font-style: italic;
   font-size: 13px;
 }
-/* When a real report is dropped in, .example-body gets replaced */
 
 /* CLOSING + INSTITUTIONAL */
 .closing { padding: 3rem 0 1rem; max-width: 600px; }
@@ -555,24 +554,6 @@ nav {
   transition: background 0.15s;
 }
 .cta-btn:hover { background: #d4f500; text-decoration: none; }
-.cta-btn-outline {
-  border: 1px solid var(--border-bright);
-  padding: 0 1.5rem;
-  height: 44px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  white-space: nowrap;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: border-color 0.15s, color 0.15s;
-  background: transparent;
-}
-.cta-btn-outline:hover { border-color: var(--white); text-decoration: none; }
 
 footer {
   border-top: 1px solid var(--border);
@@ -597,7 +578,7 @@ footer {
   letter-spacing: 0.06em;
 }
 
-/* REPORT RENDER STYLES (mirrors index.html for the live run output) */
+/* REPORT RENDER STYLES */
 .risk-banner { padding: 1rem 1.25rem; border-left: 3px solid; margin-bottom: 1.5rem; }
 .risk-banner.low { border-color: var(--success); background: #041a12; }
 .risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
@@ -627,6 +608,16 @@ footer {
 .vblock-score { font-family: var(--mono); font-size: 10px; font-weight: 500; text-align: right; flex-shrink: 0; }
 .vblock-body { padding: 1rem; background: var(--near-black); }
 .vblock-body p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; max-width: none; margin: 0; }
+.bar { height: 2px; background: var(--border); margin-top: 1rem; }
+.bar-fill { height: 2px; transition: width 0.6s ease; }
+.bar-green { background: var(--success); }
+.bar-amber { background: var(--warning); }
+.bar-orange { background: #e07b00; }
+.bar-red { background: var(--danger); }
+.stage-pips { display: flex; gap: 3px; margin-top: 10px; }
+.pip { flex: 1; height: 3px; background: var(--border); }
+.pip.past { background: var(--chartreuse-dim); }
+.pip.active { background: var(--chartreuse); }
 .prescription { border: 1px solid var(--chartreuse-dim); background: #0d1200; padding: 1.25rem; margin-bottom: 1.5rem; }
 .prescription-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 10px; }
 .prescription-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
@@ -666,7 +657,6 @@ footer {
   </div>
 </div>
 
-<!-- RUN STRIP — primary CTA above the fold of the methodology -->
 <div class="run-strip">
   <div class="run-strip-label">Run it</div>
   <p class="run-strip-desc">Type a name. Live web search, sourced findings, no limits on this page.</p>
@@ -827,7 +817,7 @@ footer {
         The Iceman triple-drop reads one way as contractual exit-filing. The instrument reads the belief side of the same event: what happens to an artist's audience when the war with the label becomes louder than the work.
       </div>
       <div class="example-body" id="drake-body">
-        [DROP RUN OUTPUT HERE — replace this entire .example-body with the rendered report from a live run, using the same renderReport() function output as the live instrument above.]
+        [DROP RUN OUTPUT HERE — replace this entire .example-body with the rendered report from a live run.]
       </div>
     </div>
 
@@ -988,11 +978,19 @@ async function generateReport() {
   try {
     const headers = { 'Content-Type': 'application/json' };
     if (activeLicenseKey) headers['X-License-Key'] = activeLicenseKey;
+
+    // Use AbortController with a 3-minute timeout for paid runs (web search can take 60-120s)
+    const controller = new AbortController();
+    const timeoutMs = activeLicenseKey ? 180000 : 60000;
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ artist: name })
+      body: JSON.stringify({ artist: name }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
     loading.classList.remove('visible');
 
     if (res.status === 429) {
@@ -1000,7 +998,11 @@ async function generateReport() {
       errorBox.classList.add('visible');
       return;
     }
-    if (!res.ok) throw new Error('Worker error: ' + res.status);
+    if (!res.ok) {
+      const errBody = await res.text();
+      console.error('Worker error response:', errBody);
+      throw new Error('Worker error: ' + res.status);
+    }
     const data = await res.json();
 
     if (activeLicenseKey && data) {
@@ -1014,7 +1016,11 @@ async function generateReport() {
     report.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (e) {
     loading.classList.remove('visible');
-    errorBox.textContent = 'Analysis failed. Check connection or try again.';
+    if (e.name === 'AbortError') {
+      errorBox.textContent = 'Analysis timed out. The subject may be complex. Try again or use a more specific name.';
+    } else {
+      errorBox.textContent = 'Analysis failed. Check connection or try again.';
+    }
     errorBox.classList.add('visible');
     console.error(e);
   } finally {
@@ -1028,11 +1034,23 @@ function scoreClass(n) {
   if (n <= 7) return 'val-high';
   return 'val-crit';
 }
+function barClass(n) {
+  if (n <= 3) return 'bar-green';
+  if (n <= 5) return 'bar-amber';
+  if (n <= 7) return 'bar-orange';
+  return 'bar-red';
+}
 function immunityColor(n) {
   if (n >= 7) return 'val-low';
   if (n >= 5) return 'val-mod';
   if (n >= 3) return 'val-high';
   return 'val-crit';
+}
+function immunityBar(n) {
+  if (n >= 7) return 'bar-green';
+  if (n >= 5) return 'bar-amber';
+  if (n >= 3) return 'bar-orange';
+  return 'bar-red';
 }
 function capitalize(s) { if (!s) return ''; return s.charAt(0).toUpperCase() + s.slice(1); }
 
@@ -1043,75 +1061,114 @@ function renderReport(d, isPaid) {
   const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
   const depthLabel = { surface: 'Surface', moderate: 'Moderate', deep: 'Deep', critical: 'Critical' };
 
+  // Stage pips
+  let pips = '';
+  for (let i = 1; i <= 5; i++) {
+    const cls = i < d.collapse_stage ? 'past' : i === d.collapse_stage ? 'active' : '';
+    pips += `<div class="pip ${cls}"></div>`;
+  }
+
+  // Sources block — only for paid runs with actual sources
   let sourcesHtml = '';
   if (isPaid && d.sources && d.sources.length > 0) {
     const items = d.sources.map(s => `
       <div class="source-item">
         <div class="source-title">${s.title || 'Untitled'}</div>
         <div class="source-meta"><span>${s.publication || ''}</span><span>${s.date || ''}</span></div>
-        ${s.url ? `<a class="source-url" href="${s.url}" target="_blank" rel="noopener">${s.url}</a>` : ''}
+        ${s.url && s.url.startsWith('http') ? `<a class="source-url" href="${s.url}" target="_blank" rel="noopener">${s.url}</a>` : ''}
       </div>`).join('');
     sourcesHtml = `<div class="sources-block">
-      <div class="sources-header">${d.sources.length} sources · Live web search · ${d.report_date || ''}</div>
+      <div class="sources-header">${d.sources.length} source${d.sources.length !== 1 ? 's' : ''} · Live web search · ${d.generated || ''}</div>
       ${items}
     </div>`;
   }
 
-  const drift = d.contract_drift || 0;
-  const stageNum = d.collapse_stage || 0;
-  const immunity = d.immunity_load || 0;
-  const rootCauseDisplay = d.root_cause ? capitalize(d.root_cause) : 'Unknown';
-
-  const variableBlocks = (d.variable_breakdown || []).map(v => `
-    <div class="vblock">
-      <div class="vblock-header">
-        <span class="vblock-name">${v.name}</span>
-        <span class="vblock-score">${v.score || ''}</span>
-      </div>
-      <div class="vblock-body"><p>${v.text || ''}</p></div>
-    </div>`).join('');
-
   report.innerHTML = `
     <div class="report-header">
-      <div class="report-artist">${d.subject || ''}</div>
+      <div>
+        <div class="report-tag">${isPaid ? 'Collapse risk report · Live search' : 'Collapse risk report'}</div>
+        <div class="report-artist">${d.artist || ''}</div>
+      </div>
       <div class="report-meta-col">
-        <div class="report-tag">${isPaid ? 'Live search' : 'Training data'}</div>
-        <div class="report-date">${d.report_date || ''}</div>
+        <div class="report-date">${d.generated || ''}</div>
       </div>
     </div>
     <div class="risk-banner ${riskClass}">
       <div class="risk-level">${riskLabel[riskClass] || 'Moderate risk'}</div>
-      <div class="risk-summary-text">${d.summary || ''}</div>
+      <div class="risk-summary-text">${d.risk_summary || ''}</div>
     </div>
     <div class="score-grid">
       <div class="score-cell">
-        <div class="score-cell-label">Drift</div>
-        <div class="score-cell-value ${scoreClass(drift)}">${drift}</div>
+        <div class="score-cell-label">Drift score</div>
+        <div class="score-cell-value ${scoreClass(d.drift_score)}">${d.drift_score}</div>
         <div class="score-cell-sub">out of 10</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Root cause</div>
-        <div class="score-cell-value val-neutral" style="font-size:18px;">${rootCauseDisplay}</div>
-        <div class="score-cell-sub">${d.root_cause_note || ''}</div>
+        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px;">${capitalize(d.root_cause)}</div>
+        <div class="score-cell-sub">${capitalize(d.audience_emotion)}</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Depth</div>
-        <div class="score-cell-value val-neutral" style="font-size:18px;">${depthLabel[d.contract_depth] || d.contract_depth || ''}</div>
-        <div class="score-cell-sub">${d.contract_depth_note || ''}</div>
+        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px;">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
+        <div class="score-cell-sub">${d.career_years} yr career</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Stage</div>
-        <div class="score-cell-value ${scoreClass(stageNum * 2)}">${stageNum}</div>
+        <div class="score-cell-value ${scoreClass(d.collapse_stage * 2)}">${d.collapse_stage}</div>
         <div class="score-cell-sub">${stageName}</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Immunity</div>
-        <div class="score-cell-value ${immunityColor(immunity)}">${immunity}</div>
-        <div class="score-cell-sub">${d.immunity_note || ''}</div>
+        <div class="score-cell-value ${immunityColor(d.immunity_load)}">${d.immunity_load}</div>
+        <div class="score-cell-sub">${capitalize(d.depletion_rate)} depletion</div>
       </div>
     </div>
     <div class="section-header-mini">Variable breakdown</div>
-    ${variableBlocks}
+    <div class="vblock">
+      <div class="vblock-header">
+        <span class="vblock-name">Contract drift</span>
+        <span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span>
+      </div>
+      <div class="vblock-body">
+        <p>${d.drift_finding || ''}</p>
+        <div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div>
+      </div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header">
+        <span class="vblock-name">Root cause</span>
+        <span class="vblock-score">${capitalize(d.root_cause)}</span>
+      </div>
+      <div class="vblock-body"><p>${d.root_finding || ''}</p></div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header">
+        <span class="vblock-name">Contract depth</span>
+        <span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span>
+      </div>
+      <div class="vblock-body"><p>${d.depth_finding || ''}</p></div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header">
+        <span class="vblock-name">Collapse stage</span>
+        <span class="vblock-score ${scoreClass(d.collapse_stage * 2)}">${stageName}</span>
+      </div>
+      <div class="vblock-body">
+        <p>${d.stage_finding || ''}</p>
+        <div class="stage-pips">${pips}</div>
+      </div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header">
+        <span class="vblock-name">Immunity load</span>
+        <span class="vblock-score">${d.immunity_load}/10 · ${capitalize(d.depletion_rate)} depletion</span>
+      </div>
+      <div class="vblock-body">
+        <p>${d.immunity_finding || ''}</p>
+        <div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div>
+      </div>
+    </div>
     ${d.prescription ? `<div class="prescription" style="margin-top:1.5rem;">
       <div class="prescription-label">What they should do next</div>
       <div class="prescription-text">${d.prescription}</div>
