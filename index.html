@@ -287,6 +287,15 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
 
+  <div id="loading" style="margin-top:1rem;">
+    <div class="loading-inner">
+      <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+      <span class="loading-text" id="loading-text">Running analysis</span>
+    </div>
+  </div>
+
+  <div id="error-box"></div>
+
   <div class="pricing-grid">
     <div class="pricing-col">
       <div class="pricing-col-header">
@@ -332,8 +341,6 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
     </div>
   </div>
 
-  <div id="error-box"></div>
-
   <div id="rate-limit-box">
     <div class="rate-limit-inner">
       <div class="rate-limit-label">Free report used</div>
@@ -343,13 +350,6 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
         <button class="rate-limit-alt" onclick="startCheckout('archive')">5-pack &mdash; $149</button>
       </div>
     </div>
-  </div>
-</div>
-
-<div id="loading">
-  <div class="loading-inner">
-    <div class="loading-bar"><div class="loading-bar-fill"></div></div>
-    <span class="loading-text" id="loading-text">Running analysis</span>
   </div>
 </div>
 
