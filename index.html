@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>When The Crowd Turns — Collapse Risk Instrument</title>
-<meta name="description" content="A five-variable collapse risk instrument for public figures. Built on the Chartreuse Explosives framework.">
+<title>Collapse Risk Instrument — Chartreuse Explosives</title>
+<meta name="description" content="Five variables. Five stages. The instrument that reads institutional collapse before the room figures it out.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
   --black: #0a0a0a;
   --near-black: #111111;
   --surface: #161616;
-  --surface2: #1e1e1e;
   --border: #2a2a2a;
   --border-bright: #3a3a3a;
   --chartreuse: #c8e600;
@@ -27,389 +26,126 @@
   --sans: 'IBM Plex Sans', sans-serif;
   --display: 'Bebas Neue', sans-serif;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  background: var(--black);
-  color: var(--white);
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.6;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
+body { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 15px; line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; }
 a { color: var(--chartreuse); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-nav {
-  border-bottom: 1px solid var(--border);
-  padding: 0 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 48px;
-  position: sticky;
-  top: 0;
-  background: var(--black);
-  z-index: 100;
-}
-.nav-mark {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-}
-.nav-link {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
+/* NAV */
+nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; height: 48px; position: sticky; top: 0; background: var(--black); z-index: 100; }
+.nav-mark { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .12em; color: var(--chartreuse); text-transform: uppercase; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-link { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
 .nav-link:hover { color: var(--white); text-decoration: none; }
 
-.hero {
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 1.25rem 2.5rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-.hero-title {
-  font-family: var(--display);
-  font-size: clamp(48px, 10vw, 96px);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  margin-bottom: 1.25rem;
-}
+/* HERO */
+.hero { border-bottom: 1px solid var(--border); padding: 4rem 1.25rem 3rem; max-width: 960px; margin: 0 auto; }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero-title { font-family: var(--display); font-size: clamp(48px, 10vw, 96px); line-height: .95; letter-spacing: .02em; color: var(--white); margin-bottom: 1.5rem; }
 .hero-title span { color: var(--chartreuse); }
-.hero-lines {
-  margin-top: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-.hero-lines p {
-  font-size: clamp(16px, 3vw, 22px);
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.5;
-}
-.hero-why {
-  font-size: clamp(16px, 3vw, 22px) !important;
-  font-weight: 400 !important;
-  color: var(--chartreuse) !important;
-  margin-top: 0.75rem !important;
-}
+.hero-body { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 2rem; max-width: 640px; }
+.hero-body p { font-size: clamp(16px, 2.5vw, 20px); font-weight: 300; color: var(--muted); line-height: 1.6; }
+.hero-body p.hero-kicker { color: var(--white); font-weight: 400; }
+.hero-examples { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 0; margin-top: 1.5rem; }
+.hero-examples-label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-right: .75rem; }
+.hero-example-link { font-family: var(--mono); font-size: 11px; color: var(--chartreuse); cursor: pointer; margin-right: 1.25rem; border-bottom: 1px solid var(--chartreuse-dim); padding-bottom: 1px; transition: color .1s; }
+.hero-example-link:hover { color: var(--white); border-color: var(--border-bright); }
 
-.bridge {
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 2rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.bridge p {
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 640px;
-  margin-bottom: 1.25rem;
-}
-.bridge p:last-child { margin-bottom: 0; }
-.bridge-cta {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--white) !important;
-  margin-top: 2rem !important;
-}
+/* VARS STRIP */
+.vars-strip { border-bottom: 1px solid var(--border); padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; }
+.vars-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.25rem; }
+.vars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.var-item { background: var(--near-black); padding: 1rem 1.25rem; }
+.var-item-name { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 6px; }
+.var-item-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; }
 
-.vars-strip {
-  border-bottom: 1px solid var(--border);
-  padding: 2rem 1.25rem;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.vars-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-.vars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-.var-item {
-  background: var(--near-black);
-  padding: 1rem 1.25rem;
-}
-.var-item-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.var-item-desc {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.input-section {
-  padding: 2rem 1.25rem;
-  max-width: 960px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--border);
-}
-.input-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  display: block;
-}
-.input-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--muted);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-.input-prescription {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--white);
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
-  max-width: 600px;
-}
-
-.input-row {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--border-bright);
-  width: 100%;
-  max-width: 600px;
-}
+/* INPUT SECTION */
+.input-section { padding: 2.5rem 1.25rem; max-width: 960px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+.input-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: .75rem; display: block; }
+.input-row { display: flex; gap: 0; border: 1px solid var(--border-bright); width: 100%; max-width: 640px; }
 .input-row:focus-within { border-color: var(--chartreuse); }
-#artist-input {
-  flex: 1;
-  background: var(--surface);
-  border: none;
-  outline: none;
-  padding: 0 1rem;
-  height: 52px;
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--white);
-  letter-spacing: 0.01em;
-  min-width: 0;
-}
+#artist-input { flex: 1; background: var(--surface); border: none; outline: none; padding: 0 1rem; height: 52px; font-family: var(--sans); font-size: 16px; color: var(--white); min-width: 0; }
 #artist-input::placeholder { color: var(--muted); }
-#generate-btn {
-  background: var(--chartreuse);
-  border: none;
-  padding: 0 1.25rem;
-  height: 52px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--black);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s;
-  flex-shrink: 0;
-}
+#generate-btn { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 52px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background .15s; flex-shrink: 0; }
 #generate-btn:hover { background: #d4f500; }
-#generate-btn:active { background: #b0ca00; }
 #generate-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
 
-.examples {
-  margin-top: 1rem;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0;
-  align-items: center;
-}
-.examples span { margin-right: 0.5rem; }
-.example-link {
-  color: var(--muted);
-  cursor: pointer;
-  margin-right: 0.875rem;
-  transition: color 0.1s;
-  border-bottom: 1px solid var(--border-bright);
-  padding-bottom: 1px;
-}
-.example-link:hover { color: var(--chartreuse); border-color: var(--chartreuse); }
+/* PRICING GRID */
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; max-width: 640px; }
+.pricing-col { background: var(--near-black); padding: 1.25rem; }
+.pricing-col--paid { background: #0d1200; }
+.pricing-col-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
+.pricing-col-name { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.pricing-col--paid .pricing-col-name { color: var(--chartreuse); }
+.pricing-col-price { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.pricing-col--paid .pricing-col-price { color: var(--chartreuse); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.pricing-feature { font-family: var(--mono); font-size: 10px; letter-spacing: .04em; line-height: 1.4; padding-left: 1.25rem; position: relative; }
+.pricing-feature::before { content: ''; position: absolute; left: 0; top: 3px; width: 8px; height: 8px; border-radius: 50%; }
+.pricing-feature--yes { color: var(--white); }
+.pricing-feature--yes::before { background: var(--success); }
+.pricing-feature--no { color: var(--muted); }
+.pricing-feature--no::before { background: var(--border-bright); }
+.pricing-note { font-size: 11px; font-weight: 300; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+.pricing-cta { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--chartreuse); cursor: pointer; border-top: 1px solid var(--chartreuse-dim); padding-top: .875rem; display: block; transition: color .15s; background: none; border-left: none; border-right: none; border-bottom: none; text-align: left; width: 100%; }
+.pricing-cta:hover { color: var(--white); }
+.pricing-pack { font-family: var(--mono); font-size: 10px; color: var(--chartreuse-dim); cursor: pointer; margin-top: .5rem; display: block; letter-spacing: .06em; background: none; border: none; text-align: left; padding: 0; }
+.pricing-pack:hover { color: var(--chartreuse); }
 
-.license-section {
-  max-width: 600px;
-  margin-top: 1.25rem;
-  border: 1px solid var(--border);
-  background: var(--surface);
-}
-.license-header {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.license-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--chartreuse);
-  text-transform: uppercase;
-}
-.license-status {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
+/* LICENSE */
+.license-section { max-width: 640px; margin-top: 1.25rem; border: 1px solid var(--border); background: var(--surface); }
+.license-header { padding: .75rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.license-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--chartreuse); text-transform: uppercase; }
+.license-status { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--muted); }
 .license-status.valid { color: var(--success); }
 .license-status.invalid { color: var(--danger); }
-.license-row { display: flex; gap: 0; }
-#license-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 0.75rem 1rem;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--white);
-  letter-spacing: 0.08em;
-  min-width: 0;
-}
+.license-row { display: flex; }
+#license-input { flex: 1; background: transparent; border: none; outline: none; padding: .75rem 1rem; font-family: var(--mono); font-size: 12px; color: var(--white); letter-spacing: .08em; min-width: 0; }
 #license-input::placeholder { color: var(--border-bright); }
-#license-btn {
-  background: transparent;
-  border: none;
-  border-left: 1px solid var(--border);
-  padding: 0 1rem;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.15s;
-}
+#license-btn { background: transparent; border: none; border-left: 1px solid var(--border); padding: 0 1rem; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); cursor: pointer; white-space: nowrap; }
 #license-btn:hover { color: var(--chartreuse); }
 
+/* LOADING / ERROR */
 #loading { display: none; padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; }
 #loading.visible { display: block; }
 .loading-inner { display: flex; align-items: center; gap: 12px; }
 .loading-bar { width: 160px; height: 2px; background: var(--border); overflow: hidden; }
-.loading-bar-fill {
-  height: 2px;
-  background: var(--chartreuse);
-  animation: loadbar 1.8s ease-in-out infinite;
-}
-@keyframes loadbar {
-  0% { width: 0%; margin-left: 0%; }
-  50% { width: 60%; margin-left: 20%; }
-  100% { width: 0%; margin-left: 100%; }
-}
-.loading-text {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
+.loading-bar-fill { height: 2px; background: var(--chartreuse); animation: loadbar 1.8s ease-in-out infinite; }
+@keyframes loadbar { 0% { width:0%;margin-left:0%; } 50% { width:60%;margin-left:20%; } 100% { width:0%;margin-left:100%; } }
+.loading-text { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
 
-#error-box {
-  display: none;
-  padding: 1rem 1.25rem;
-  background: #1a0a0a;
-  border: 1px solid var(--danger);
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--danger);
-  max-width: 600px;
-  margin-top: 1rem;
-}
+#error-box { display: none; padding: 1rem 1.25rem; background: #1a0a0a; border: 1px solid var(--danger); font-family: var(--mono); font-size: 12px; color: var(--danger); max-width: 640px; margin-top: 1rem; }
 #error-box.visible { display: block; }
 
-#rate-limit-box { display: none; max-width: 600px; margin-top: 1rem; border: 1px solid var(--chartreuse-dim); background: #0d1200; }
+/* RATE LIMIT */
+#rate-limit-box { display: none; max-width: 640px; margin-top: 1rem; border: 1px solid var(--chartreuse-dim); background: #0d1200; }
 #rate-limit-box.visible { display: block; }
 .rate-limit-inner { padding: 1.25rem; }
-.rate-limit-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 8px; }
+.rate-limit-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 8px; }
 .rate-limit-message { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.6; margin-bottom: 1.25rem; }
 .rate-limit-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-.rate-limit-cta {
-  background: var(--chartreuse);
-  border: none;
-  padding: 0 1.5rem;
-  height: 44px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--black);
-  cursor: pointer;
-  white-space: nowrap;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: background 0.15s;
-}
-.rate-limit-cta:hover { background: #d4f500; text-decoration: none; }
-.rate-limit-reset { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+.rate-limit-cta { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 44px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; transition: background .15s; }
+.rate-limit-cta:hover { background: #d4f500; }
+.rate-limit-alt { font-family: var(--mono); font-size: 11px; color: var(--muted); cursor: pointer; }
+.rate-limit-alt:hover { color: var(--chartreuse); }
 
-#report { display: none; max-width: 960px; margin: 0 auto; padding: 0 1.25rem 4rem; animation: fadein 0.4s ease; }
+/* REPORT */
+#report { display: none; max-width: 960px; margin: 0 auto; padding: 0 1.25rem 4rem; animation: fadein .4s ease; }
 #report.visible { display: block; }
-@keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadein { from { opacity:0;transform:translateY(8px); } to { opacity:1;transform:translateY(0); } }
 
-.report-header { padding: 2rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; }
-.report-artist { font-family: var(--display); font-size: clamp(32px, 8vw, 64px); line-height: 1; letter-spacing: 0.03em; color: var(--white); }
-.report-meta-col { text-align: right; }
-.report-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
-.report-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 4px; }
+.report-header { padding: 2rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: .75rem; }
+.report-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 4px; }
+.report-artist { font-family: var(--display); font-size: clamp(32px, 8vw, 64px); line-height: 1; letter-spacing: .03em; color: var(--white); }
+.report-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .08em; }
 
 .risk-banner { padding: 1rem 1.25rem; border-left: 3px solid; margin-bottom: 1.5rem; }
 .risk-banner.low { border-color: var(--success); background: #041a12; }
 .risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
 .risk-banner.high { border-color: #e07b00; background: #1a0f00; }
 .risk-banner.critical { border-color: var(--danger); background: #1a0808; }
-.risk-level { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+.risk-level { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
 .risk-banner.low .risk-level { color: var(--success); }
 .risk-banner.moderate .risk-level { color: var(--warning); }
 .risk-banner.high .risk-level { color: #e07b00; }
@@ -417,276 +153,85 @@ nav {
 .risk-summary-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.6; }
 
 .score-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.5rem; }
-.score-cell { background: var(--surface); padding: 1rem 0.75rem; }
-.score-cell-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+@media (max-width: 600px) { .score-grid { grid-template-columns: repeat(3, 1fr); } }
+.score-cell { background: var(--surface); padding: 1rem .75rem; }
+.score-cell-label { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
 .score-cell-value { font-family: var(--display); font-size: 28px; line-height: 1; margin-bottom: 4px; }
-.score-cell-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.03em; }
-.val-low { color: var(--success); }
-.val-mod { color: var(--warning); }
-.val-high { color: #e07b00; }
-.val-crit { color: var(--danger); }
-.val-neutral { color: var(--white); }
+.score-cell-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .03em; }
+.val-low { color: var(--success); } .val-mod { color: var(--warning); } .val-high { color: #e07b00; } .val-crit { color: var(--danger); } .val-neutral { color: var(--white); }
 
-.section-header { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
-.var-blocks { margin-bottom: 1.5rem; }
+.section-header { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--border); }
 .vblock { border: 1px solid var(--border); margin-bottom: 1px; }
-.vblock-header { display: flex; justify-content: space-between; align-items: center; padding: 0.875rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); gap: 0.5rem; }
-.vblock-name { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--chartreuse); text-transform: uppercase; }
+.vblock-header { display: flex; justify-content: space-between; align-items: center; padding: .875rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); gap: .5rem; }
+.vblock-name { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--chartreuse); text-transform: uppercase; }
 .vblock-score { font-family: var(--mono); font-size: 10px; font-weight: 500; text-align: right; flex-shrink: 0; }
 .vblock-body { padding: 1rem; background: var(--near-black); }
 .vblock-body p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
 .bar { height: 2px; background: var(--border); margin-top: 1rem; }
-.bar-fill { height: 2px; transition: width 0.6s ease; }
-.bar-green { background: var(--success); }
-.bar-amber { background: var(--warning); }
-.bar-orange { background: #e07b00; }
-.bar-red { background: var(--danger); }
+.bar-fill { height: 2px; transition: width .6s ease; }
+.bar-green { background: var(--success); } .bar-amber { background: var(--warning); } .bar-orange { background: #e07b00; } .bar-red { background: var(--danger); }
 
 .stage-pips { display: flex; gap: 3px; margin-top: 10px; }
 .pip { flex: 1; height: 3px; background: var(--border); }
-.pip.past { background: var(--chartreuse-dim); }
-.pip.active { background: var(--chartreuse); }
+.pip.past { background: var(--chartreuse-dim); } .pip.active { background: var(--chartreuse); }
 
 .prescription { border: 1px solid var(--chartreuse-dim); background: #0d1200; padding: 1.25rem; margin-bottom: 1.5rem; }
-.prescription-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 10px; }
+.prescription-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 10px; }
 .prescription-text { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
 
 .conclusion { border-left: 2px solid var(--border-bright); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
 .conclusion p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
 
 .sources-block { border: 1px solid var(--border); margin-bottom: 1.5rem; }
-.sources-header { padding: 0.75rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--chartreuse); text-transform: uppercase; }
-.source-item { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
+.sources-header { padding: .75rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--chartreuse); text-transform: uppercase; }
+.source-item { padding: .75rem 1rem; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
 .source-item:last-child { border-bottom: none; }
-.source-title { font-size: 13px; font-weight: 400; color: var(--white); }
+.source-title { font-size: 13px; color: var(--white); }
 .source-meta { font-family: var(--mono); font-size: 10px; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
 .source-url { font-family: var(--mono); font-size: 10px; color: var(--chartreuse-dim); word-break: break-all; }
 
+/* SHARE BAR */
+.share-bar { border: 1px solid var(--border); background: var(--surface); padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.share-label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+.share-url { font-family: var(--mono); font-size: 11px; color: var(--chartreuse); letter-spacing: .04em; }
+.copy-btn { background: transparent; border: 1px solid var(--border-bright); padding: 0 1rem; height: 36px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+.copy-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
+
+/* UPGRADE GATE */
 .upgrade-gate { border: 1px solid var(--border-bright); background: var(--surface); margin-bottom: 2rem; }
-.upgrade-gate-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
-.upgrade-gate-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; }
-.upgrade-gate-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--chartreuse); text-transform: uppercase; border: 1px solid var(--chartreuse-dim); padding: 2px 8px; }
+.upgrade-gate-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.upgrade-gate-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.upgrade-gate-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--chartreuse); text-transform: uppercase; border: 1px solid var(--chartreuse-dim); padding: 2px 8px; }
 .upgrade-gate-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); }
-.upgrade-feature { background: var(--near-black); padding: 0.875rem 1rem; display: flex; align-items: flex-start; gap: 8px; opacity: 0.5; cursor: default; }
-.upgrade-feature-icon { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 1px; flex-shrink: 0; }
-.upgrade-feature-text { font-size: 12px; font-weight: 300; color: var(--white); line-height: 1.5; }
-.upgrade-feature-text strong { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; font-weight: 500; }
+.upgrade-feature { background: var(--near-black); padding: .875rem 1rem; }
+.upgrade-feature-text { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+.upgrade-feature-text strong { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; font-weight: 500; }
 .upgrade-gate-cta { padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
 .upgrade-gate-cta p { font-size: 12px; font-weight: 300; color: var(--muted); }
-.upgrade-btn { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 44px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background 0.15s; width: 100%; }
+.upgrade-btn { background: var(--chartreuse); border: none; padding: 0 1.5rem; height: 44px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background .15s; }
 .upgrade-btn:hover { background: #d4f500; }
-.upgrade-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
 
-.tier-notice { max-width: 600px; margin-top: 1.25rem; padding: 0.875rem 1rem; background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.5rem; }
-.tier-notice-limits { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--muted); line-height: 1.6; }
-.tier-notice-paid { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--white); }
-.tier-notice-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; color: var(--chartreuse); cursor: pointer; }
-.tier-notice-link:hover { text-decoration: underline; }
-
-/* EXPORT ROW */
-.export-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.export-format-group {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--border-bright);
-}
-.export-format-btn {
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--border-bright);
-  padding: 0 0.875rem;
-  height: 40px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s;
-}
-.export-format-btn:last-child { border-right: none; }
-.export-format-btn:hover { background: var(--surface); color: var(--white); }
-.export-format-btn.active {
-  background: var(--chartreuse);
-  color: var(--black);
-  border-color: var(--chartreuse);
-}
-.export-btn {
-  background: transparent;
-  border: 1px solid var(--border-bright);
-  padding: 0 1.25rem;
-  height: 40px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.15s;
-}
-.export-btn:hover { border-color: var(--chartreuse); color: var(--chartreuse); }
-.export-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.export-btn-icon { font-size: 14px; }
-.export-btn-note { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: 0.06em; }
-
-footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
-.footer-mark { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
+.footer-mark { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--muted); }
 .footer-mark a { color: var(--chartreuse-dim); }
-.footer-right { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: 0.06em; }
+.footer-right { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: .06em; }
 
 @media (max-width: 640px) {
-  .bridge { display: none; }
   .vars-strip { display: none; }
-  .score-grid { grid-template-columns: repeat(3, 1fr); }
-  .upgrade-gate-features { grid-template-columns: 1fr 1fr; }
-  .upgrade-gate-cta { flex-direction: column; align-items: stretch; }
-  .upgrade-gate-cta p { text-align: center; }
+  .pricing-grid { grid-template-columns: 1fr; }
   .rate-limit-actions { flex-direction: column; align-items: stretch; }
-  .rate-limit-cta { justify-content: center; }
-  .export-row { flex-direction: column; align-items: flex-start; }
+  .share-bar { flex-direction: column; align-items: flex-start; }
 }
-@media (min-width: 641px) and (max-width: 960px) {
-  .hero { padding: 4rem 2rem 3rem; }
-  .score-grid { grid-template-columns: repeat(5, 1fr); }
-  .upgrade-btn { width: auto; }
-}
-
-/* HERO EXAMPLES */
-.hero-examples {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 0;
-}
-.hero-examples-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-right: 0.75rem;
-}
-.hero-example-link {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--chartreuse);
-  cursor: pointer;
-  margin-right: 1.25rem;
-  border-bottom: 1px solid var(--chartreuse-dim);
-  padding-bottom: 1px;
-  transition: color 0.1s;
-}
-.hero-example-link:hover { color: var(--white); border-color: var(--border-bright); }
-
-/* TIER COMPARE */
-.tier-compare {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-top: 1.5rem;
-  max-width: 600px;
-}
-.tier-col {
-  background: var(--near-black);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.tier-col--paid { background: #0d1200; }
-.tier-col-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.tier-col-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-.tier-col--paid .tier-col-name { color: var(--chartreuse); }
-.tier-col-price {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-.tier-col--paid .tier-col-price { color: var(--chartreuse); }
-.tier-col-features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.tier-feature {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  line-height: 1.4;
-  padding-left: 1.25rem;
-  position: relative;
-}
-.tier-feature::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 3px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-.tier-feature--yes { color: var(--white); }
-.tier-feature--yes::before { background: var(--success); }
-.tier-feature--no { color: var(--muted); }
-.tier-feature--no::before { background: var(--border-bright); }
-.tier-col-note {
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.tier-col-cta {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--chartreuse);
-  cursor: pointer;
-  border-top: 1px solid var(--chartreuse-dim);
-  padding-top: 0.875rem;
-  margin-top: auto;
-  transition: color 0.15s;
-}
-.tier-col-cta:hover { color: var(--white); }
-
 @media (max-width: 480px) {
-  .tier-compare { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
 }
-
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
 <nav>
   <span class="nav-mark">Chartreuse Explosives</span>
   <div class="nav-right">
-    <a href="/pricing" class="nav-link">Pricing</a>
     <a href="/about" class="nav-link">The framework</a>
     <a href="https://chartreuseexplosives.com" class="nav-link">CE</a>
   </div>
@@ -694,25 +239,19 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 
 <div class="hero">
   <div class="hero-eyebrow">Collapse Risk Instrument</div>
-  <h1 class="hero-title">Type a name.<br><span>Get the verdict.</span></h1>
-  <div class="hero-lines">
-    <p>The crowd hasn't left yet.</p>
-    <p>But they stopped believing six months ago.</p>
-    <p>By the time it's obvious, it's already over.</p>
+  <h1 class="hero-title">Every collapsed<br>institution looked fine<br><span>six months before.</span></h1>
+  <div class="hero-body">
+    <p>Boeing had a backlog. Paramount had content. The DEI industry had Fortune 500 contracts.</p>
+    <p>The numbers were real. The belief contract was already gone.</p>
+    <p class="hero-kicker">The Collapse Risk Instrument reads what the numbers don't show. The five-variable sequence that runs before every institutional collapse. Same shape every time. Same order every time.</p>
   </div>
   <div class="hero-examples">
     <span class="hero-examples-label">Try:</span>
-    <span class="hero-example-link" onclick="runExample('Elon Musk')">Elon Musk</span>
-    <span class="hero-example-link" onclick="runExample('Kanye West')">Kanye West</span>
-    <span class="hero-example-link" onclick="runExample('Balenciaga')">Balenciaga</span>
-    <span class="hero-example-link" onclick="runExample('Donald Trump')">Donald Trump</span>
+    <span class="hero-example-link" onclick="runExample('Boeing')">Boeing</span>
+    <span class="hero-example-link" onclick="runExample('Paramount Global')">Paramount</span>
+    <span class="hero-example-link" onclick="runExample('WeWork')">WeWork</span>
+    <span class="hero-example-link" onclick="runExample('DEI Consulting Industry')">DEI Consulting</span>
   </div>
-</div>
-
-<div class="bridge">
-  <p>By the time it's visible, it's already late. The crowd doesn't announce the exit. It just stops believing. Then it leaves. Then it rewrites what it believed in the first place.</p>
-  <p>The break happens in five moves. Every time. Same sequence. Same shape.</p>
-  <p class="bridge-cta">This is the instrument that runs that analysis. Type a name. Get the read.</p>
 </div>
 
 <div class="vars-strip">
@@ -724,64 +263,65 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
     </div>
     <div class="var-item">
       <div class="var-item-name">Root cause</div>
-      <div class="var-item-desc">Shame or betrayal. The audience felt foolish or they felt sold out. Different breaks. Different endings. Different timelines.</div>
+      <div class="var-item-desc">Shame or betrayal. The audience felt foolish or they felt sold out. Different breaks. Different endings.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Contract depth</div>
-      <div class="var-item-desc">How deep the audience went in. Surface fans leave quietly. True believers become the loudest critics on the way out.</div>
+      <div class="var-item-desc">How deep the audience went in. Surface investors exit quietly. True believers become the loudest critics on the way out.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Collapse stage</div>
-      <div class="var-item-desc">Zero to five. Drift to inversion. The line between stage two and stage three is the last point where any of this is still fixable.</div>
+      <div class="var-item-desc">Zero to five. Drift to inversion. Stage two is the last point where any of this is still fixable.</div>
     </div>
     <div class="var-item">
       <div class="var-item-name">Immunity load</div>
-      <div class="var-item-desc">How much runway is left. Catalog depth, audience age, cultural moment. When it runs out, the next mistake isn't a mistake. It's the verdict.</div>
+      <div class="var-item-desc">How much runway is left. When it runs out, the next mistake isn't a mistake. It's the verdict.</div>
     </div>
   </div>
 </div>
 
 <div class="input-section">
-  <label class="input-label" for="artist-input">Run it</label>
+  <label class="input-label" for="artist-input">Run it before the room figures it out</label>
   <div class="input-row">
-    <input type="text" id="artist-input" placeholder="Artist, politician, athlete, brand&hellip;" autocomplete="off" />
+    <input type="text" id="artist-input" placeholder="Executive, institution, brand, public figure&hellip;" autocomplete="off" />
     <button id="generate-btn" onclick="generateReport()">Run analysis</button>
   </div>
 
-  <div class="tier-compare">
-    <div class="tier-col tier-col--free">
-      <div class="tier-col-header">
-        <span class="tier-col-name">Free</span>
-        <span class="tier-col-price">3 / day</span>
+  <div class="pricing-grid">
+    <div class="pricing-col">
+      <div class="pricing-col-header">
+        <span class="pricing-col-name">Free</span>
+        <span class="pricing-col-price">1 report</span>
       </div>
-      <ul class="tier-col-features">
-        <li class="tier-feature tier-feature--yes">Five-variable analysis</li>
-        <li class="tier-feature tier-feature--yes">Prescription &amp; verdict</li>
-        <li class="tier-feature tier-feature--yes">Downloadable card</li>
-        <li class="tier-feature tier-feature--no">Live web search</li>
-        <li class="tier-feature tier-feature--no">Sourced findings</li>
-        <li class="tier-feature tier-feature--no">Data current as of today</li>
+      <ul class="pricing-features">
+        <li class="pricing-feature pricing-feature--yes">Five-variable analysis</li>
+        <li class="pricing-feature pricing-feature--yes">Prescription &amp; verdict</li>
+        <li class="pricing-feature pricing-feature--no">Live web search</li>
+        <li class="pricing-feature pricing-feature--no">Sourced findings</li>
+        <li class="pricing-feature pricing-feature--no">Current as of today</li>
+        <li class="pricing-feature pricing-feature--no">Shareable report link</li>
       </ul>
-      <div class="tier-col-note">Training data through mid-2025. Good for established figures with long histories. Not for breaking situations.</div>
+      <div class="pricing-note">Training data through mid-2025. Good for established subjects with long histories. Not for live situations.</div>
     </div>
-    <div class="tier-col tier-col--paid">
-      <div class="tier-col-header">
-        <span class="tier-col-name">Paid</span>
-        <span class="tier-col-price">$5 / report</span>
+    <div class="pricing-col pricing-col--paid">
+      <div class="pricing-col-header">
+        <span class="pricing-col-name">Paid</span>
+        <span class="pricing-col-price">$49 / report</span>
       </div>
-      <ul class="tier-col-features">
-        <li class="tier-feature tier-feature--yes">Five-variable analysis</li>
-        <li class="tier-feature tier-feature--yes">Prescription &amp; verdict</li>
-        <li class="tier-feature tier-feature--yes">Downloadable card</li>
-        <li class="tier-feature tier-feature--yes">Live web search</li>
-        <li class="tier-feature tier-feature--yes">Sourced findings</li>
-        <li class="tier-feature tier-feature--yes">Data current as of today</li>
+      <ul class="pricing-features">
+        <li class="pricing-feature pricing-feature--yes">Five-variable analysis</li>
+        <li class="pricing-feature pricing-feature--yes">Prescription &amp; verdict</li>
+        <li class="pricing-feature pricing-feature--yes">Live web search</li>
+        <li class="pricing-feature pricing-feature--yes">Sourced findings</li>
+        <li class="pricing-feature pricing-feature--yes">Current as of today</li>
+        <li class="pricing-feature pricing-feature--yes">Shareable report link</li>
       </ul>
-      <div class="tier-col-cta" onclick="startCheckout('intel')">Get a paid report &rarr;</div>
+      <button class="pricing-cta" onclick="startCheckout('intel')">Get a single report &rarr; $49</button>
+      <button class="pricing-pack" onclick="startCheckout('archive')">5-report pack &rarr; $149</button>
     </div>
   </div>
 
-  <div class="license-section" style="margin-top:1.25rem;">
+  <div class="license-section">
     <div class="license-header">
       <span class="license-label">Have a license key?</span>
       <span class="license-status" id="license-status">Not activated</span>
@@ -793,13 +333,14 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
   </div>
 
   <div id="error-box"></div>
+
   <div id="rate-limit-box">
     <div class="rate-limit-inner">
-      <div class="rate-limit-label">Daily limit reached</div>
-      <div class="rate-limit-message">You've used your 3 free reports for today. Free reports reset at midnight. Paid reports use live web search and have no daily limit.</div>
+      <div class="rate-limit-label">Free report used</div>
+      <div class="rate-limit-message">You've run your one free report. Paid reports use live web search, sourced findings, and generate a permanent shareable link.</div>
       <div class="rate-limit-actions">
-        <button class="rate-limit-cta" onclick="startCheckout('intel')">Get a paid report &mdash; $5</button>
-        <span class="rate-limit-reset">Or: <span class="tier-notice-link" onclick="startCheckout('archive')" style="cursor:pointer;">10 reports for $29</span></span>
+        <button class="rate-limit-cta" onclick="startCheckout('intel')">Single report &mdash; $49</button>
+        <button class="rate-limit-alt" onclick="startCheckout('archive')">5-pack &mdash; $149</button>
       </div>
     </div>
   </div>
@@ -815,17 +356,15 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 <div id="report"></div>
 
 <footer>
-  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;·&nbsp; <a href="/about">The Collapse Framework</a></span>
-  <span class="footer-right">Collapse Risk Instrument v1.0</span>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;&middot;&nbsp; <a href="/about">The Collapse Framework</a></span>
+  <span class="footer-right">Collapse Risk Instrument v2.0</span>
 </footer>
 
 <script>
 const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
-
 let activeLicenseKey = null;
 let licenseCredits = null;
-let exportFormat = 'twitter'; // default
 
 async function activateLicense() {
   const key = document.getElementById('license-input').value.trim();
@@ -843,7 +382,7 @@ async function activateLicense() {
     if (data.valid) {
       activeLicenseKey = data.key;
       licenseCredits = data.remaining;
-      status.textContent = `Active · ${data.tier} · ${data.remaining} report${data.remaining !== 1 ? 's' : ''} remaining`;
+      status.textContent = `Active · ${data.remaining} report${data.remaining !== 1 ? 's' : ''} remaining`;
       status.className = 'license-status valid';
       btn.textContent = 'Active';
     } else {
@@ -851,7 +390,7 @@ async function activateLicense() {
       status.className = 'license-status invalid';
       btn.textContent = 'Activate';
     }
-  } catch (e) {
+  } catch {
     status.textContent = 'Check failed';
     status.className = 'license-status invalid';
     btn.textContent = 'Activate';
@@ -860,7 +399,7 @@ async function activateLicense() {
 
 async function startCheckout(tier) {
   const btn = event && event.target;
-  const originalText = btn ? btn.textContent : '';
+  const orig = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = 'Redirecting...'; }
   try {
     const res = await fetch(WORKER_URL + '/create-checkout', {
@@ -873,24 +412,11 @@ async function startCheckout(tier) {
       window.location.href = data.url;
     } else {
       alert('Checkout failed. Please try again.');
-      if (btn) { btn.disabled = false; btn.textContent = originalText; }
+      if (btn) { btn.disabled = false; btn.textContent = orig; }
     }
-  } catch (e) {
+  } catch {
     alert('Checkout failed. Please try again.');
-    if (btn) { btn.disabled = false; btn.textContent = originalText; }
-  }
-}
-
-function setExportFormat(fmt) {
-  exportFormat = fmt;
-  document.querySelectorAll('.export-format-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.fmt === fmt);
-  });
-  const note = document.querySelector('.export-btn-note');
-  if (note) {
-    const sizes = { twitter: '1200×630', ig_square: '1080×1080', ig_portrait: '1080×1350', argument: '1200×630' };
-    const labels = { twitter: 'X / Twitter', ig_square: 'Instagram Square', ig_portrait: 'Instagram Portrait', argument: 'Argument Card' };
-    note.textContent = `${labels[fmt]} · ${sizes[fmt]}`;
+    if (btn) { btn.disabled = false; btn.textContent = orig; }
   }
 }
 
@@ -920,28 +446,43 @@ async function generateReport() {
   try {
     const headers = { 'Content-Type': 'application/json' };
     if (activeLicenseKey) headers['X-License-Key'] = activeLicenseKey;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 180000);
+
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ artist: name })
+      body: JSON.stringify({ artist: name }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
     loading.classList.remove('visible');
+
     if (res.status === 429) {
       rateLimitBox.classList.add('visible');
       rateLimitBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
     if (!res.ok) throw new Error('Worker error: ' + res.status);
+
     const data = await res.json();
-    if (activeLicenseKey && data) {
+    if (data.error) throw new Error(data.error);
+
+    if (activeLicenseKey) {
       licenseCredits = Math.max(0, (licenseCredits || 1) - 1);
       const status = document.getElementById('license-status');
       if (status) status.textContent = `Active · ${licenseCredits} report${licenseCredits !== 1 ? 's' : ''} remaining`;
     }
+
     renderReport(data, !!activeLicenseKey);
   } catch (e) {
     loading.classList.remove('visible');
-    errorBox.textContent = 'Analysis failed. Check your connection or try again.';
+    if (e.name === 'AbortError') {
+      errorBox.textContent = 'Analysis timed out. Try again or use a more specific subject name.';
+    } else {
+      errorBox.textContent = 'Analysis failed. Check your connection or try again.';
+    }
     errorBox.classList.add('visible');
     console.error(e);
   } finally {
@@ -949,37 +490,13 @@ async function generateReport() {
   }
 }
 
-function scoreClass(n) {
-  if (n <= 3) return 'val-low';
-  if (n <= 5) return 'val-mod';
-  if (n <= 7) return 'val-high';
-  return 'val-crit';
-}
-function barClass(n) {
-  if (n <= 3) return 'bar-green';
-  if (n <= 5) return 'bar-amber';
-  if (n <= 7) return 'bar-orange';
-  return 'bar-red';
-}
-function immunityColor(n) {
-  if (n >= 7) return 'val-low';
-  if (n >= 5) return 'val-mod';
-  if (n >= 3) return 'val-high';
-  return 'val-crit';
-}
-function immunityBar(n) {
-  if (n >= 7) return 'bar-green';
-  if (n >= 5) return 'bar-amber';
-  if (n >= 3) return 'bar-orange';
-  return 'bar-red';
-}
-function capitalize(s) {
-  if (!s) return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
+function scoreClass(n) { return n<=3?'val-low':n<=5?'val-mod':n<=7?'val-high':'val-crit'; }
+function barClass(n) { return n<=3?'bar-green':n<=5?'bar-amber':n<=7?'bar-orange':'bar-red'; }
+function immunityColor(n) { return n>=7?'val-low':n>=5?'val-mod':n>=3?'val-high':'val-crit'; }
+function immunityBar(n) { return n>=7?'bar-green':n>=5?'bar-amber':n>=3?'bar-orange':'bar-red'; }
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
 
 function renderReport(d, isPaid) {
-  currentReport = d;
   const riskClass = d.overall_risk || 'moderate';
   const riskLabel = { low: 'Low risk', moderate: 'Moderate risk', high: 'High risk', critical: 'Critical risk' };
   const stageName = d.stage_name || stageNames[d.collapse_stage] || 'Unknown';
@@ -993,17 +510,32 @@ function renderReport(d, isPaid) {
 
   let sourcesHtml = '';
   if (isPaid && d.sources && d.sources.length > 0) {
-    const items = d.sources.map(s => `
-      <div class="source-item">
-        <div class="source-title">${s.title || 'Untitled'}</div>
-        <div class="source-meta">
-          <span>${s.publication || ''}</span>
-          ${s.date ? `<span>${s.date}</span>` : ''}
-        </div>
-        <div class="source-url">${s.url || ''}</div>
+    const real = d.sources.filter(s => s && s.url && s.url.startsWith('http') && s.title !== 'Analysis based on training data');
+    if (real.length > 0) {
+      const items = real.map(s => `
+        <div class="source-item">
+          <div class="source-title">${s.title || 'Untitled'}</div>
+          <div class="source-meta"><span>${s.publication || ''}</span>${s.date ? `<span>${s.date}</span>` : ''}</div>
+          <a class="source-url" href="${s.url}" target="_blank" rel="noopener">${s.url}</a>
+        </div>`).join('');
+      sourcesHtml = `<div class="sources-block">
+        <div class="sources-header">${real.length} source${real.length !== 1 ? 's' : ''} &middot; Live web search &middot; ${d.generated || ''}</div>
+        ${items}
+      </div>`;
+    }
+  }
+
+  // Share bar for paid reports with permanent link
+  let shareHtml = '';
+  if (isPaid && d.report_slug) {
+    const reportUrl = `https://collapse.chartreuseexplosives.com/r/${d.report_slug}`;
+    shareHtml = `<div class="share-bar">
+      <div>
+        <div class="share-label">Permanent link</div>
+        <div class="share-url">${reportUrl}</div>
       </div>
-    `).join('');
-    sourcesHtml = `<div class="sources-block"><div class="sources-header">Sources (${d.sources.length})</div>${items}</div>`;
+      <button class="copy-btn" onclick="copyUrl('${reportUrl}', this)">Copy link</button>
+    </div>`;
   }
 
   const upgradeHtml = isPaid ? '' : `
@@ -1014,21 +546,18 @@ function renderReport(d, isPaid) {
       </div>
       <div class="upgrade-gate-features">
         <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text"><strong>Deeper analysis</strong>Free reports work from training data. Paid reports go looking for what happened last week.</div>
+          <div class="upgrade-feature-text"><strong>Live web search</strong>Free reports run on training data. Paid reports search for what happened this week.</div>
         </div>
         <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text"><strong>Sources</strong>Web-sourced findings with citations</div>
+          <div class="upgrade-feature-text"><strong>Sourced findings</strong>Every variable backed by cited sources from the live web.</div>
         </div>
         <div class="upgrade-feature">
-          <span class="upgrade-feature-icon">&#8599;</span>
-          <div class="upgrade-feature-text"><strong>Unlimited reports</strong>No daily limits.</div>
+          <div class="upgrade-feature-text"><strong>Permanent link</strong>Shareable URL for every paid report. Post it. Send it. It doesn't expire.</div>
         </div>
       </div>
       <div class="upgrade-gate-cta">
-        <p>$5 per report &nbsp;·&nbsp; $29 for 10 reports &nbsp;·&nbsp; No account required</p>
-        <button class="upgrade-btn" onclick="startCheckout('intel')">Run a paid report — $5</button>
+        <p>$49 per report &nbsp;&middot;&nbsp; $149 for five &nbsp;&middot;&nbsp; No account required</p>
+        <button class="upgrade-btn" onclick="startCheckout('intel')">Run a paid report &mdash; $49</button>
       </div>
     </div>
   `;
@@ -1036,13 +565,12 @@ function renderReport(d, isPaid) {
   const html = `
     <div class="report-header">
       <div>
-        <div class="report-tag">Collapse risk report${isPaid ? ' · Live search' : ''}</div>
+        <div class="report-tag">Collapse risk report${isPaid ? ' &middot; Live search' : ''}</div>
         <div class="report-artist">${d.artist}</div>
       </div>
-      <div class="report-meta-col">
-        <div class="report-date">${d.generated || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-      </div>
+      <div><div class="report-date">${d.generated || ''}</div></div>
     </div>
+    ${shareHtml}
     <div class="risk-banner ${riskClass}">
       <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
       <div class="risk-summary-text">${d.risk_summary}</div>
@@ -1055,66 +583,52 @@ function renderReport(d, isPaid) {
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Root cause</div>
-        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${capitalize(d.root_cause)}</div>
-        <div class="score-cell-sub">${capitalize(d.audience_emotion)}</div>
+        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${cap(d.root_cause)}</div>
+        <div class="score-cell-sub">${cap(d.audience_emotion)}</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Depth</div>
-        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</div>
+        <div class="score-cell-value val-neutral" style="font-size:20px;padding-top:6px">${depthLabel[d.contract_depth] || cap(d.contract_depth)}</div>
         <div class="score-cell-sub">${d.career_years} yr career</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Stage</div>
-        <div class="score-cell-value ${scoreClass(d.collapse_stage)}">${d.collapse_stage}</div>
+        <div class="score-cell-value ${scoreClass(d.collapse_stage * 2)}">${d.collapse_stage}</div>
         <div class="score-cell-sub">${stageName}</div>
       </div>
       <div class="score-cell">
         <div class="score-cell-label">Immunity</div>
         <div class="score-cell-value ${immunityColor(d.immunity_load)}">${d.immunity_load}</div>
-        <div class="score-cell-sub">${capitalize(d.depletion_rate)} depletion</div>
+        <div class="score-cell-sub">${cap(d.depletion_rate)} depletion</div>
       </div>
     </div>
     <div class="section-header">Variable breakdown</div>
-    <div class="var-blocks">
-      <div class="vblock">
-        <div class="vblock-header"><span class="vblock-name">Contract drift</span><span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span></div>
-        <div class="vblock-body"><p>${d.drift_finding}</p><div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div></div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header"><span class="vblock-name">Root cause</span><span class="vblock-score">${capitalize(d.root_cause)}</span></div>
-        <div class="vblock-body"><p>${d.root_finding}</p></div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header"><span class="vblock-name">Contract depth</span><span class="vblock-score">${depthLabel[d.contract_depth] || capitalize(d.contract_depth)}</span></div>
-        <div class="vblock-body"><p>${d.depth_finding}</p></div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header"><span class="vblock-name">Collapse stage</span><span class="vblock-score ${scoreClass(d.collapse_stage)}">${stageName}</span></div>
-        <div class="vblock-body"><p>${d.stage_finding}</p><div class="stage-pips">${pips}</div></div>
-      </div>
-      <div class="vblock">
-        <div class="vblock-header"><span class="vblock-name">Immunity load</span><span class="vblock-score">${d.immunity_load}/10 &middot; ${d.depletion_rate} depletion</span></div>
-        <div class="vblock-body"><p>${d.immunity_finding}</p><div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div></div>
-      </div>
+    <div class="vblock">
+      <div class="vblock-header"><span class="vblock-name">Contract drift</span><span class="vblock-score ${scoreClass(d.drift_score)}">${d.drift_score}/10</span></div>
+      <div class="vblock-body"><p>${d.drift_finding}</p><div class="bar"><div class="bar-fill ${barClass(d.drift_score)}" style="width:${d.drift_score * 10}%"></div></div></div>
     </div>
-    <div class="prescription">
+    <div class="vblock">
+      <div class="vblock-header"><span class="vblock-name">Root cause</span><span class="vblock-score">${cap(d.root_cause)}</span></div>
+      <div class="vblock-body"><p>${d.root_finding}</p></div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header"><span class="vblock-name">Contract depth</span><span class="vblock-score">${depthLabel[d.contract_depth] || cap(d.contract_depth)}</span></div>
+      <div class="vblock-body"><p>${d.depth_finding}</p></div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header"><span class="vblock-name">Collapse stage</span><span class="vblock-score ${scoreClass(d.collapse_stage * 2)}">${stageName}</span></div>
+      <div class="vblock-body"><p>${d.stage_finding}</p><div class="stage-pips">${pips}</div></div>
+    </div>
+    <div class="vblock">
+      <div class="vblock-header"><span class="vblock-name">Immunity load</span><span class="vblock-score">${d.immunity_load}/10 &middot; ${cap(d.depletion_rate)} depletion</span></div>
+      <div class="vblock-body"><p>${d.immunity_finding}</p><div class="bar"><div class="bar-fill ${immunityBar(d.immunity_load)}" style="width:${d.immunity_load * 10}%"></div></div></div>
+    </div>
+    <div class="prescription" style="margin-top:1.5rem;">
       <div class="prescription-label">What they should do next</div>
       <div class="prescription-text">${d.prescription}</div>
     </div>
     <div class="conclusion"><p>${d.conclusion}</p></div>
     ${sourcesHtml}
-    <div class="export-row">
-      <div class="export-format-group">
-        <button class="export-format-btn active" data-fmt="twitter" onclick="setExportFormat('twitter')">X / Twitter</button>
-        <button class="export-format-btn" data-fmt="ig_square" onclick="setExportFormat('ig_square')">IG Square</button>
-        <button class="export-format-btn" data-fmt="ig_portrait" onclick="setExportFormat('ig_portrait')">IG Portrait</button>
-        <button class="export-format-btn" data-fmt="argument" onclick="setExportFormat('argument')">Argument</button>
-      </div>
-      <button class="export-btn" onclick="exportCard()">
-        <span class="export-btn-icon">&#8615;</span> Download card
-      </button>
-      <span class="export-btn-note">X / Twitter · 1200×630</span>
-    </div>
     ${upgradeHtml}
   `;
 
@@ -1124,363 +638,17 @@ function renderReport(d, isPaid) {
   reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ─── Export ───────────────────────────────────────────────────────────────────
-
-let currentReport = null;
-
-function exportCard() {
-  if (!currentReport) return;
-  const btn = document.querySelector('.export-btn');
-  if (btn) { btn.disabled = true; btn.innerHTML = '<span class="export-btn-icon">&#8635;</span> Generating...'; }
-
-  const d = currentReport;
-  const fmt = exportFormat || 'twitter';
-  const riskColors = { low: '#5dcaa5', moderate: '#ef9f27', high: '#e07b00', critical: '#e24b4a' };
-  const riskColor = riskColors[d.overall_risk] || '#ef9f27';
-  const isLow = d.overall_risk === 'low';
-  const suffix = { twitter: 'twitter', ig_square: 'ig-square', ig_portrait: 'ig-portrait', argument: 'argument' };
-
-  const dims = { twitter: { w: 1200, h: 630 }, ig_square: { w: 1080, h: 1080 }, ig_portrait: { w: 1080, h: 1350 }, argument: { w: 1200, h: 630 } };
-
-  // Score colors — defined here so all format branches can access them
-  const driftColor = d.drift_score<=3?'#5dcaa5':d.drift_score<=5?'#ef9f27':d.drift_score<=7?'#e07b00':'#e24b4a';
-  const stageColor = d.collapse_stage<=1?'#5dcaa5':d.collapse_stage<=2?'#ef9f27':d.collapse_stage<=3?'#e07b00':'#e24b4a';
-  const immuneColor = d.immunity_load>=7?'#5dcaa5':d.immunity_load>=5?'#ef9f27':d.immunity_load>=3?'#e07b00':'#e24b4a';
-  const isCritical = d.overall_risk === 'critical';
-  const isHigh = d.overall_risk === 'high';
-  const textPrimary = isCritical ? '#0a0a0a' : '#f0ede6';
-  const textMuted = isCritical ? 'rgba(10,10,10,0.5)' : '#555550';
-  const textDim = isCritical ? 'rgba(10,10,10,0.35)' : '#555550';
-  const { w, h } = dims[fmt];
-
-  // Pull sharpest line — shortest sentence under 120 chars, else first sentence
-  function sharpLine(text) {
-    if (!text) return text;
-    const sentences = text.match(/[^.!?]+[.!?]+/g);
-    if (!sentences || sentences.length === 0) return text;
-    const short = sentences.find(s => s.trim().length <= 120);
-    return (short || sentences[0]).trim();
-  }
-
-  // Risk level display text
-  const riskDisplay = { low: 'LOW RISK', moderate: 'MODERATE RISK', high: 'HIGH RISK', critical: 'CRITICAL RISK' };
-  const riskLabel = riskDisplay[d.overall_risk] || 'MODERATE RISK';
-
-  // Quote card (X/Twitter) — take from conclusion or prescription, pick sharpest
-  const conclusionHook = sharpLine(d.conclusion);
-  const prescriptionHook = sharpLine(d.prescription);
-  // Use whichever is shorter and punchier
-  const quoteText = (conclusionHook && conclusionHook.length <= 140) ? conclusionHook : prescriptionHook;
-
-  // Font scaling helpers
-  function quoteFontSize(text, w) {
-    const len = text ? text.length : 0;
-    if (w === 1200) {
-      // Twitter landscape
-      if (len < 60) return '42px';
-      if (len < 90) return '34px';
-      if (len < 120) return '28px';
-      return '23px';
-    } else {
-      // Square/portrait
-      if (len < 60) return '52px';
-      if (len < 90) return '42px';
-      if (len < 120) return '34px';
-      return '28px';
-    }
-  }
-
-  function artistFontSize(name, w) {
-    const len = name ? name.length : 0;
-    if (w === 1200) {
-      if (len <= 4) return '72px';
-      if (len <= 10) return '56px';
-      if (len <= 16) return '44px';
-      return '34px';
-    } else {
-      if (len <= 4) return '120px';
-      if (len <= 10) return '88px';
-      if (len <= 16) return '64px';
-      return '48px';
-    }
-  }
-
-  function verdictFontSize(name, w) {
-    const len = name ? name.length : 0;
-    if (w === 1200) {
-      if (len <= 4) return '200px';
-      if (len <= 10) return '160px';
-      if (len <= 16) return '120px';
-      return '90px';
-    } else {
-      if (len <= 4) return '240px';
-      if (len <= 10) return '180px';
-      if (len <= 16) return '140px';
-      return '100px';
-    }
-  }
-
-  let cardHtml = '';
-
-  // ── X/TWITTER — Quote Card ─────────────────────────────────────────────────
-  // Dark background. Giant quote. Artist name + branding small at bottom.
-  // Looks like a publication pull quote. Designed to be screenshot and shared.
-  if (fmt === 'twitter') {
-    const qSize = quoteFontSize(quoteText, 1200);
-    const aSize = artistFontSize(d.artist, 1200);
-    const bgColor = isCritical ? '#0f0000' : isHigh ? '#0f0600' : '#0a0a0a';
-    const accentLine = riskColor;
-
-    cardHtml = `
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${accentLine};"></div>
-      <div style="display:flex;flex-direction:column;height:100%;padding:52px 72px 44px;box-sizing:border-box;">
-
-        <!-- Top: artist name + risk badge -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:1;letter-spacing:0.02em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:3px 10px;flex-shrink:0;margin-left:24px;margin-top:4px;">${riskLabel}</div>
-        </div>
-
-        <!-- Stat line -->
-        <div style="display:flex;gap:20px;align-items:center;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #1e1e1e;">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#555550;text-transform:uppercase;">Drift <span style="color:${driftColor};font-size:13px;font-weight:500;">${d.drift_score}</span>/10</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2a2a2a;">·</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#555550;text-transform:uppercase;">Stage <span style="color:${stageColor};font-size:13px;font-weight:500;">${d.collapse_stage}</span>/5</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2a2a2a;">·</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:#555550;text-transform:uppercase;">Immunity <span style="color:${immuneColor};font-size:13px;font-weight:500;">${d.immunity_load}</span>/10</span>
-        </div>
-
-        <!-- Quote — fills remaining space, vertically centered -->
-        <div style="flex:1;display:flex;align-items:center;">
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${qSize};font-weight:300;color:#f0ede6;line-height:1.4;max-width:980px;">&ldquo;${quoteText}&rdquo;</div>
-        </div>
-
-        <!-- Bottom: source -->
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid #1e1e1e;margin-top:20px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#3a3a3a;text-transform:uppercase;">Chartreuse Explosives</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:#888880;letter-spacing:0.06em;">collapse.chartreuseexplosives.com</div>
-        </div>
-      </div>
-    `;
-
-    const card = document.createElement('div');
-    card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
-    card.innerHTML = cardHtml;
-    document.body.appendChild(card);
-
-    html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      document.body.removeChild(card);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    }).catch(err => {
-      console.error('Export failed:', err);
-      document.body.removeChild(card);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    });
-  }
-
-  // ── IG SQUARE — Verdict Card ───────────────────────────────────────────────
-  // Risk level huge. Artist name. One prescription line. Looks like a warning label.
-  else if (fmt === 'ig_square') {
-    const bgColor = isCritical ? '#e24b4a' : isHigh ? '#0f0600' : '#0a0a0a';
-    const textPrimary = isCritical ? '#0a0a0a' : '#f0ede6';
-    const textMuted = isCritical ? 'rgba(10,10,10,0.5)' : '#555550';
-    const accentColor = isCritical ? '#0a0a0a' : riskColor;
-    const riskWordSize = isCritical ? '120px' : isHigh ? '100px' : '88px';
-    const aSize = artistFontSize(d.artist, 1080);
-    const pSize = quoteFontSize(prescriptionHook, 1080);
-
-    // Risk level split: "CRITICAL" big, "RISK" smaller on same line
-    const riskWord = (d.overall_risk || 'moderate').toUpperCase();
-
-    cardHtml = `
-      <div style="position:absolute;top:0;left:0;right:0;height:8px;background:${accentColor};"></div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:8px;background:${accentColor};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:72px 64px 72px;box-sizing:border-box;">
-
-        <!-- Top: branding -->
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:${isCritical ? 'rgba(10,10,10,0.5)' : '#c8e600'};text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
-
-        <!-- Middle: verdict -->
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;color:${textMuted};text-transform:uppercase;margin-bottom:12px;">Verdict</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:${riskWordSize};line-height:0.88;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;">${riskWord}</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.92;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;margin-top:16px;opacity:0.9;">${d.artist}</div>
-          <div style="display:flex;gap:16px;margin-top:12px;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Drift <span style="color:${isCritical?'#0a0a0a':driftColor};font-size:14px;font-weight:500;">${d.drift_score}</span>/10</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Stage <span style="color:${isCritical?'#0a0a0a':stageColor};font-size:14px;font-weight:500;">${d.collapse_stage}</span>/5</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Immunity <span style="color:${isCritical?'#0a0a0a':immuneColor};font-size:14px;font-weight:500;">${d.immunity_load}</span>/10</span>
-          </div>
-        </div>
-
-        <!-- Bottom: prescription hook + url -->
-        <div>
-          <div style="border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:24px;margin-bottom:20px;">
-            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.45;">${prescriptionHook}</div>
-          </div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:${isCritical?'rgba(10,10,10,0.7)':'#888880'};letter-spacing:0.06em;">collapse.chartreuseexplosives.com</div>
-        </div>
-
-      </div>
-    `;
-
-    const card = document.createElement('div');
-    card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
-    card.innerHTML = cardHtml;
-    document.body.appendChild(card);
-
-    html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      document.body.removeChild(card);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    }).catch(err => {
-      console.error('Export failed:', err);
-      document.body.removeChild(card);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    });
-  }
-
-  // ── IG PORTRAIT — Verdict Card tall ───────────────────────────────────────
-  // Same as square but taller — risk level even bigger, adds risk summary line
-  else {
-    const bgColor = isCritical ? '#e24b4a' : isHigh ? '#0f0600' : '#0a0a0a';
-    const textPrimary = isCritical ? '#0a0a0a' : '#f0ede6';
-    const textMuted = isCritical ? 'rgba(10,10,10,0.5)' : '#555550';
-    const accentColor = isCritical ? '#0a0a0a' : riskColor;
-    const riskWord = (d.overall_risk || 'moderate').toUpperCase();
-    const vSize = verdictFontSize(d.artist, 1080);
-    const aSize = artistFontSize(d.artist, 1080);
-    const pSize = quoteFontSize(prescriptionHook, 1080);
-
-    cardHtml = `
-      <div style="position:absolute;top:0;left:0;right:0;height:8px;background:${accentColor};"></div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:8px;background:${accentColor};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:80px 64px;box-sizing:border-box;">
-
-        <!-- Top: branding -->
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:${isCritical ? 'rgba(10,10,10,0.5)' : '#c8e600'};text-transform:uppercase;">Chartreuse Explosives &nbsp;·&nbsp; Collapse Risk</div>
-
-        <!-- Risk word — huge -->
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;color:${textMuted};text-transform:uppercase;margin-bottom:16px;">Verdict</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:${vSize};line-height:0.85;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;">${riskWord}</div>
-        </div>
-
-        <!-- Artist name + stats -->
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:${aSize};line-height:0.9;letter-spacing:0.01em;color:${textPrimary};text-transform:uppercase;opacity:0.85;">${d.artist}</div>
-          <div style="display:flex;gap:16px;margin-top:14px;">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Drift <span style="color:${isCritical?'#0a0a0a':driftColor};font-size:14px;font-weight:500;">${d.drift_score}</span>/10</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Stage <span style="color:${isCritical?'#0a0a0a':stageColor};font-size:14px;font-weight:500;">${d.collapse_stage}</span>/5</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:${textDim};">·</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${textDim};text-transform:uppercase;">Immunity <span style="color:${isCritical?'#0a0a0a':immuneColor};font-size:14px;font-weight:500;">${d.immunity_load}</span>/10</span>
-          </div>
-        </div>
-
-             <!-- Prescription hook — main event -->
-        <div style="border-top:1px solid ${isCritical ? 'rgba(0,0,0,0.2)' : '#2a2a2a'};padding-top:32px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:${isCritical ? 'rgba(10,10,10,0.5)' : riskColor};text-transform:uppercase;margin-bottom:16px;">What they should do next</div>
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${pSize};font-weight:${isCritical ? '500' : '300'};color:${textPrimary};line-height:1.5;">${prescriptionHook}</div>
-        </div>
-
-        <!-- Risk summary — supporting -->
-        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:300;color:${textMuted};line-height:1.65;">${d.risk_summary}</div>
-
-        <!-- URL -->
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;color:${isCritical ? 'rgba(10,10,10,0.6)' : '#888880'};letter-spacing:0.06em;">collapse.chartreuseexplosives.com</div>
-
-      </div>
-    `;
-
-  // ── ARGUMENT CARD 1200x630 ────────────────────────────────────────────────
-  if (fmt === 'argument') {
-    const nameLen2 = d.artist.length;
-    const nameFontSize2 = nameLen2 <= 6 ? '120px' : nameLen2 <= 12 ? '88px' : nameLen2 <= 18 ? '66px' : '50px';
-    const argLine = sharpLine(d.prescription);
-    const argFontSize = argLine.length < 80 ? '28px' : argLine.length < 120 ? '23px' : '19px';
-
-    const argCardHtml = `
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${riskColor};"></div>
-      <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:48px 64px 40px;box-sizing:border-box;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:${nameFontSize2};line-height:0.88;letter-spacing:0.01em;color:#f0ede6;text-transform:uppercase;">${d.artist}</div>
-        <div style="display:flex;gap:48px;align-items:flex-end;">
-          <div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Drift</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:${driftColor};">${d.drift_score}<span style="font-size:24px;color:#555550;">/10</span></div>
-          </div>
-          <div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Stage</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:${stageColor};">${d.collapse_stage}<span style="font-size:24px;color:#555550;">/5</span></div>
-          </div>
-          <div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:6px;">Immunity</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:${immuneColor};">${d.immunity_load}<span style="font-size:24px;color:#555550;">/10</span></div>
-          </div>
-          <div style="flex:1;padding-bottom:8px;">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#555550;text-transform:uppercase;margin-bottom:10px;">Verdict</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;color:${riskColor};text-transform:uppercase;border:1px solid ${riskColor};padding:4px 12px;display:inline-block;">${(d.overall_risk||'moderate').toUpperCase()} RISK</div>
-          </div>
-        </div>
-        <div style="border-top:1px solid #1e1e1e;padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;">
-          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:${argFontSize};font-weight:300;color:#f0ede6;line-height:1.4;flex:1;">${argLine}</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:#888880;letter-spacing:0.06em;white-space:nowrap;">collapse.chartreuseexplosives.com</div>
-        </div>
-      </div>
-    `;
-
-    const argCard = document.createElement('div');
-    argCard.style.cssText = 'position:fixed;left:-9999px;top:0;width:1200px;height:630px;background:#0a0a0a;overflow:hidden;box-sizing:border-box;';
-    argCard.innerHTML = argCardHtml;
-    document.body.appendChild(argCard);
-
-    html2canvas(argCard, { width: 1200, height: 630, scale: 1, useCORS: true, allowTaint: true, backgroundColor: '#0a0a0a', logging: false }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = 'collapse-risk-' + (d.artist||'report').toLowerCase().replace(/\s+/g,'-') + '-argument.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      document.body.removeChild(argCard);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    }).catch(err => {
-      document.body.removeChild(argCard);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    });
-    return;
-  }
-
-    const card = document.createElement('div');
-    card.style.cssText = `position:fixed;left:-9999px;top:0;width:${w}px;height:${h}px;background:${bgColor};overflow:hidden;box-sizing:border-box;`;
-    card.innerHTML = cardHtml;
-    document.body.appendChild(card);
-
-    html2canvas(card, { width: w, height: h, scale: 1, useCORS: true, allowTaint: true, backgroundColor: bgColor, logging: false }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = `collapse-risk-${(d.artist||'report').toLowerCase().replace(/\s+/g,'-')}-${suffix[fmt]}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      document.body.removeChild(card);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    }).catch(err => {
-      console.error('Export failed:', err);
-      document.body.removeChild(card);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="export-btn-icon">&#8615;</span> Download card'; }
-    });
-  }
+function copyUrl(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
 }
 
-
-document.getElementById('artist-input').addEventListener('keydown', function(e) {
+document.getElementById('artist-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') generateReport();
 });
-document.getElementById('license-input').addEventListener('keydown', function(e) {
+document.getElementById('license-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') activateLicense();
 });
 </script>
