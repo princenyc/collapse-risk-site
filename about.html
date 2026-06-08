@@ -1,840 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Collapse Framework — Chartreuse Explosives</title>
-  <meta name="description" content="The methodology behind the Collapse Risk Instrument. A five-variable diagnostic for understanding how public figures, institutions, and brands lose their audiences. Developed by Prince Campbell, Chartreuse Explosives.">
-  <meta property="og:title" content="The Collapse Framework — Chartreuse Explosives">
-  <meta property="og:description" content="Five variables. Two root causes. One mechanism. The framework that scores collapse risk on any public figure, brand, or institution.">
-  <meta property="og:url" content="https://collapse.chartreuseexplosives.com/about">
-  <meta name="twitter:card" content="summary">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #1a0a0f;
-      --bg-card: #230d13;
-      --bg-card-hover: #2d1018;
-      --chartreuse: #c8e600;
-      --red: #e63030;
-      --text: #e8ddd5;
-      --text-muted: #9a8a82;
-      --text-dim: #6a5a54;
-      --border: #3a1a20;
-      --border-light: #4a2a30;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Libre Franklin', sans-serif;
-      font-weight: 300;
-      font-size: 17px;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* NAV */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 48px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 100;
-    }
-
-    .nav-brand {
-      font-family: 'Courier Prime', monospace;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--chartreuse);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Courier Prime', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--text); }
-
-    /* MAIN */
-    main {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 80px 48px 120px;
-    }
-
-    /* EYEBROW */
-    .eyebrow {
-      font-family: 'Courier Prime', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--chartreuse);
-      margin-bottom: 20px;
-    }
-
-    /* HEADINGS */
-    h1 {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1.0;
-      letter-spacing: 0.01em;
-      color: var(--text);
-      margin-bottom: 32px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      transform: translateZ(0);
-    }
-
-    h2 {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(22px, 3.5vw, 30px);
-      letter-spacing: 0.02em;
-      color: var(--text);
-      margin-bottom: 20px;
-      margin-top: 72px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      transform: translateZ(0);
-    }
-
-    h3 {
-      font-family: 'Libre Franklin', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    /* BODY TEXT */
-    p {
-      color: var(--text);
-      margin-bottom: 24px;
-      font-weight: 300;
-    }
-
-    p:last-child { margin-bottom: 0; }
-
-    strong { font-weight: 600; color: var(--text); }
-
-    /* DIVIDER */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 64px 0;
-    }
-
-    /* SECTION INTRO */
-    .section-intro {
-      font-size: 18px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      margin-bottom: 0;
-    }
-
-    /* VARIABLE GRID */
-    .variable-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 32px;
-    }
-
-    .variable-item {
-      background: var(--bg-card);
-      padding: 28px 28px 24px;
-      border: 1px solid var(--border);
-    }
-
-    .variable-name {
-      font-family: 'Anton', sans-serif;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-      color: var(--chartreuse);
-      margin-bottom: 10px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translateZ(0);
-    }
-
-    .variable-desc {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--text-muted);
-      margin-bottom: 0;
-    }
-
-    /* STAGES */
-    .stages {
-      margin-top: 32px;
-      border: 1px solid var(--border);
-    }
-
-    .stage-row {
-      display: grid;
-      grid-template-columns: 48px 140px 1fr;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-
-    .stage-row:last-child { border-bottom: none; }
-
-    .stage-num {
-      font-family: 'Anton', sans-serif;
-      font-size: 22px;
-      color: var(--text-dim);
-      padding: 20px 0 20px 20px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translateZ(0);
-    }
-
-    .stage-label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 22px 16px 20px 0;
-      line-height: 1.4;
-    }
-
-    .stage-desc {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--text-muted);
-      padding: 20px 24px 20px 0;
-      margin-bottom: 0;
-    }
-
-    /* ROOT CAUSE BLOCKS */
-    .root-causes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 32px;
-    }
-
-    .root-cause-block {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 32px 28px;
-    }
-
-    .root-cause-title {
-      font-family: 'Anton', sans-serif;
-      font-size: 20px;
-      letter-spacing: 0.02em;
-      color: var(--text);
-      margin-bottom: 12px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translateZ(0);
-    }
-
-    .root-cause-text {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .root-cause-quote {
-      font-family: 'Courier Prime', monospace;
-      font-size: 13px;
-      font-style: italic;
-      color: var(--text-dim);
-      line-height: 1.6;
-      border-left: 2px solid var(--border-light);
-      padding-left: 14px;
-      margin-bottom: 0;
-    }
-
-    /* CASES SECTION */
-    .cases-intro {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-    }
-
-    .case-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-
-    .case-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 32px 28px 28px;
-      text-decoration: none;
-      display: block;
-      transition: background 0.2s, border-color 0.2s;
-      position: relative;
-    }
-
-    .case-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-light);
-    }
-
-    .case-card:hover .case-arrow { opacity: 1; transform: translateX(0); }
-
-    .case-tag {
-      font-family: 'Courier Prime', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 12px;
-    }
-
-    .case-subject {
-      font-family: 'Anton', sans-serif;
-      font-size: 26px;
-      letter-spacing: 0.01em;
-      color: var(--text);
-      margin-bottom: 14px;
-      line-height: 1.05;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translateZ(0);
-    }
-
-    .case-verdict {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    .case-scores {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .score-pill {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .score-label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
-    .score-value {
-      font-family: 'Anton', sans-serif;
-      font-size: 15px;
-      color: var(--chartreuse);
-      letter-spacing: 0.02em;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translateZ(0);
-    }
-
-    .score-value.red { color: var(--red); }
-
-    .case-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .case-risk-badge {
-      font-family: 'Courier Prime', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 5px 10px;
-      border: 1px solid;
-    }
-
-    .case-risk-badge.high {
-      color: #e6a030;
-      border-color: #e6a03044;
-      background: #e6a03010;
-    }
-
-    .case-risk-badge.critical {
-      color: var(--red);
-      border-color: #e6303044;
-      background: #e6303010;
-    }
-
-    .case-arrow {
-      font-family: 'Courier Prime', monospace;
-      font-size: 12px;
-      color: var(--chartreuse);
-      opacity: 0.4;
-      transform: translateX(-4px);
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    /* PRESCRIPTION */
-    .prescription-block {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--chartreuse);
-      padding: 36px 32px;
-      margin-top: 32px;
-    }
-
-    .prescription-block p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    /* CLOSING */
-    .closing {
-      margin-top: 80px;
-      padding-top: 64px;
-      border-top: 1px solid var(--border);
-    }
-
-    .closing-pull {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 1.3;
-      color: var(--text);
-      margin-bottom: 32px;
-      letter-spacing: 0.01em;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translateZ(0);
-    }
-
-    .closing-pull em {
-      font-style: normal;
-      color: var(--chartreuse);
-    }
-
-    .closing p {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 600px;
-    }
-
-    /* CTA */
-    .cta-block {
-      margin-top: 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .cta-primary {
-      display: inline-block;
-      background: var(--chartreuse);
-      color: #0a0a0a;
-      font-family: 'Courier Prime', monospace;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 16px 32px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      align-self: flex-start;
-    }
-
-    .cta-primary:hover { opacity: 0.88; }
-
-    .cta-secondary {
-      font-size: 14px;
-      color: var(--text-dim);
-    }
-
-    .cta-secondary a {
-      color: var(--text-muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-text {
-      font-family: 'Courier Prime', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-    }
-
-    .footer-text a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-
-    .footer-text a:hover { color: var(--text); }
-
-    /* RESPONSIVE */
-    @media (max-width: 680px) {
-      nav { padding: 18px 24px; }
-      main { padding: 48px 24px 80px; }
-      footer { padding: 24px; flex-direction: column; gap: 8px; }
-
-      .variable-grid,
-      .root-causes,
-      .case-cards { grid-template-columns: 1fr; }
-
-      .stage-row { grid-template-columns: 40px 110px 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collapse Framework — Chartreuse Explosives</title>
+<meta name="description" content="Five variables. Five stages. The instrument that reads institutional collapse before the room figures it out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --near-black: #111111;
+  --surface: #161616;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --chartreuse: #c8e600;
+  --chartreuse-dim: #8fa300;
+  --white: #f0ede6;
+  --muted: #888880;
+  --danger: #e24b4a;
+  --warning: #ef9f27;
+  --success: #5dcaa5;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 15px; line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+a { color: var(--chartreuse); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; height: 48px; position: sticky; top: 0; background: var(--black); z-index: 100; }
+.nav-mark { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .12em; color: var(--chartreuse); text-transform: uppercase; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-link { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+.nav-link:hover { color: var(--white); text-decoration: none; }
+
+/* LAYOUT */
+.page-wrap { max-width: 960px; margin: 0 auto; }
+.section { padding: 2.5rem 1.25rem; border-bottom: 1px solid var(--border); }
+.section-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 1.25rem; }
+.section-eyebrow--muted { color: var(--muted); }
+
+/* HERO */
+.hero { padding: 4rem 1.25rem 3rem; border-bottom: 1px solid var(--border); }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero-title { font-family: var(--display); font-size: clamp(48px, 10vw, 96px); line-height: .95; letter-spacing: .02em; color: var(--white); margin-bottom: 1.5rem; }
+.hero-title span { color: var(--chartreuse); }
+.hero-lede { max-width: 640px; display: flex; flex-direction: column; gap: .5rem; }
+.hero-lede p { font-size: clamp(15px, 2vw, 18px); font-weight: 300; color: var(--muted); line-height: 1.7; }
+.hero-lede p.hero-kicker { color: var(--white); font-weight: 400; }
+
+/* MECHANISM */
+.mechanism-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+.mechanism-cell { background: var(--near-black); padding: 1.25rem; }
+.mechanism-cell-label { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; margin-bottom: .75rem; }
+.mechanism-cell p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
+.mechanism-cell p + p { margin-top: .75rem; color: var(--muted); }
+
+/* ROOT CAUSE */
+.root-cause-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+.root-cell { background: var(--near-black); padding: 1.25rem; }
+.root-cell--shame { border-top: 3px solid var(--warning); }
+.root-cell--betrayal { border-top: 3px solid var(--danger); }
+.root-cell-name { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
+.root-cell--shame .root-cell-name { color: var(--warning); }
+.root-cell--betrayal .root-cell-name { color: var(--danger); }
+.root-cell p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; margin-bottom: .75rem; }
+.root-cell p + p { color: var(--muted); }
+.root-cell-quote { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.6; border-left: 2px solid var(--border-bright); padding-left: .875rem; margin-top: 1rem; font-style: italic; }
+
+/* VARS GRID */
+.vars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+@media (max-width: 700px) { .vars-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .vars-grid { grid-template-columns: 1fr 1fr; } }
+.var-item { background: var(--near-black); padding: 1rem 1.25rem; }
+.var-item-num { font-family: var(--display); font-size: 28px; color: var(--border-bright); line-height: 1; margin-bottom: .5rem; }
+.var-item-name { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: .5rem; }
+.var-item-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+
+/* STAGES */
+.stages-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+.stage-row { background: var(--near-black); display: grid; grid-template-columns: 56px 120px 1fr; align-items: start; gap: 0; }
+.stage-row--active { background: var(--surface); }
+.stage-num { font-family: var(--display); font-size: 36px; line-height: 1; padding: 1rem 0 1rem 1rem; color: var(--border-bright); }
+.stage-row--0 .stage-num { color: var(--success); }
+.stage-row--1 .stage-num { color: var(--chartreuse-dim); }
+.stage-row--2 .stage-num { color: var(--chartreuse); }
+.stage-row--3 .stage-num { color: var(--warning); }
+.stage-row--4 .stage-num { color: #e07b00; }
+.stage-row--5 .stage-num { color: var(--danger); }
+.stage-label-col { padding: 1rem 1rem 1rem .75rem; border-right: 1px solid var(--border); border-left: 1px solid var(--border); }
+.stage-label { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 3px; }
+.stage-row--0 .stage-label { color: var(--success); }
+.stage-row--1 .stage-label { color: var(--chartreuse-dim); }
+.stage-row--2 .stage-label { color: var(--chartreuse); }
+.stage-row--3 .stage-label { color: var(--warning); }
+.stage-row--4 .stage-label { color: #e07b00; }
+.stage-row--5 .stage-label { color: var(--danger); }
+.stage-sublabel { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .04em; }
+.stage-desc { padding: 1rem 1.25rem; font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+.stage-row--active .stage-desc { color: var(--white); }
+.stage-last-exit { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; color: var(--chartreuse); text-transform: uppercase; margin-top: 6px; border: 1px solid var(--chartreuse-dim); display: inline-block; padding: 2px 6px; }
+
+/* CASE CARDS */
+.case-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+.case-card { background: var(--near-black); padding: 1.25rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; }
+.case-card:hover { background: var(--surface); }
+.case-meta { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 5px; }
+.case-name { font-family: var(--display); font-size: clamp(24px, 5vw, 40px); line-height: 1; color: var(--white); margin-bottom: .75rem; letter-spacing: .03em; }
+.case-summary { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 540px; margin-bottom: 1rem; }
+.case-scores { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin-bottom: .875rem; }
+.case-score { display: flex; flex-direction: column; gap: 2px; }
+.case-score-label { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+.case-score-val { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+.case-link { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--chartreuse); border-bottom: 1px solid var(--chartreuse-dim); padding-bottom: 1px; display: inline-block; }
+.case-link:hover { color: var(--white); border-color: var(--border-bright); text-decoration: none; }
+.case-badge { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+.risk-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; padding: 3px 8px; border: 1px solid; white-space: nowrap; }
+.risk-tag.low { color: var(--success); border-color: var(--success); }
+.risk-tag.moderate { color: var(--warning); border-color: var(--warning); }
+.risk-tag.critical { color: var(--danger); border-color: var(--danger); }
+.stage-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; color: var(--muted); white-space: nowrap; }
+
+.val-low { color: var(--success); }
+.val-mod { color: var(--warning); }
+.val-crit { color: var(--danger); }
+.val-neutral { color: var(--white); }
+
+/* PRESCRIPTION / LIMITS */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; }
+@media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+.two-col-cell { background: var(--near-black); padding: 1.25rem; }
+.two-col-cell-label { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: .75rem; }
+.two-col-cell p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+/* CTA */
+.cta-block { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+.cta-text p { font-size: clamp(16px, 2.5vw, 20px); font-weight: 300; color: var(--white); line-height: 1.6; max-width: 500px; }
+.cta-btn { background: var(--chartreuse); border: none; padding: 0 2rem; height: 52px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--black); cursor: pointer; white-space: nowrap; transition: background .15s; text-decoration: none; display: inline-flex; align-items: center; }
+.cta-btn:hover { background: #d4f500; text-decoration: none; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
+.footer-mark { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--muted); }
+.footer-mark a { color: var(--chartreuse-dim); }
+.footer-right { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: .06em; }
+
+@media (max-width: 640px) {
+  .mechanism-grid { grid-template-columns: 1fr; }
+  .root-cause-grid { grid-template-columns: 1fr; }
+  .stage-row { grid-template-columns: 44px 100px 1fr; }
+  .case-card { grid-template-columns: 1fr; }
+  .case-badge { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+}
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="https://chartreuseexplosives.com" class="nav-brand">Chartreuse Explosives</a>
-    <ul class="nav-links">
-      <li><a href="https://collapse.chartreuseexplosives.com/">The instrument</a></li>
-      <li><a href="https://collapse.chartreuseexplosives.com/about" class="active">The framework</a></li>
-      <li><a href="https://chartreuseexplosives.com">CE</a></li>
-    </ul>
-  </nav>
+<nav>
+  <span class="nav-mark">Chartreuse Explosives</span>
+  <div class="nav-right">
+    <a href="/about" class="nav-link" style="color:var(--white);">The framework</a>
+    <a href="https://chartreuseexplosives.com" class="nav-link">CE</a>
+  </div>
+</nav>
 
-  <main>
+<div class="page-wrap">
 
-    <p class="eyebrow">Methodology</p>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">The Collapse Framework · Methodology</div>
+    <h1 class="hero-title">How public figures<br>lose their audiences.<br><span>Always the same way.</span></h1>
+    <div class="hero-lede">
+      <p>Fame doesn't end. The belief does.</p>
+      <p>Most risk tools give you a number. They don't tell you what the number means for tomorrow. They don't tell you whether you're watching an Early Warning or an Active Deterioration.</p>
+      <p class="hero-kicker">The Collapse Framework identifies the structural failure before the audience finishes processing it. Five variables. Five stages. The same shape every time.</p>
+    </div>
+  </div>
 
-    <h1>The Collapse<br>Framework</h1>
-
-    <p class="section-intro">How public figures, institutions, and brands lose their audiences. Why it always happens the same way. And the five variables that determine where someone is in the process right now.</p>
-
-    <hr class="divider">
-
-    <h3>The mechanism</h3>
-
-    <p>Fame doesn't end. The belief does.</p>
-
-    <p>That distinction matters because most people analyze collapse wrong. They track the bad tweet, the bad album, the bad decision. They build timelines of incidents. They treat it like a series of mistakes that finally added up.</p>
-
-    <p>It isn't that.</p>
-
-    <p>Collapse is a structural failure. Something that was always holding the whole thing together stops working. Once it goes, the incidents don't cause the collapse. They reveal it. The audience wasn't waiting for a reason to leave. They were waiting to understand why they already had.</p>
-
-    <p>The Collapse Framework identifies that structural failure before the audience finishes processing it.</p>
-
-    <hr class="divider">
-
-    <h3>The bond</h3>
-
-    <p>Every public figure runs on an invisible contract with their audience.</p>
-
-    <p>Not legal. Not formal. A belief contract. The audience believes the person delivers something real — truth, danger, skill, rebellion, vulnerability, glamour, authenticity. Whatever it is, they believe it. And that belief is load-bearing. It holds up the career, the catalog, the cultural position, the revenue. Everything.</p>
-
-    <p>When the belief holds, the person can survive almost anything. Controversy. Bad work. Years of silence. Ugly rumors. The audience explains it away because they need the contract to be true.</p>
-
-    <p>When the belief breaks, none of that protection applies anymore. The hits stop sounding like hits. The interviews start reading differently. The old footage gets recut with new captions. Success becomes irrelevant overnight because success was never the bond. Belief was.</p>
-
-    <p>This framework measures the health of that bond. In real time. On anyone.</p>
-
-    <hr class="divider">
-
-    <h2>Two ways it breaks</h2>
-
-    <p>Every collapse traces back to one of two root causes. Not ten. Not a hundred. Two. Everything else is a variation.</p>
-
-    <div class="root-causes">
-      <div class="root-cause-block">
-        <p class="root-cause-title">Feeling foolish</p>
-        <p class="root-cause-text">The audience believed something that wasn't true. The rebellion was a brand. The vulnerability was calculated. The authenticity was a strategy. The danger was a costume worn for the camera and removed in the car.</p>
-        <p class="root-cause-text">When this happens, the audience doesn't get angry. They get embarrassed. Embarrassment is more corrosive than anger. Anger fades. Embarrassment rewrites memory. Every old interview gets re-read. Every old lyric sounds different. The catalog becomes evidence of the con rather than proof of the art.</p>
-        <p class="root-cause-quote">I defended him. I feel stupid. Was any of it real.</p>
+  <!-- THE MECHANISM -->
+  <div class="section">
+    <div class="section-eyebrow">The mechanism</div>
+    <div class="mechanism-grid">
+      <div class="mechanism-cell">
+        <div class="mechanism-cell-label">The bond</div>
+        <p>Every public figure runs on an invisible contract with their audience. Not legal. Not formal. A belief contract. The audience believes the person delivers something real — truth, danger, skill, rebellion, vulnerability, glamour, authenticity. That belief is load-bearing. It holds up the career, the catalog, the cultural position, the revenue. Everything.</p>
+        <p>When the belief holds, the person can survive almost anything. Controversy. Bad work. Years of silence. The audience explains it away because they need the contract to be true.</p>
       </div>
-      <div class="root-cause-block">
-        <p class="root-cause-title">Feeling betrayed</p>
-        <p class="root-cause-text">The figure picked a side. And it was the wrong side. Not wrong like a bad opinion. Wrong like they crossed the room and stood with the people who are actively against the audience that built them.</p>
-        <p class="root-cause-text">When this happens, the audience doesn't get embarrassed. They get cold. The difference between these two breaks is everything. Shame requires a different repair than betrayal. A different timeline. A different prescription. Running both simultaneously is the category of disaster most careers don't survive.</p>
-        <p class="root-cause-quote">You were never for us. I know exactly what this is. I just didn't want to see it.</p>
+      <div class="mechanism-cell">
+        <div class="mechanism-cell-label">When it breaks</div>
+        <p>When the belief breaks, none of that protection applies. The hits stop sounding like hits. The old footage gets recut with new captions. Success becomes irrelevant overnight because success was never the bond.</p>
+        <p>Belief was. This framework measures the health of that bond. In real time. On anyone.</p>
       </div>
     </div>
+  </div>
 
-    <hr class="divider">
-
-    <h2>The five variables</h2>
-
-    <p>The framework scores five variables on every subject. Together they produce a collapse risk rating and a stage placement. Separately, each one tells a specific part of the story.</p>
-
-    <div class="variable-grid">
-      <div class="variable-item">
-        <p class="variable-name">Contract Drift</p>
-        <p class="variable-desc">The gap between the story they're selling and what the audience actually sees. Scored 1 to 10. Drift is detectable early — in the language fans use, in whether the drama is getting more coverage than the work, in whether people are watching to see what happens next instead of because they still believe something.</p>
+  <!-- ROOT CAUSE -->
+  <div class="section">
+    <div class="section-eyebrow">Two ways it breaks</div>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;max-width:640px;">Every collapse traces back to one of two root causes. Not ten. Not a hundred. Two. Everything else is a variation.</p>
+    <div class="root-cause-grid">
+      <div class="root-cell root-cell--shame">
+        <div class="root-cell-name">Feeling foolish</div>
+        <p>The audience believed something that wasn't true. The rebellion was a brand. The vulnerability was calculated. The authenticity was a strategy.</p>
+        <p>When this happens, the audience doesn't get angry. They get embarrassed. Embarrassment is more corrosive than anger. Anger fades. Embarrassment rewrites memory. Every old interview gets re-read. The catalog becomes evidence of the con.</p>
+        <div class="root-cell-quote">I defended him. I feel stupid. Was any of it real.</div>
       </div>
-      <div class="variable-item">
-        <p class="variable-name">Root Cause</p>
-        <p class="variable-desc">Feeling foolish or feeling betrayed. The emotional register of the audience response tells you which one you're dealing with. Both at once means the person is in serious structural trouble with no clean repair path available.</p>
-      </div>
-      <div class="variable-item">
-        <p class="variable-name">Contract Depth</p>
-        <p class="variable-desc">How much of the audience's identity is wrapped up in this person or brand. This is the variable that determines severity, not just direction. Deep contracts are harder to break. When they break, they break loudest and longest.</p>
-      </div>
-      <div class="variable-item">
-        <p class="variable-name">Collapse Stage</p>
-        <p class="variable-desc">Where they are on the five-stage timeline. Zero means no signal. Five means inversion — former believers are now the loudest critics. Stage two is the last point where any of this is reversible. After that, the audience isn't just leaving. They're rewriting what they believed.</p>
-      </div>
-      <div class="variable-item" style="grid-column: 1 / -1;">
-        <p class="variable-name">Immunity Load</p>
-        <p class="variable-desc">How much runway is left before the next mistake changes the math permanently. A deep catalog buys time. An older audience forgives more complexity. A favorable cultural moment absorbs violations that an unfavorable one turns into career events. When immunity runs out, the next incident isn't a mistake. It's the verdict.</p>
+      <div class="root-cell root-cell--betrayal">
+        <div class="root-cell-name">Feeling betrayed</div>
+        <p>The figure picked a side. And it was the wrong side. They crossed the room and stood with the people who are actively against the audience that built them.</p>
+        <p>When this happens, the audience doesn't get embarrassed. They get cold. Shame requires a different repair than betrayal. Running both simultaneously is the category of disaster most careers don't survive.</p>
+        <div class="root-cell-quote">You were never for us. I know exactly what this is. I just didn't want to see it.</div>
       </div>
     </div>
+  </div>
 
-    <hr class="divider">
-
-    <h2>The five stages</h2>
-
-    <p>Collapse is not an event. It's a process with a shape. The shape is consistent across musicians, politicians, athletes, executives, and brands. The speed varies. The shape doesn't.</p>
-
-    <div class="stages">
-      <div class="stage-row">
-        <span class="stage-num">0</span>
-        <span class="stage-label">No signal</span>
-        <p class="stage-desc">The contract is intact. The audience believes. Criticism exists but doesn't land. Defenders outnumber detractors and they're loud about it.</p>
+  <!-- FIVE VARIABLES -->
+  <div class="section">
+    <div class="section-eyebrow">The five variables</div>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;max-width:640px;margin-bottom:.25rem;">Each variable is a different angle on the same question: is this person still holding their audience, or are they already losing them and just don't know it yet.</p>
+    <div class="vars-grid">
+      <div class="var-item">
+        <div class="var-item-num">01</div>
+        <div class="var-item-name">Contract drift</div>
+        <div class="var-item-desc">The gap between the story they're selling and what the audience actually sees. 1 to 10. If the defense sounds more like explaining than celebrating, drift is already running.</div>
       </div>
-      <div class="stage-row">
-        <span class="stage-num">1</span>
-        <span class="stage-label">Drift</span>
-        <p class="stage-desc">The gap opens between who they claim to be and what the audience sees. The defense mechanisms are still running. Fans are explaining more than celebrating. The doubt is there now. It wasn't before.</p>
+      <div class="var-item">
+        <div class="var-item-num">02</div>
+        <div class="var-item-name">Root cause</div>
+        <div class="var-item-desc">Shame or betrayal. Those two things look similar from the outside. They aren't. Knowing which one you're dealing with is the difference between a repair that works and one that makes it worse.</div>
       </div>
-      <div class="stage-row">
-        <span class="stage-num">2</span>
-        <span class="stage-label">Ironic consumption</span>
-        <p class="stage-desc">The audience is still there but the relationship has changed. The jokes start. The ironic distance enters the relationship without a formal announcement. This is the last stage where the math can still change.</p>
+      <div class="var-item">
+        <div class="var-item-num">03</div>
+        <div class="var-item-name">Contract depth</div>
+        <div class="var-item-desc">Some people are something you like. Some people are something you are. The deeper the identity investment, the harder it breaks — and the louder it gets when it does.</div>
       </div>
-      <div class="stage-row">
-        <span class="stage-num">3</span>
-        <span class="stage-label">Threshold crossing</span>
-        <p class="stage-desc">One event exhausts the rationalization budget. The audience stops defending. The people who used to argue on their behalf go quiet. That silence is louder than anything the critics say.</p>
+      <div class="var-item">
+        <div class="var-item-num">04</div>
+        <div class="var-item-name">Collapse stage</div>
+        <div class="var-item-desc">Zero to five. Drift to inversion. Stage two is the last point the math can still change. After that it's not a repair problem. It's damage containment.</div>
       </div>
-      <div class="stage-row">
-        <span class="stage-num">4</span>
-        <span class="stage-label">Archive rewrite</span>
-        <p class="stage-desc">The catalog gets re-read through the new lens. Old interviews look different. The sincerity looks performed. The audience isn't just rejecting new work. They're revising their relationship with everything that came before.</p>
-      </div>
-      <div class="stage-row">
-        <span class="stage-num">5</span>
-        <span class="stage-label">Inversion</span>
-        <p class="stage-desc">Former believers become the loudest critics. Not performatively. Because the betrayal was personal. The deeper the original investment, the louder and longer the exit. Inversion doesn't require a large group. It requires a committed one.</p>
+      <div class="var-item">
+        <div class="var-item-num">05</div>
+        <div class="var-item-name">Immunity load</div>
+        <div class="var-item-desc">How much runway is left. When it runs out, the next mistake isn't a mistake. It becomes the story everything else gets reread through.</div>
       </div>
     </div>
+  </div>
 
-    <hr class="divider">
+  <!-- FIVE STAGES -->
+  <div class="section">
+    <div class="section-eyebrow">The five stages</div>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;max-width:640px;margin-bottom:.25rem;">Collapse is not an event. It's a process with a shape. Consistent across musicians, politicians, athletes, executives, and brands. The speed varies. The shape doesn't.</p>
+    <div class="stages-list">
+      <div class="stage-row stage-row--0">
+        <div class="stage-num">0</div>
+        <div class="stage-label-col">
+          <div class="stage-label">No signal</div>
+          <div class="stage-sublabel">Clean</div>
+        </div>
+        <div class="stage-desc">Everything is working. The audience believes, defends, and spreads the word without being asked. Criticism exists but slides off. Most people don't appreciate this stage until they're already past it.</div>
+      </div>
+      <div class="stage-row stage-row--1">
+        <div class="stage-num">1</div>
+        <div class="stage-label-col">
+          <div class="stage-label">Early warning</div>
+          <div class="stage-sublabel">Strained</div>
+        </div>
+        <div class="stage-desc">The belief is still there but it's working harder than it used to. Fans are explaining more than they're celebrating. That's the tell. Defense that sounds like effort means the contract is already under strain.</div>
+      </div>
+      <div class="stage-row stage-row--2 stage-row--active">
+        <div class="stage-num">2</div>
+        <div class="stage-label-col">
+          <div class="stage-label">Drift active</div>
+          <div class="stage-sublabel">Last exit</div>
+        </div>
+        <div class="stage-desc">The audience is still present but they moved. Ironic distance replaced genuine investment. People are watching to see what happens next, not because they believe in something. <span class="stage-last-exit">Last exit on the map</span></div>
+      </div>
+      <div class="stage-row stage-row--3">
+        <div class="stage-num">3</div>
+        <div class="stage-label-col">
+          <div class="stage-label">Threshold crossing</div>
+          <div class="stage-sublabel">No repair</div>
+        </div>
+        <div class="stage-desc">One thing uses up whatever was left. The defenders go quiet. Not angry. Quiet. That silence is louder than anything the critics say. No statement fixes this stage. No apology tour either.</div>
+      </div>
+      <div class="stage-row stage-row--4">
+        <div class="stage-num">4</div>
+        <div class="stage-label-col">
+          <div class="stage-label">Archive rewrite</div>
+          <div class="stage-sublabel">Retroactive</div>
+        </div>
+        <div class="stage-desc">The damage stops being about what they did and becomes about who they always were. Old interviews. Old lyrics. Old moments that felt sincere. All of it gets re-read through the new lens. The catalog stops being a legacy and becomes a case file.</div>
+      </div>
+      <div class="stage-row stage-row--5">
+        <div class="stage-num">5</div>
+        <div class="stage-label-col">
+          <div class="stage-label">Inversion</div>
+          <div class="stage-sublabel">Terminal</div>
+        </div>
+        <div class="stage-desc">The people who believed the hardest become the loudest critics. Former true believers are the most damaging force in any public collapse — they know exactly where the vulnerabilities are and they have standing to name them.</div>
+      </div>
+    </div>
+  </div>
 
-    <h2>Four cases. Scored live.</h2>
+  <!-- LIVE CASES -->
+  <div class="section">
+    <div class="section-eyebrow">Three cases · Scored live · June 2026</div>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;max-width:640px;margin-bottom:.25rem;">The framework produces the same output regardless of category. Musician, politician, corporation. The mechanism is identical. The variables scale.</p>
+    <div class="case-grid">
 
-    <p class="cases-intro">The framework produces the same output regardless of category — musician, corporation, movement, institution. The mechanism is identical. The variables scale. Below are four reports generated by the instrument using live web search. Each one shows the framework working on a current subject at the moment of analysis.</p>
+      <!-- NIKE -->
+      <div class="case-card">
+        <div>
+          <div class="case-meta">Corporation · Footwear · June 2026</div>
+          <div class="case-name">Nike</div>
+          <div class="case-summary">Nike is not collapsing. It is something more uncomfortable: a brand that knows exactly what it used to be and cannot yet prove it still is. The World Cup is the largest single repair opportunity available. The argument only works if the product wins.</div>
+          <div class="case-scores">
+            <div class="case-score">
+              <span class="case-score-label">Drift</span>
+              <span class="case-score-val val-high">6/10</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Root cause</span>
+              <span class="case-score-val val-neutral">Authenticity</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Stage</span>
+              <span class="case-score-val val-mod">2 — Drift Active</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Immunity</span>
+              <span class="case-score-val val-mod">6/10</span>
+            </div>
+          </div>
+          <a class="case-link" href="https://collapse.chartreuseexplosives.com/r/nike-060826">View report &rarr;</a>
+        </div>
+        <div class="case-badge">
+          <span class="risk-tag moderate">Moderate risk</span>
+          <span class="stage-tag">Stage 2</span>
+        </div>
+      </div>
 
-    <div class="case-cards">
+      <!-- STARMER -->
+      <div class="case-card">
+        <div>
+          <div class="case-meta">Politician · UK Government · June 2026</div>
+          <div class="case-name">Keir Starmer</div>
+          <div class="case-summary">He holds the office but not the authority. The audience stopped believing first. His own cabinet stopped believing second. The parliamentary arithmetic that keeps him in Downing Street is not the same thing as a mandate, and he has neither.</div>
+          <div class="case-scores">
+            <div class="case-score">
+              <span class="case-score-label">Drift</span>
+              <span class="case-score-val val-crit">10/10</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Root cause</span>
+              <span class="case-score-val val-crit">Both</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Stage</span>
+              <span class="case-score-val val-crit">5 — Inversion</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Immunity</span>
+              <span class="case-score-val val-crit">1/10</span>
+            </div>
+          </div>
+          <a class="case-link" href="https://collapse.chartreuseexplosives.com/r/starmer-060826">View report &rarr;</a>
+        </div>
+        <div class="case-badge">
+          <span class="risk-tag critical">Critical risk</span>
+          <span class="stage-tag">Stage 5</span>
+        </div>
+      </div>
 
-      <a href="https://collapse.chartreuseexplosives.com/r/boeing-053126" class="case-card">
-        <p class="case-tag">Corporation · Aviation · May 2026</p>
-        <p class="case-subject">Boeing</p>
-        <p class="case-verdict">Operational recovery is real and measurable. The belief contract broke at the level of institutional character, not product performance. Production fixes don't repair cultural breaks on the same timeline.</p>
-        <div class="case-scores">
-          <div class="score-pill">
-            <span class="score-label">Drift</span>
-            <span class="score-value">6/10</span>
+      <!-- KENDRICK -->
+      <div class="case-card">
+        <div>
+          <div class="case-meta">Musician · Hip-Hop · June 2026</div>
+          <div class="case-name">Kendrick Lamar</div>
+          <div class="case-summary">The belief contract is not just holding. It is the standard against which other contracts in hip-hop are now measured. The risk is not collapse. The risk is the ceiling. And right now, there is no ceiling visible from here.</div>
+          <div class="case-scores">
+            <div class="case-score">
+              <span class="case-score-label">Drift</span>
+              <span class="case-score-val val-low">2/10</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Root cause</span>
+              <span class="case-score-val val-low">None</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Stage</span>
+              <span class="case-score-val val-low">0 — No Signal</span>
+            </div>
+            <div class="case-score">
+              <span class="case-score-label">Immunity</span>
+              <span class="case-score-val val-low">10/10</span>
+            </div>
           </div>
-          <div class="score-pill">
-            <span class="score-label">Root cause</span>
-            <span class="score-value">Authenticity</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Stage</span>
-            <span class="score-value">3</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Immunity</span>
-            <span class="score-value">4/10</span>
-          </div>
+          <a class="case-link" href="https://collapse.chartreuseexplosives.com/r/kendrick-060826">View report &rarr;</a>
         </div>
-        <div class="case-footer">
-          <span class="case-risk-badge high">High risk</span>
-          <span class="case-arrow">View report →</span>
+        <div class="case-badge">
+          <span class="risk-tag low">Low risk</span>
+          <span class="stage-tag">Stage 0</span>
         </div>
-      </a>
-
-      <a href="https://collapse.chartreuseexplosives.com/r/paramount-053126" class="case-card">
-        <p class="case-tag">Corporation · Media · May 2026</p>
-        <p class="case-subject">Paramount</p>
-        <p class="case-verdict">Paramount traded its most durable asset — institutional credibility — for regulatory access. The audience that valued that credibility has named the transaction clearly and is exiting.</p>
-        <div class="case-scores">
-          <div class="score-pill">
-            <span class="score-label">Drift</span>
-            <span class="score-value">7/10</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Root cause</span>
-            <span class="score-value">Allegiance</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Stage</span>
-            <span class="score-value">3</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Immunity</span>
-            <span class="score-value">4/10</span>
-          </div>
-        </div>
-        <div class="case-footer">
-          <span class="case-risk-badge high">High risk</span>
-          <span class="case-arrow">View report →</span>
-        </div>
-      </a>
-
-      <a href="https://collapse.chartreuseexplosives.com/r/dei-consultancy-053126" class="case-card">
-        <p class="case-tag">Sector · Professional Services · May 2026</p>
-        <p class="case-subject">DEI Consultancy</p>
-        <p class="case-verdict">The sector sold transformation and delivered compliance theater. Two separate audiences, corporate clients and the communities who believed, are running two separate breaks simultaneously.</p>
-        <div class="case-scores">
-          <div class="score-pill">
-            <span class="score-label">Drift</span>
-            <span class="score-value">8/10</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Root cause</span>
-            <span class="score-value">Both</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Stage</span>
-            <span class="score-value red">4</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Immunity</span>
-            <span class="score-value red">2/10</span>
-          </div>
-        </div>
-        <div class="case-footer">
-          <span class="case-risk-badge critical">Critical risk</span>
-          <span class="case-arrow">View report →</span>
-        </div>
-      </a>
-
-      <a href="https://collapse.chartreuseexplosives.com/r/pride-celebrations-053126" class="case-card">
-        <p class="case-tag">Institution · Cultural · May 2026</p>
-        <p class="case-subject">Pride Celebrations</p>
-        <p class="case-verdict">The corporate model that sustained the modern festival format is in active collapse. The core audience is simultaneously processing betrayal by those corporate allies and internal fractures over what Pride is actually for.</p>
-        <div class="case-scores">
-          <div class="score-pill">
-            <span class="score-label">Drift</span>
-            <span class="score-value">7/10</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Root cause</span>
-            <span class="score-value">Both</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Stage</span>
-            <span class="score-value">3</span>
-          </div>
-          <div class="score-pill">
-            <span class="score-label">Immunity</span>
-            <span class="score-value">4/10</span>
-          </div>
-        </div>
-        <div class="case-footer">
-          <span class="case-risk-badge high">High risk</span>
-          <span class="case-arrow">View report →</span>
-        </div>
-      </a>
+      </div>
 
     </div>
+  </div>
 
-    <hr class="divider">
-
-    <h3>The prescription</h3>
-
-    <div class="prescription-block">
-      <p>The instrument doesn't just score the five variables. It tells you what the subject should do next.</p>
-      <p style="margin-top: 16px;">Not generic advice. Not "reconnect with your roots" or "take a break." Specific moves based on their exact stage, their root cause, and their remaining immunity. The prescription changes depending on whether someone is at stage one or stage three. It changes depending on whether the break is shame or betrayal. It names the move.</p>
-      <p style="margin-top: 16px;">That's the part most observers see before the subject does. Which is the point.</p>
+  <!-- PRESCRIPTION + LIMITS -->
+  <div class="section">
+    <div class="section-eyebrow">What the instrument tells you</div>
+    <div class="two-col">
+      <div class="two-col-cell">
+        <div class="two-col-cell-label">The prescription</div>
+        <p>Most risk tools stop at the score. The Collapse Risk Instrument tells you what the subject should do next — based on their exact signal state, their root cause, and their remaining immunity. Not "reconnect with your roots." The specific move that matches the specific stage. Stage one and stage three require different responses. A shame break and a betrayal break require different responses.</p>
+      </div>
+      <div class="two-col-cell">
+        <div class="two-col-cell-label">What it doesn't tell you</div>
+        <p>It won't tell you what the person does next. Human agency isn't a variable. Some stage four collapses produce the best work of a career. Some stage one drifts become terminal through pure negligence. It also won't tell you whether the collapse is fair. The framework doesn't adjudicate. It measures the current state of the bond. Not the justice of the situation. Those are two different questions.</p>
+      </div>
     </div>
+  </div>
 
-    <hr class="divider">
-
-    <h3>Who this works for</h3>
-
-    <p>Built for musicians. Works identically for politicians, athletes, executives, celebrities, influencers, brands, and any entity whose position depends on an audience choosing to believe in them.</p>
-
-    <p>The mechanism is the same across all of them. The variables scale. The stages apply. The root causes don't change.</p>
-
-    <p>Fame is not the bond. Talent is not the bond. Money is not the bond. The bond is belief. And belief breaks the same way every time regardless of the industry, the era, or the size of the audience.</p>
-
-    <hr class="divider">
-
-    <h3>What this doesn't tell you</h3>
-
-    <p>It won't tell you what the person does next. Human agency isn't a variable. People surprise you. Some stage four collapses produce the best work of a career. Some stage one drifts become terminal through pure negligence.</p>
-
-    <p>It won't tell you whether the collapse is fair. Some people get destroyed for real violations. Some get destroyed by bad timing, coordinated campaigns, or moral panics that history eventually corrects. The framework doesn't adjudicate. It measures.</p>
-
-    <p>The current state of the bond. Not the justice of the situation. Those are two different questions. This answers the first one only.</p>
-
-    <div class="closing">
-      <p class="closing-pull">The crowd doesn't leave because<br>the person changed.<br><br>It leaves because it finally understands<br><em>what the person always was.</em></p>
-      <p>That's when the archive gets rewritten.</p>
-      <p style="margin-top: 8px;">And that rewrite is permanent.</p>
-      <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Framework developed by Prince Campbell. Chartreuse Explosives. New York.</p>
+  <!-- WHO IT'S FOR -->
+  <div class="section">
+    <div class="section-eyebrow">Who this works for</div>
+    <div class="mechanism-grid">
+      <div class="mechanism-cell">
+        <div class="mechanism-cell-label">The gap it fills</div>
+        <p>Every other risk tool in this category was built for legal or financial exposure. They measure what can be quantified: revenue, coverage volume, sentiment polarity. They don't measure the one thing that actually determines whether a career survives — whether the audience still believes.</p>
+        <p>This instrument measures that.</p>
+      </div>
+      <div class="mechanism-cell">
+        <div class="mechanism-cell-label">Built for</div>
+        <p>Musicians. Works identically for politicians, athletes, executives, celebrities, influencers, brands, and any entity whose position depends on an audience choosing to believe in them.</p>
+        <p>The mechanism is the same across all of them. The variables scale. The stages apply. The root causes don't change.</p>
+      </div>
     </div>
+  </div>
 
+  <!-- CTA -->
+  <div class="section" style="border-bottom:none;padding-bottom:3rem;">
     <div class="cta-block">
-      <a href="https://collapse.chartreuseexplosives.com/" class="cta-primary">Run the instrument →</a>
-      <p class="cta-secondary">For institutional use, white-label analysis, or ongoing monitoring engagements — <a href="mailto:prince@princecampbell.com">get in touch</a>.</p>
+      <div class="cta-text">
+        <p>Run it before the room figures it out.</p>
+      </div>
+      <a class="cta-btn" href="https://collapse.chartreuseexplosives.com/">Run the instrument &rarr;</a>
     </div>
+    <div style="margin-top:1.5rem;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8;">
+      For institutional use, white-label analysis, or ongoing monitoring engagements &mdash; get in touch.<br>
+      Framework developed by Prince Campbell. Chartreuse Explosives. New York.
+    </div>
+  </div>
 
-  </main>
+</div>
 
-  <footer>
-    <span class="footer-text">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a></span>
-    <span class="footer-text">The Collapse Framework v1.0</span>
-  </footer>
+<footer>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;&middot;&nbsp; <a href="/about">The Collapse Framework</a></span>
+  <span class="footer-right">Collapse Framework v1.0</span>
+</footer>
 
 </body>
 </html>
