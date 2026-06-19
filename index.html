@@ -311,7 +311,7 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
   <label class="input-label" for="artist-input">Run it before the room figures it out</label>
   <div class="input-row">
     <input type="text" id="artist-input" placeholder="Executive, institution, brand, public figure&hellip;" autocomplete="off" />
-    <button id="generate-btn" onclick="generateReport()">Run analysis</button>
+    <button id="generate-btn" type="button">Run analysis</button>
   </div>
 
   <div id="loading" style="margin-top:1rem;">
@@ -352,8 +352,8 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
         <li class="pricing-feature pricing-feature--yes">Current as of today</li>
         <li class="pricing-feature pricing-feature--yes">Shareable report link</li>
       </ul>
-      <button class="pricing-cta" onclick="startCheckout('intel')">Get a single report &rarr; $49</button>
-      <button class="pricing-pack" onclick="startCheckout('archive')">5-report pack &rarr; $149</button>
+      <button class="pricing-cta checkout-btn" type="button" data-tier="intel">Get a single report &rarr; $49</button>
+      <button class="pricing-pack checkout-btn" type="button" data-tier="archive">5-report pack &rarr; $149</button>
     </div>
   </div>
 
@@ -364,7 +364,7 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
     </div>
     <div class="license-row">
       <input type="text" id="license-input" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" spellcheck="false" autocomplete="off" />
-      <button id="license-btn" onclick="activateLicense()">Activate</button>
+      <button id="license-btn" type="button">Activate</button>
     </div>
   </div>
 
@@ -373,8 +373,8 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
       <div class="rate-limit-label">Free report used</div>
       <div class="rate-limit-message">You've run your one free report. Paid reports use live web search, sourced findings, and generate a permanent shareable link.</div>
       <div class="rate-limit-actions">
-        <button class="rate-limit-cta" onclick="startCheckout('intel')">Single report &mdash; $49</button>
-        <button class="rate-limit-alt" onclick="startCheckout('archive')">5-pack &mdash; $149</button>
+        <button class="rate-limit-cta checkout-btn" type="button" data-tier="intel">Single report &mdash; $49</button>
+        <button class="rate-limit-alt checkout-btn" type="button" data-tier="archive">5-pack &mdash; $149</button>
       </div>
     </div>
   </div>
@@ -384,7 +384,7 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 
 <footer>
   <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;&middot;&nbsp; <a href="/about">The Collapse Framework</a></span>
-  <span class="footer-right">Collapse Risk Instrument v2.1</span>
+  <span class="footer-right">Collapse Risk Instrument v2.2</span>
 </footer>
 
 <script>
@@ -447,8 +447,7 @@ async function activateLicense() {
   }
 }
 
-async function startCheckout(tier) {
-  const btn = event && event.target;
+async function startCheckout(tier, btn) {
   const orig = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = 'Redirecting...'; }
   try {
@@ -468,11 +467,6 @@ async function startCheckout(tier) {
     alert('Checkout failed. Please try again.');
     if (btn) { btn.disabled = false; btn.textContent = orig; }
   }
-}
-
-function runExample(name) {
-  document.getElementById('artist-input').value = name;
-  generateReport();
 }
 
 async function generateReport() {
@@ -611,7 +605,7 @@ function renderReport(d, isPaid) {
         <div class="share-label">Permanent link</div>
         <div class="share-url">${reportUrl}</div>
       </div>
-      <button class="copy-btn" onclick="copyUrl('${reportUrl}', this)">Copy link</button>
+      <button class="copy-btn" type="button" data-action="copy-url" data-url="${reportUrl}">Copy link</button>
     </div>`;
   }
 
@@ -634,7 +628,7 @@ function renderReport(d, isPaid) {
       </div>
       <div class="upgrade-gate-cta">
         <p>$49 per report &nbsp;&middot;&nbsp; $149 for five &nbsp;&middot;&nbsp; No account required</p>
-        <button class="upgrade-btn" onclick="startCheckout('intel')">Run a paid report &mdash; $49</button>
+        <button class="upgrade-btn checkout-btn" type="button" data-tier="intel">Run a paid report &mdash; $49</button>
       </div>
     </div>
   `;
@@ -722,6 +716,15 @@ function copyUrl(url, btn) {
   });
 }
 
+// ─── Event binding (no inline onclick/onkeydown attributes — CSP safe) ───────
+// Static buttons get direct listeners. Buttons injected later via
+// renderReport() (copy-btn, the upgrade-gate checkout button) are caught by
+// a single delegated listener on document, since they don't exist yet when
+// this script runs.
+
+document.getElementById('generate-btn').addEventListener('click', generateReport);
+document.getElementById('license-btn').addEventListener('click', activateLicense);
+
 document.getElementById('artist-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') generateReport();
 });
@@ -730,6 +733,18 @@ document.getElementById('email-input').addEventListener('keydown', e => {
 });
 document.getElementById('license-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') activateLicense();
+});
+
+document.addEventListener('click', (e) => {
+  const checkoutBtn = e.target.closest('.checkout-btn');
+  if (checkoutBtn) {
+    startCheckout(checkoutBtn.dataset.tier, checkoutBtn);
+    return;
+  }
+  const copyBtn = e.target.closest('[data-action="copy-url"]');
+  if (copyBtn) {
+    copyUrl(copyBtn.dataset.url, copyBtn);
+  }
 });
 
 updateEmailGateVisibility();
