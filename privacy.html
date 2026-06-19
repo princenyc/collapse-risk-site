@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy — Collapse Risk Instrument · Chartreuse Explosives</title>
+<meta name="description" content="What we collect, why, and what happens to it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --near-black: #111111;
+  --surface: #161616;
+  --border: #2a2a2a;
+  --border-bright: #3a3a3a;
+  --chartreuse: #c8e600;
+  --chartreuse-dim: #8fa300;
+  --white: #f0ede6;
+  --muted: #888880;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+  --display: 'Bebas Neue', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--black); color: var(--white); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--chartreuse); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; height: 48px; position: sticky; top: 0; background: var(--black); z-index: 100; }
+.nav-mark { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .12em; color: var(--chartreuse); text-transform: uppercase; }
+.nav-link { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+.nav-link:hover { color: var(--white); text-decoration: none; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+.page-header { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.page-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 1rem; }
+.page-title { font-family: var(--display); font-size: clamp(40px, 8vw, 72px); line-height: .95; letter-spacing: .02em; color: var(--white); margin-bottom: 1rem; }
+.page-intro { font-size: 16px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 580px; }
+.page-meta { font-family: var(--mono); font-size: 10px; color: var(--border-bright); letter-spacing: .06em; margin-top: 1.25rem; }
+
+.pblock { border: 1px solid var(--border); margin-bottom: 1px; }
+.pblock-header { padding: .875rem 1.25rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+.pblock-name { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--chartreuse); text-transform: uppercase; }
+.pblock-body { padding: 1.25rem; background: var(--near-black); }
+.pblock-body p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.75; margin-bottom: .875rem; }
+.pblock-body p:last-child { margin-bottom: 0; }
+.pblock-body ul { list-style: none; margin-bottom: .875rem; }
+.pblock-body ul:last-child { margin-bottom: 0; }
+.pblock-body li { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.75; padding-left: 1.25rem; position: relative; margin-bottom: .5rem; }
+.pblock-body li:last-child { margin-bottom: 0; }
+.pblock-body li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--chartreuse-dim); }
+.pblock-body strong { color: var(--chartreuse); font-weight: 500; }
+.pblock-body a { border-bottom: 1px solid var(--chartreuse-dim); }
+.pblock-body a:hover { border-color: var(--white); text-decoration: none; }
+
+.contact-block { border: 1px solid var(--chartreuse-dim); background: #0d1200; padding: 1.25rem; margin-top: 1.5rem; }
+.contact-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 10px; }
+.contact-block p { font-size: 14px; font-weight: 300; color: var(--white); line-height: 1.7; }
+.contact-block a { color: var(--chartreuse); border-bottom: 1px solid var(--chartreuse-dim); }
+
+.disclaimer { border-left: 2px solid var(--border-bright); padding: 1rem 1.25rem; margin-top: 2rem; }
+.disclaimer p { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; max-width: 760px; margin: 0 auto; }
+.footer-mark { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--muted); }
+.footer-mark a { color: var(--chartreuse-dim); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-mark">Chartreuse Explosives</span>
+  <a href="https://collapse.chartreuseexplosives.com" class="nav-link">Back to the instrument</a>
+</nav>
+
+<div class="wrap">
+  <div class="page-header">
+    <div class="page-eyebrow">Privacy Policy</div>
+    <h1 class="page-title">What we collect.<br>What we don't.</h1>
+    <p class="page-intro">No legal padding. This is the whole policy. Read it in two minutes, not twenty.</p>
+    <div class="page-meta">Effective June 19, 2026 &middot; Applies to collapse.chartreuseexplosives.com</div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">What we collect</span></div>
+    <div class="pblock-body">
+      <p><strong>Free reports.</strong> Your email address. Your IP address. The subject name you run. The report we generate. Whether you checked the updates box. The time you ran it.</p>
+      <p><strong>Paid reports.</strong> Stripe collects your email and payment details when you check out. We never see your card number. Stripe hands us your email so we can issue and email you a license key.</p>
+      <p><strong>License key activation.</strong> The key itself. Nothing else. Activating a key doesn't require an account or any new personal data.</p>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">Why we collect it</span></div>
+    <div class="pblock-body">
+      <p>Email and IP enforce the one free report limit. Without them, the free tier isn't free, it's unlimited, and the math behind this product breaks.</p>
+      <p>The subject name goes to the engine that writes your report. Nothing about you personally goes with it beyond that name.</p>
+      <p>If you checked the updates box, we use your email to send occasional updates about Chartreuse Explosives. If you didn't check it, we don't.</p>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">Who else sees it</span></div>
+    <div class="pblock-body">
+      <ul>
+        <li><strong>Stripe</strong> processes every payment. We don't touch your card details at any point.</li>
+        <li><strong>Resend</strong> delivers license key emails and any update emails you opted into.</li>
+        <li><strong>Anthropic</strong> processes the subject name and runs the live search behind paid reports.</li>
+        <li><strong>Cloudflare</strong> hosts the site and stores the records described on this page.</li>
+      </ul>
+      <p>Each of those companies runs under its own privacy policy, not ours. We don't sell your data. Not to advertisers, not to data brokers, not to anyone. That's not a marketing line, it's just not part of how this business works.</p>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">How long we keep it</span></div>
+    <div class="pblock-body">
+      <ul>
+        <li>Email and IP tied to your free report limit: kept indefinitely, because the limit is one report per lifetime, not one per year.</li>
+        <li>Your email and the subject you searched (the lead record): kept up to two years, then deleted automatically.</li>
+        <li>Paid report pages at permanent links: kept one year, then the link expires.</li>
+        <li>License keys: kept one year.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">Cookies and tracking</span></div>
+    <div class="pblock-body">
+      <p>No advertising trackers run on this site. No third-party analytics pixels. The only data leaving your browser is what you type in and what your browser sends automatically, like your IP address.</p>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">Your rights</span></div>
+    <div class="pblock-body">
+      <p>You can ask what we have on you. You can ask us to delete it. You can opt out of updates at any time. Email us to do any of these and we'll act on it.</p>
+      <p>If you're in the EU or UK, you have rights under GDPR including access, correction, deletion, and objection to processing. If you're a California resident, you have rights under the CCPA including the right to know what's collected and the right to delete it. The mechanism is the same either way: email us.</p>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">Children</span></div>
+    <div class="pblock-body">
+      <p>This site isn't directed at anyone under 16. We don't knowingly collect data from minors. If we learn that we have, we'll delete it.</p>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="pblock-header"><span class="pblock-name">Changes to this policy</span></div>
+    <div class="pblock-body">
+      <p>We'll update this page when what we actually do changes. The date at the top tells you when that last happened. We won't quietly expand what we collect without updating it here first.</p>
+    </div>
+  </div>
+
+  <div class="contact-block">
+    <div class="contact-label">Contact</div>
+    <p>Questions, deletion requests, or anything else covered here: <a href="mailto:privacy@chartreuseexplosives.com">privacy@chartreuseexplosives.com</a></p>
+  </div>
+
+  <div class="disclaimer">
+    <p>This page describes our actual data practices in plain language. It isn't a substitute for legal advice and hasn't been reviewed by an attorney. If you operate under specific regulatory obligations beyond what's described here, confirm compliance with counsel before relying on this page.</p>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;&middot;&nbsp; <a href="https://collapse.chartreuseexplosives.com">Collapse Risk Instrument</a></span>
+</footer>
+
+</body>
+</html>
