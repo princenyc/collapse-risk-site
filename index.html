@@ -299,8 +299,10 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
     <div class="email-row">
       <input type="email" id="email-input" placeholder="you@email.com" autocomplete="email" />
     </div>
-    <!-- honeypot: real users never see or fill this -->
-    <input type="text" id="website" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <!-- honeypot: real users never see or fill this. Field name is deliberately
+         meaningless so browser autofill heuristics (which target names like
+         "website", "url", "company") don't match and silently populate it. -->
+    <input type="text" id="hp_field_9f3a" name="hp_field_9f3a" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <div class="consent-row">
       <input type="checkbox" id="consent-input" />
       <label for="consent-input">Send me occasional updates from Chartreuse Explosives. Unsubscribe anytime.</label>
@@ -476,8 +478,9 @@ async function generateReport() {
   const errorBox = document.getElementById('error-box');
   errorBox.classList.remove('visible');
 
-  // Honeypot: if a bot filled this hidden field, fail silently, no error shown.
-  const honeypot = document.getElementById('website').value;
+  // Honeypot: if a bot (or, previously, an over-eager autofill) filled this
+  // hidden field, fail silently, no error shown.
+  const honeypot = document.getElementById('hp_field_9f3a').value;
   if (honeypot) return;
 
   let email = '';
@@ -516,7 +519,7 @@ async function generateReport() {
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ artist: name, email, consent, website: honeypot }),
+      body: JSON.stringify({ artist: name, email, consent, hp: honeypot }),
       signal: controller.signal
     });
     clearTimeout(timeoutId);
