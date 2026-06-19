@@ -71,6 +71,19 @@ nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex;
 #generate-btn:hover { background: #d4f500; }
 #generate-btn:disabled { background: var(--border-bright); color: var(--muted); cursor: not-allowed; }
 
+/* EMAIL GATE (free tier only) */
+.email-row { display: flex; gap: 0; border: 1px solid var(--border-bright); width: 100%; max-width: 640px; margin-bottom: .75rem; }
+.email-row:focus-within { border-color: var(--chartreuse); }
+#email-input { flex: 1; background: var(--surface); border: none; outline: none; padding: 0 1rem; height: 52px; font-family: var(--sans); font-size: 16px; color: var(--white); min-width: 0; }
+#email-input::placeholder { color: var(--muted); }
+.field-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .03em; max-width: 640px; margin: .5rem 0 1.25rem; line-height: 1.6; }
+.field-hint a { color: var(--chartreuse-dim); }
+.consent-row { display: flex; align-items: flex-start; gap: .5rem; max-width: 640px; margin-bottom: .75rem; }
+.consent-row input[type="checkbox"] { margin-top: 3px; accent-color: var(--chartreuse); flex-shrink: 0; width: 14px; height: 14px; }
+.consent-row label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .03em; line-height: 1.5; cursor: pointer; }
+.hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+#email-gate.hidden { display: none; }
+
 /* PRICING GRID */
 .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 1.5rem; max-width: 640px; }
 .pricing-col { background: var(--near-black); padding: 1.25rem; }
@@ -281,6 +294,20 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 </div>
 
 <div class="input-section">
+  <div id="email-gate">
+    <label class="input-label" for="email-input">Email (required for your free report)</label>
+    <div class="email-row">
+      <input type="email" id="email-input" placeholder="you@email.com" autocomplete="email" />
+    </div>
+    <!-- honeypot: real users never see or fill this -->
+    <input type="text" id="website" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <div class="consent-row">
+      <input type="checkbox" id="consent-input" />
+      <label for="consent-input">Send me occasional updates from Chartreuse Explosives. Unsubscribe anytime.</label>
+    </div>
+    <div class="field-hint">Used to apply your one free report and to follow up about it. Not required for paid reports or license key holders.</div>
+  </div>
+
   <label class="input-label" for="artist-input">Run it before the room figures it out</label>
   <div class="input-row">
     <input type="text" id="artist-input" placeholder="Executive, institution, brand, public figure&hellip;" autocomplete="off" />
@@ -357,7 +384,7 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
 
 <footer>
   <span class="footer-mark">Built by <a href="https://chartreuseexplosives.com">Chartreuse Explosives</a> &nbsp;&middot;&nbsp; <a href="/about">The Collapse Framework</a></span>
-  <span class="footer-right">Collapse Risk Instrument v2.0</span>
+  <span class="footer-right">Collapse Risk Instrument v2.1</span>
 </footer>
 
 <script>
@@ -365,6 +392,28 @@ const WORKER_URL = 'https://collapse-risk-api.princecampbellnyc.workers.dev';
 const stageNames = ['No signal', 'Drift', 'Ironic consumption', 'Threshold crossing', 'Archive rewrite', 'Inversion'];
 let activeLicenseKey = null;
 let licenseCredits = null;
+
+// Client-side check only. Server re-validates against its own list, which is authoritative.
+const DISPOSABLE_DOMAINS = new Set([
+  'mailinator.com','guerrillamail.com','10minutemail.com','tempmail.com','temp-mail.org',
+  'throwawaymail.com','yopmail.com','trashmail.com','getnada.com','fakeinbox.com',
+  'sharklasers.com','dispostable.com','maildrop.cc','mintemail.com','mohmal.com','moakt.com'
+]);
+
+function isValidEmail(email) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false;
+  const domain = email.split('@')[1].toLowerCase();
+  return !DISPOSABLE_DOMAINS.has(domain);
+}
+
+function updateEmailGateVisibility() {
+  const gate = document.getElementById('email-gate');
+  if (activeLicenseKey) {
+    gate.classList.add('hidden');
+  } else {
+    gate.classList.remove('hidden');
+  }
+}
 
 async function activateLicense() {
   const key = document.getElementById('license-input').value.trim();
@@ -385,6 +434,7 @@ async function activateLicense() {
       status.textContent = `Active · ${data.remaining} report${data.remaining !== 1 ? 's' : ''} remaining`;
       status.className = 'license-status valid';
       btn.textContent = 'Active';
+      updateEmailGateVisibility();
     } else {
       status.textContent = data.error || 'Invalid key';
       status.className = 'license-status invalid';
@@ -428,15 +478,34 @@ function runExample(name) {
 async function generateReport() {
   const name = document.getElementById('artist-input').value.trim();
   if (!name) return;
+
+  const errorBox = document.getElementById('error-box');
+  errorBox.classList.remove('visible');
+
+  // Honeypot: if a bot filled this hidden field, fail silently, no error shown.
+  const honeypot = document.getElementById('website').value;
+  if (honeypot) return;
+
+  let email = '';
+  let consent = false;
+  if (!activeLicenseKey) {
+    email = document.getElementById('email-input').value.trim();
+    consent = document.getElementById('consent-input').checked;
+    if (!isValidEmail(email)) {
+      errorBox.textContent = 'Enter a valid email to run your free report.';
+      errorBox.classList.add('visible');
+      document.getElementById('email-input').focus();
+      return;
+    }
+  }
+
   const btn = document.getElementById('generate-btn');
   const loading = document.getElementById('loading');
   const loadingText = document.getElementById('loading-text');
   const report = document.getElementById('report');
-  const errorBox = document.getElementById('error-box');
   const rateLimitBox = document.getElementById('rate-limit-box');
 
   btn.disabled = true;
-  errorBox.classList.remove('visible');
   rateLimitBox.classList.remove('visible');
   report.classList.remove('visible');
   report.innerHTML = '';
@@ -453,7 +522,7 @@ async function generateReport() {
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ artist: name }),
+      body: JSON.stringify({ artist: name, email, consent, website: honeypot }),
       signal: controller.signal
     });
     clearTimeout(timeoutId);
@@ -463,6 +532,14 @@ async function generateReport() {
       rateLimitBox.classList.add('visible');
       rateLimitBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
+    }
+    if (res.status === 400) {
+      const errData = await res.json().catch(() => ({}));
+      if (errData.error === 'valid_email_required') {
+        errorBox.textContent = 'Enter a valid email to run your free report.';
+        errorBox.classList.add('visible');
+        return;
+      }
     }
     if (!res.ok) throw new Error('Worker error: ' + res.status);
 
@@ -648,9 +725,14 @@ function copyUrl(url, btn) {
 document.getElementById('artist-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') generateReport();
 });
+document.getElementById('email-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('artist-input').focus();
+});
 document.getElementById('license-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') activateLicense();
 });
+
+updateEmailGateVisibility();
 </script>
 </body>
 </html>
