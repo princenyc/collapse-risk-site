@@ -39,6 +39,12 @@ nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex;
 .nav-link { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .06em; }
 .nav-link:hover { color: var(--white); text-decoration: none; }
 
+/* DISCLOSURE STRIP */
+.disclosure-strip { border-bottom: 1px solid var(--border); background: var(--near-black); padding: .625rem 1.25rem; }
+.disclosure-strip-inner { max-width: 960px; margin: 0 auto; font-family: var(--mono); font-size: 10px; letter-spacing: .04em; color: var(--muted); line-height: 1.6; }
+.disclosure-strip-inner strong { color: var(--chartreuse-dim); }
+.disclosure-strip-inner a { color: var(--chartreuse-dim); }
+
 /* HERO */
 .hero { border-bottom: 1px solid var(--border); padding: 4rem 1.25rem 3rem; max-width: 960px; margin: 0 auto; }
 .hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--chartreuse); text-transform: uppercase; margin-bottom: 1.5rem; }
@@ -152,6 +158,9 @@ nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex;
 .report-artist { font-family: var(--display); font-size: clamp(32px, 8vw, 64px); line-height: 1; letter-spacing: .03em; color: var(--white); }
 .report-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .08em; }
 
+.report-disclosure { border: 1px solid var(--border); background: var(--surface); padding: .75rem 1rem; margin-bottom: 1.5rem; font-family: var(--mono); font-size: 10px; letter-spacing: .04em; color: var(--muted); line-height: 1.6; }
+.report-disclosure strong { color: var(--chartreuse-dim); }
+
 .risk-banner { padding: 1rem 1.25rem; border-left: 3px solid; margin-bottom: 1.5rem; }
 .risk-banner.low { border-color: var(--success); background: #041a12; }
 .risk-banner.moderate { border-color: var(--warning); background: #1a1000; }
@@ -249,19 +258,21 @@ footer { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; display: 
   </div>
 </nav>
 
+<div class="disclosure-strip">
+  <div class="disclosure-strip-inner"><strong>AI-generated.</strong> Built by Claude from live web sources. A human reviews every report before it publishes. Errors get the report pulled and reissued corrected. <a href="https://collapse.chartreuseexplosives.com/about">Read the framework</a>.</div>
+</div>
+
 <div class="hero">
   <div class="hero-eyebrow">Collapse Risk Instrument</div>
   <h1 class="hero-title">Every collapsed<br>institution looked fine<br><span>six months before.</span></h1>
   <div class="hero-body">
-    <p>Nike had the catalog. Keir Starmer had the mandate. Kendrick Lamar had the culture.</p>
+    <p>Nike had the catalog. Kirkland &amp; Ellis had the mandate. Paramount had the culture.</p>
     <p>The numbers were real. The belief contract was already gone.</p>
     <p class="hero-kicker">The Collapse Risk Instrument reads what the numbers don't show. The five-variable sequence that runs before every institutional collapse. Same shape every time. Same order every time.</p>
   </div>
  <div class="hero-examples">
     <span class="hero-examples-label">See it live:</span>
     <a class="hero-example-link" href="https://collapse.chartreuseexplosives.com/r/nike-060826">Nike</a>
-    <a class="hero-example-link" href="https://collapse.chartreuseexplosives.com/r/keir-starmer-060926">Keir Starmer</a>
-    <a class="hero-example-link" href="https://collapse.chartreuseexplosives.com/r/kendrick-lamar-060926">Kendrick Lamar</a>
     <a class="hero-example-link" href="https://collapse.chartreuseexplosives.com/r/paramount-060926">Paramount</a>
   </div>
 </div>
@@ -646,6 +657,7 @@ function renderReport(d, isPaid) {
       </div>
       <div><div class="report-date">${d.generated || ''}</div></div>
     </div>
+    <div class="report-disclosure"><strong>AI-generated.</strong> Built by Claude from live web sources. A human reviews every report before it publishes. Errors get the report pulled and reissued corrected.</div>
     ${shareHtml}
     <div class="risk-banner ${riskClass}">
       <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
