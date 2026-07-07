@@ -160,6 +160,7 @@ nav { border-bottom: 1px solid var(--border); padding: 0 1.25rem; display: flex;
 
 .report-disclosure { border: 1px solid var(--border); background: var(--surface); padding: .75rem 1rem; margin-bottom: 1.5rem; font-family: var(--mono); font-size: 10px; letter-spacing: .04em; color: var(--muted); line-height: 1.6; }
 .report-disclosure strong { color: var(--chartreuse-dim); }
+.legal-disclaimer { border-left: 2px solid var(--border-bright); padding: .75rem 1rem; margin-bottom: 1.5rem; font-family: var(--mono); font-size: 10px; letter-spacing: .03em; color: var(--muted); line-height: 1.7; }
 
 .risk-banner { padding: 1rem 1.25rem; border-left: 3px solid; margin-bottom: 1.5rem; }
 .risk-banner.low { border-color: var(--success); background: #041a12; }
@@ -658,6 +659,7 @@ function renderReport(d, isPaid) {
       <div><div class="report-date">${d.generated || ''}</div></div>
     </div>
     <div class="report-disclosure"><strong>AI-generated.</strong> Built by Claude from live web sources. A human reviews every report before it publishes. Errors get the report pulled and reissued corrected.</div>
+    <div class="legal-disclaimer">${d.legal_disclaimer || 'This report is analytical opinion based on public information. It is not an allegation of illegal conduct.'}</div>
     ${shareHtml}
     <div class="risk-banner ${riskClass}">
       <div class="risk-level">${riskLabel[riskClass] || riskClass}</div>
